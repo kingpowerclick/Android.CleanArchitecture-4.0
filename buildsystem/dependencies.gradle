@@ -10,28 +10,28 @@ ext {
   appCompat_version = '27.1.0'
   constraintLayout_version = '1.0.2'
   archComponents_version = '1.1.1'
-  glide_version = '4.0.0'
+  glide_version = '4.7.1'
 
   //Third party libraries
-  kotlin_coroutines_version = '0.22.1'
-  dagger_version = '2.11'
+  kotlin_coroutines_version = '0.23.3'
+  dagger_version = '2.16'
   javaxAnnotations_version = '1.0'
   javaxInject_version = '1'
-  retrofit_version = '2.3.0'
-  okhttp_logging_interceptor_version = '3.8.1'
+  retrofit_version = '2.4.0'
+  okhttp_logging_interceptor_version = '3.10.0'
 
   //Unit Testing
   robolectric_version = '3.8'
   junit_version = '4.12'
-  mockito_version = '1.4.0'
-  kluent_version = '1.14'
+  mockito_version = '1.6.0'
+  kluent_version = '1.38'
 
   //Acceptance Testing
-  runner_version = '1.0.2-alpha1'
-  espresso_version = '3.0.2-alpha1'
+  runner_version = '1.0.2-beta1'
+  espresso_version = '3.0.2-beta1'
 
   //Development
-  leakCanaryVersion = '1.5'
+  leak_canary_version = '1.5.4'
 
   mainApplication = [
       kotlin:                     "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
@@ -74,7 +74,7 @@ ext {
   ]
 
   development = [
-      leakCanary:         "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
-      leakCanaryNoop:     "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}",
+      leakCanary:         "com.squareup.leakcanary:leakcanary-android:${leak_canary_version}",
+      leakCanaryNoop:     "com.squareup.leakcanary:leakcanary-android-no-op:${leak_canary_version}",
   ]
 }
