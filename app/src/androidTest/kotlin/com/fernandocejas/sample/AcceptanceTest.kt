@@ -27,10 +27,11 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 abstract class AcceptanceTest<T : Activity>(clazz: Class<T>) {
 
-    @Rule @JvmField
-    val testRule: ActivityTestRule<T> = IntentsTestRule(clazz)
+	@Rule
+	@JvmField
+	val testRule: ActivityTestRule<T> = IntentsTestRule(clazz)
 
-    val checkThat: Matchers = Matchers()
-    val events: Events = Events()
+	val checkThat: Matchers = Matchers()
+	val events: Events = Events()
 }
 

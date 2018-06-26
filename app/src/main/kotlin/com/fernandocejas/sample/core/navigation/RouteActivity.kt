@@ -23,15 +23,16 @@ import javax.inject.Inject
 
 class RouteActivity : AppCompatActivity() {
 
-    private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
-        (application as AndroidApplication).appComponent
-    }
+	private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
+		(application as AndroidApplication).appComponent
+	}
 
-    @Inject internal lateinit var navigator: Navigator
+	@Inject
+	internal lateinit var navigator: Navigator
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        appComponent.inject(this)
-        navigator.showMain(this)
-    }
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		appComponent.inject(this)
+		navigator.showMain(this)
+	}
 }

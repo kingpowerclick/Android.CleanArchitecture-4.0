@@ -25,17 +25,17 @@ import android.support.test.espresso.intent.matcher.IntentMatchers
 import android.support.test.espresso.matcher.ViewMatchers.*
 
 class Matchers {
-    fun <T : Activity> nextOpenActivityIs(clazz: Class<T>) {
-        intended(IntentMatchers.hasComponent(clazz.name))
-    }
+	fun <T : Activity> nextOpenActivityIs(clazz: Class<T>) {
+		intended(IntentMatchers.hasComponent(clazz.name))
+	}
 
-    fun viewIsVisibleAndContainsText(@StringRes stringResource: Int) {
-        onView(withText(stringResource)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
-    }
+	fun viewIsVisibleAndContainsText(@StringRes stringResource: Int) {
+		onView(withText(stringResource)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+	}
 
-    fun viewContainsText(@IdRes viewId: Int, @StringRes stringResource: Int) {
-        onView(withId(viewId)).check(matches(withText(stringResource)))
-    }
+	fun viewContainsText(@IdRes viewId: Int, @StringRes stringResource: Int) {
+		onView(withId(viewId)).check(matches(withText(stringResource)))
+	}
 }
 
 
