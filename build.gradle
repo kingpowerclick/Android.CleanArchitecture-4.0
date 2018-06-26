@@ -10,7 +10,7 @@ buildscript {
     ext.target_sdk = 27
     ext.min_sdk = 17
 
-    ext.application_id = 'com.fernandocejas.sample'
+    ext.application_id = 'com.his'
     ext.version_name = '1.0'
     ext.version_code = 1
     ext.test_runner = 'android.support.test.runner.AndroidJUnitRunner'
@@ -56,6 +56,6 @@ task deployDebug(type: Exec, dependsOn: 'app:installDebug') {
         }
         def sdkDir = properties.getProperty('sdk.dir')
         def adb = "$sdkDir/platform-tools/adb"
-        commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.fernandocejas.sample/com.fernandocejas.sample.core.navigation.RouteActivity'
+        commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.his/com.his.core.navigation.RouteActivity'
     }
 }
