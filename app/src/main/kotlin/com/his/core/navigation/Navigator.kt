@@ -21,6 +21,7 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.FragmentActivity
+import android.support.v4.view.ViewCompat
 import android.view.View
 import android.widget.ImageView
 import com.his.core.extension.empty
@@ -37,8 +38,6 @@ import javax.inject.Singleton
 class Navigator
 @Inject constructor(private val authenticator: Authenticator) {
 
-	private fun showLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
-
 	fun showMain(context: Context) {
 		when (authenticator.userLoggedIn()) {
 			true  -> showMovies(context)
@@ -46,18 +45,13 @@ class Navigator
 		}
 	}
 
-	private fun showMovies(context: Context) = context.startActivity(MoviesActivity.callingIntent(context))
-
 	fun showMovieDetails(activity: FragmentActivity, movie: MovieView, navigationExtras: Extras) {
 		val intent = MovieDetailsActivity.callingIntent(activity, movie)
 		val sharedView = navigationExtras.transitionSharedElement as ImageView
 		val activityOptions = ActivityOptionsCompat
-			.makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
+			.makeSceneTransitionAnimation(activity, sharedView, ViewCompat.getTransitionName(sharedView))
 		activity.startActivity(intent, activityOptions.toBundle())
 	}
-
-	private val VIDEO_URL_HTTP = "http://www.youtube.com/watch?v="
-	private val VIDEO_URL_HTTPS = "https://www.youtube.com/watch?v="
 
 	fun openVideo(context: Context, videoUrl: String) {
 		try {
@@ -68,6 +62,10 @@ class Navigator
 		}
 	}
 
+	private fun showLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
+
+	private fun showMovies(context: Context) = context.startActivity(MoviesActivity.callingIntent(context))
+
 	private fun createYoutubeIntent(videoUrl: String): Intent {
 		val videoId = when {
 			videoUrl.startsWith(VIDEO_URL_HTTP)  -> videoUrl.replace(VIDEO_URL_HTTP, String.empty())
@@ -75,13 +73,17 @@ class Navigator
 			else                                 -> videoUrl
 		}
 
-		val intent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$videoId"))
-		intent.putExtra("force_fullscreen", true)
-
-		return intent
+		return Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$videoId")).apply {
+			putExtra("force_fullscreen", true)
+		}
 	}
 
 	class Extras(val transitionSharedElement: View)
+
+	companion object {
+		private const val VIDEO_URL_HTTP = "http://www.youtube.com/watch?v="
+		private const val VIDEO_URL_HTTPS = "https://www.youtube.com/watch?v="
+	}
 }
 
 

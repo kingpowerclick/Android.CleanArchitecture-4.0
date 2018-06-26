@@ -44,6 +44,10 @@ class ApplicationModule(private val application: AndroidApplication) {
 			.build()
 	}
 
+	@Provides
+	@Singleton
+	fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+
 	private fun createClient(): OkHttpClient {
 		val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
 		if (BuildConfig.DEBUG) {
@@ -52,8 +56,4 @@ class ApplicationModule(private val application: AndroidApplication) {
 		}
 		return okHttpClientBuilder.build()
 	}
-
-	@Provides
-	@Singleton
-	fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
 }
