@@ -18,9 +18,9 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.given
 import kotlinx.coroutines.experimental.runBlocking
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
@@ -39,20 +39,19 @@ class MovieDetailsViewModelTest : AndroidTest() {
     }
 
     @Test fun `loading movie details should update live data`() {
-        val movieDetails = MovieDetails(0, "IronMan", "poster", "summary",
-                "cast", "director", 2018, "trailer")
-        given { runBlocking { getMovieDetails.run(eq(any())) } }.willReturn(Right(movieDetails))
+        val movieDetails = MovieDetails(0, "IronMan", "poster", "summary", "cast", "director", 2018, "trailer")
+        given { runBlocking { getMovieDetails.run(any()) } }.willReturn(Right(movieDetails))
 
         movieDetailsViewModel.movieDetails.observeForever {
             with(it!!) {
                 id shouldEqualTo 0
-                title shouldEqualTo "IronMan"
-                poster shouldEqualTo "poster"
-                summary shouldEqualTo "summary"
-                cast shouldEqualTo "cast"
-                director shouldEqualTo "director"
+                title shouldBeEqualTo "IronMan"
+                poster shouldBeEqualTo "poster"
+                summary shouldBeEqualTo "summary"
+                cast shouldBeEqualTo "cast"
+                director shouldBeEqualTo "director"
                 year shouldEqualTo 2018
-                trailer shouldEqualTo "trailer"
+                trailer shouldBeEqualTo "trailer"
             }
         }
 

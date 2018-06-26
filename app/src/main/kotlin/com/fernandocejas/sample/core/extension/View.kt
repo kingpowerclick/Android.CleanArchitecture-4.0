@@ -18,6 +18,7 @@ package com.fernandocejas.sample.core.extension
 import android.graphics.drawable.Drawable
 import android.support.annotation.LayoutRes
 import android.support.v4.app.FragmentActivity
+import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,45 +31,50 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 
 fun View.cancelTransition() {
-    transitionName = null
+	ViewCompat.setTransitionName(this, null)
 }
 
 fun View.isVisible() = this.visibility == View.VISIBLE
 
-fun View.visible() { this.visibility = View.VISIBLE }
-
-fun View.invisible() { this.visibility = View.GONE }
-
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
-        LayoutInflater.from(context).inflate(layoutRes, this, false)
-
-fun ImageView.loadFromUrl(url: String) =
-        Glide.with(this.context.applicationContext)
-                .load(url)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(this)!!
-
-fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
-    val target: Target<Drawable> = ImageViewBaseTarget(this,
-            activity)
-    Glide.with(context.applicationContext).load(url).into(target)
+fun View.visible() {
+	this.visibility = View.VISIBLE
 }
 
-private class ImageViewBaseTarget (var imageView: ImageView?, var activity: FragmentActivity?) : BaseTarget<Drawable>() {
-    override fun removeCallback(cb: SizeReadyCallback?) {
-        imageView = null
-        activity = null
-    }
+fun View.invisible() {
+	this.visibility = View.GONE
+}
 
-    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>) {
-        imageView?.setImageDrawable(resource)
-        activity?.supportStartPostponedEnterTransition()
-    }
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
+	LayoutInflater.from(context).inflate(layoutRes, this, false)
 
-    override fun onLoadFailed(errorDrawable: Drawable?) {
-        super.onLoadFailed(errorDrawable)
-        activity?.supportStartPostponedEnterTransition()
-    }
+fun ImageView.loadFromUrl(url: String) =
+	Glide.with(this.context.applicationContext)
+		.load(url)
+		.transition(DrawableTransitionOptions.withCrossFade())
+		.into(this)
 
-    override fun getSize(cb: SizeReadyCallback) = cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL)
+fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
+	val target: Target<Drawable> = ImageViewBaseTarget(this,
+		activity)
+	Glide.with(context.applicationContext).load(url).into(target)
+}
+
+private class ImageViewBaseTarget(var imageView: ImageView?, var activity: FragmentActivity?) : BaseTarget<Drawable>() {
+
+	override fun removeCallback(cb: SizeReadyCallback) {
+		imageView = null
+		activity = null
+	}
+
+	override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+		imageView?.setImageDrawable(resource)
+		activity?.supportStartPostponedEnterTransition()
+	}
+
+	override fun onLoadFailed(errorDrawable: Drawable?) {
+		super.onLoadFailed(errorDrawable)
+		activity?.supportStartPostponedEnterTransition()
+	}
+
+	override fun getSize(cb: SizeReadyCallback) = cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL)
 }
