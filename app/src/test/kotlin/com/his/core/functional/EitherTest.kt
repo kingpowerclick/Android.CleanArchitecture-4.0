@@ -19,8 +19,8 @@ import com.his.UnitTest
 import com.his.core.functional.Either.Left
 import com.his.core.functional.Either.Right
 import org.amshove.kluent.shouldBe
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqualTo
 import org.junit.Test
 
 class EitherTest : UnitTest() {
@@ -35,7 +35,7 @@ class EitherTest : UnitTest() {
 		result.either({},
 			{ right ->
 				right shouldBeInstanceOf String::class.java
-				right shouldEqualTo "ironman"
+				right shouldBeEqualTo "ironman"
 			})
 	}
 
@@ -49,7 +49,7 @@ class EitherTest : UnitTest() {
 		result.either(
 			{ left ->
 				left shouldBeInstanceOf String::class.java
-				left shouldEqualTo "ironman"
+				left shouldBeEqualTo "ironman"
 			}, {})
 	}
 }
