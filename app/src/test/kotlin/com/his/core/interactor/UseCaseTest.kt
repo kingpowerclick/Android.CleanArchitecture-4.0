@@ -16,12 +16,11 @@
 package com.his.core.interactor
 
 import com.his.AndroidTest
-import com.his.core.exception.Failure
-import com.his.core.functional.Either
-import com.his.core.functional.Either.Right
-import kotlinx.coroutines.experimental.runBlocking
+import io.reactivex.Observable
+import io.reactivex.observers.TestObserver
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
+
 
 class UseCaseTest : AndroidTest() {
 
@@ -30,30 +29,23 @@ class UseCaseTest : AndroidTest() {
 
 	private val useCase = MyUseCase()
 
-	@Test
-	fun `running use case should return 'Either' of use case type`() {
-		val params = MyParams(TYPE_PARAM)
-		val result = runBlocking { useCase.run(params) }
-
-		result shouldEqual Right(MyType(TYPE_TEST))
-	}
+	private val testObserver = TestObserver.create<MyType>()
 
 	@Test
 	fun `should return correct data when executing use case`() {
-		var result: Either<Failure, MyType>? = null
+		val params = MyParams(TYPE_PARAM)
+		useCase.buildUseCase(params)
+			.subscribe(testObserver)
 
-		val params = MyParams("TestParam")
-		val onResult = { myResult: Either<Failure, MyType> -> result = myResult }
-
-		runBlocking { useCase.execute(onResult, params) }
-
-		result shouldEqual Right(MyType(TYPE_TEST))
+		testObserver.values().first() shouldEqual MyType(TYPE_TEST)
 	}
 
 	data class MyType(val name: String)
-	data class MyParams(val name: String)
+	data class MyParams(val name: String) : UseCase.Parameter.FeatureParameter()
 
 	private inner class MyUseCase : UseCase<MyType, MyParams>() {
-		override suspend fun run(params: MyParams) = Right(MyType(TYPE_TEST))
+		override fun buildUseCase(params: MyParams): Observable<MyType> {
+			return Observable.just(MyType(TYPE_TEST))
+		}
 	}
 }

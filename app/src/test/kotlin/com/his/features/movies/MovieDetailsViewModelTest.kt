@@ -16,10 +16,10 @@
 package com.his.features.movies
 
 import com.his.AndroidTest
-import com.his.core.functional.Either.Right
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.given
-import kotlinx.coroutines.experimental.runBlocking
+import com.nhaarman.mockito_kotlin.willReturn
+import io.reactivex.Observable
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
@@ -32,18 +32,16 @@ class MovieDetailsViewModelTest : AndroidTest() {
 
 	@Mock
 	private lateinit var getMovieDetails: GetMovieDetails
-	@Mock
-	private lateinit var playMovie: PlayMovie
 
 	@Before
 	fun setUp() {
-		movieDetailsViewModel = MovieDetailsViewModel(getMovieDetails, playMovie)
+		movieDetailsViewModel = MovieDetailsViewModel(getMovieDetails)
 	}
 
 	@Test
 	fun `loading movie details should update live data`() {
 		val movieDetails = MovieDetails(0, "IronMan", "poster", "summary", "cast", "director", 2018, "trailer")
-		given { runBlocking { getMovieDetails.run(any()) } }.willReturn(Right(movieDetails))
+		given { getMovieDetails.buildUseCase(any()) }.willReturn { Observable.just(movieDetails) }
 
 		movieDetailsViewModel.movieDetails.observeForever {
 			with(it!!) {
@@ -58,6 +56,6 @@ class MovieDetailsViewModelTest : AndroidTest() {
 			}
 		}
 
-		runBlocking { movieDetailsViewModel.loadMovieDetails(0) }
+		movieDetailsViewModel.loadMovieDetails(0)
 	}
 }

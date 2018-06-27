@@ -6,7 +6,7 @@ abstract class DefaultDisposable<Type> : DisposableObserver<Type>() {
 	override fun onComplete() {
 	}
 
-	override fun onNext(t: Type) {
+	override fun onNext(value: Type) {
 	}
 
 	override fun onError(e: Throwable) {

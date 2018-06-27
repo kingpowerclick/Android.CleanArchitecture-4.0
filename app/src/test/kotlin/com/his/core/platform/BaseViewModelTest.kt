@@ -15,10 +15,9 @@
  */
 package com.his.core.platform
 
+import android.accounts.NetworkErrorException
 import android.arch.lifecycle.MutableLiveData
 import com.his.AndroidTest
-import com.his.core.exception.Failure
-import com.his.core.exception.Failure.NetworkConnection
 import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Test
 
@@ -28,16 +27,16 @@ class BaseViewModelTest : AndroidTest() {
 	fun `should handle failure by updating live data`() {
 		val viewModel = MyViewModel()
 
-		viewModel.handleError(NetworkConnection())
+		viewModel.handleError(NetworkErrorException())
 
 		val failure = viewModel.failure
 		val error = viewModel.failure.value
 
 		failure shouldBeInstanceOf MutableLiveData::class.java
-		error shouldBeInstanceOf NetworkConnection::class.java
+		error shouldBeInstanceOf NetworkErrorException::class.java
 	}
 
 	private class MyViewModel : BaseViewModel() {
-		fun handleError(failure: Failure) = handleFailure(failure)
+		fun handleError(failure: Throwable) = handleFailure(failure)
 	}
 }

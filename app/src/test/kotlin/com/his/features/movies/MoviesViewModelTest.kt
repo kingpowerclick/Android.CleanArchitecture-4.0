@@ -16,10 +16,10 @@
 package com.his.features.movies
 
 import com.his.AndroidTest
-import com.his.core.functional.Either.Right
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.given
-import kotlinx.coroutines.experimental.runBlocking
+import com.nhaarman.mockito_kotlin.willReturn
+import io.reactivex.Observable
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
@@ -41,7 +41,7 @@ class MoviesViewModelTest : AndroidTest() {
 	@Test
 	fun `loading movies should update live data`() {
 		val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-		given { runBlocking { getMovies.run(any()) } }.willReturn(Right(moviesList))
+		given { getMovies.buildUseCase(any()) }.willReturn { Observable.just(moviesList) }
 
 		moviesViewModel.movies.observeForever {
 			it!!.size shouldEqualTo 2
@@ -51,6 +51,6 @@ class MoviesViewModelTest : AndroidTest() {
 			it[1].poster shouldBeEqualTo "Batman"
 		}
 
-		runBlocking { moviesViewModel.loadMovies() }
+		moviesViewModel.loadMovies()
 	}
 }

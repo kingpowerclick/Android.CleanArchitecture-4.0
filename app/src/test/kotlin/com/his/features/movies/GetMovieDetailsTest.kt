@@ -16,11 +16,10 @@
 package com.his.features.movies
 
 import com.his.UnitTest
-import com.his.core.functional.Either.Right
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
-import kotlinx.coroutines.experimental.runBlocking
+import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -37,12 +36,13 @@ class GetMovieDetailsTest : UnitTest() {
 	@Before
 	fun setUp() {
 		getMovieDetails = GetMovieDetails(moviesRepository)
-		given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Right(MovieDetails.empty()))
+		given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Observable.just(MovieDetails.empty()))
 	}
 
 	@Test
 	fun `should get data from repository`() {
-		runBlocking { getMovieDetails.run(GetMovieDetails.Params(MOVIE_ID)) }
+		getMovieDetails.buildUseCase(GetMovieDetails.Params(MOVIE_ID))
+			.subscribe()
 
 		verify(moviesRepository).movieDetails(MOVIE_ID)
 		verifyNoMoreInteractions(moviesRepository)
