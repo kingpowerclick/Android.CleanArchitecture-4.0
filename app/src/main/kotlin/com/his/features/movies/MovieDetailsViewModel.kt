@@ -17,23 +17,35 @@ package com.his.features.movies
 
 import android.arch.lifecycle.MutableLiveData
 import com.his.core.platform.BaseViewModel
+import com.his.core.platform.DefaultDisposable
 import com.his.features.movies.GetMovieDetails.Params
 import javax.inject.Inject
 
 class MovieDetailsViewModel
-@Inject constructor(private val getMovieDetails: GetMovieDetails,
-                    private val playMovie: PlayMovie) : BaseViewModel() {
+@Inject constructor(private val getMovieDetails: GetMovieDetails) : BaseViewModel() {
 
 	var movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
 
 	fun loadMovieDetails(movieId: Int) {
-		getMovieDetails.execute({ it.either(::handleFailure, ::handleMovieDetails) }, Params(movieId))
+		getMovieDetails.execute(GetMovieDetailsObserver(), Params(movieId))
 	}
 
-	fun playMovie(url: String) = playMovie.execute({}, PlayMovie.Params(url))
+	override fun onCleared() {
+		getMovieDetails.dispose()
+	}
 
 	private fun handleMovieDetails(movie: MovieDetails) {
 		this.movieDetails.value = MovieDetailsView(movie.id, movie.title, movie.poster,
 			movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
+	}
+
+	inner class GetMovieDetailsObserver : DefaultDisposable<MovieDetails>() {
+		override fun onError(e: Throwable) {
+			handleFailure(e)
+		}
+
+		override fun onNext(t: MovieDetails) {
+			handleMovieDetails(t)
+		}
 	}
 }

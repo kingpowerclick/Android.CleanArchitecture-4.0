@@ -16,8 +16,9 @@
 package com.his.features.movies
 
 import android.arch.lifecycle.MutableLiveData
-import com.his.core.interactor.UseCase.None
+import com.his.core.interactor.UseCase.Parameter
 import com.his.core.platform.BaseViewModel
+import com.his.core.platform.DefaultDisposable
 import javax.inject.Inject
 
 class MoviesViewModel
@@ -25,9 +26,23 @@ class MoviesViewModel
 
 	var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
 
-	fun loadMovies() = getMovies.execute({ it.either(::handleFailure, ::handleMovieList) }, None())
+	fun loadMovies() = getMovies.execute(GetMoviesObserver(), Parameter.None())
+
+	override fun onCleared() {
+		getMovies.dispose()
+	}
 
 	private fun handleMovieList(movies: List<Movie>) {
 		this.movies.value = movies.map { MovieView(it.id, it.poster) }
+	}
+
+	inner class GetMoviesObserver : DefaultDisposable<List<Movie>>() {
+		override fun onError(e: Throwable) {
+			handleFailure(e)
+		}
+
+		override fun onNext(t: List<Movie>) {
+			handleMovieList(t)
+		}
 	}
 }

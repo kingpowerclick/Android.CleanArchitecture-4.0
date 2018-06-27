@@ -20,13 +20,11 @@ import android.support.annotation.StringRes
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.his.R
-import com.his.core.exception.Failure
-import com.his.core.exception.Failure.NetworkConnection
-import com.his.core.exception.Failure.ServerError
+import com.his.core.exception.NetworkConnectionException
+import com.his.core.exception.ServerErrorException
 import com.his.core.extension.*
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
-import com.his.features.movies.MovieFailure.ListNotAvailable
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
@@ -78,11 +76,10 @@ class MoviesFragment : BaseFragment() {
 		hideProgress()
 	}
 
-	private fun handleFailure(failure: Failure?) {
+	private fun handleFailure(failure: Throwable?) {
 		when (failure) {
-			is NetworkConnection -> renderFailure(R.string.failure_network_connection)
-			is ServerError       -> renderFailure(R.string.failure_server_error)
-			is ListNotAvailable  -> renderFailure(R.string.failure_movies_list_unavailable)
+			is NetworkConnectionException -> renderFailure(R.string.failure_network_connection)
+			is ServerErrorException       -> renderFailure(R.string.failure_server_error)
 		}
 	}
 

@@ -16,11 +16,14 @@
 package com.his.features.movies
 
 import com.his.core.interactor.UseCase
-import com.his.core.interactor.UseCase.None
+import com.his.core.interactor.UseCase.Parameter
+import io.reactivex.Observable
 import javax.inject.Inject
 
 class GetMovies
-@Inject constructor(private val moviesRepository: MoviesRepository) : UseCase<List<Movie>, None>() {
+@Inject constructor(private val moviesRepository: MoviesRepository) : UseCase<List<Movie>, Parameter.None>() {
 
-	override suspend fun run(params: None) = moviesRepository.movies()
+	override fun buildUseCase(params: Parameter.None): Observable<List<Movie>> {
+		return moviesRepository.movies()
+	}
 }

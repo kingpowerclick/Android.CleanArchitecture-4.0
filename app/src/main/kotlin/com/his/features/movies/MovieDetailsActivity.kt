@@ -22,7 +22,7 @@ import com.his.core.platform.BaseActivity
 class MovieDetailsActivity : BaseActivity() {
 
 	companion object {
-		private const val INTENT_EXTRA_PARAM_MOVIE = "com.fernandocejas.INTENT_PARAM_MOVIE"
+		private const val INTENT_EXTRA_PARAM_MOVIE = "com.his.INTENT_PARAM_MOVIE"
 
 		fun callingIntent(context: Context, movie: MovieView): Intent {
 			val intent = Intent(context, MovieDetailsActivity::class.java)

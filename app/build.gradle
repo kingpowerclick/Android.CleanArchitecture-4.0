@@ -78,8 +78,6 @@ dependencies {
 
     //Application dependencies
     implementation applicationDependencies.kotlin
-    implementation applicationDependencies.kotlinCoroutines
-    implementation applicationDependencies.kotlinCoroutinesAndroid
     implementation applicationDependencies.appCompat
     implementation applicationDependencies.constraintLayout
     implementation applicationDependencies.archComponents
@@ -90,7 +88,10 @@ dependencies {
     implementation applicationDependencies.glide
     implementation applicationDependencies.dagger
     implementation applicationDependencies.retrofit
+    implementation applicationDependencies.retrofitRxJava
     implementation applicationDependencies.okhttpLoggingInterceptor
+    implementation applicationDependencies.rxjava
+    implementation applicationDependencies.rxandroid
 
     //Unit/Integration tests dependencies
     testImplementation unitTestDependencies.kotlin
@@ -114,7 +115,4 @@ dependencies {
 }
 
 kotlin {
-    experimental {
-        coroutines "enable"
-    }
 }

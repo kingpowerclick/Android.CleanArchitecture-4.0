@@ -18,31 +18,19 @@ package com.his.features.movies
 import android.os.Bundle
 import android.view.View
 import com.his.R
-import com.his.core.exception.Failure
-import com.his.core.exception.Failure.NetworkConnection
-import com.his.core.exception.Failure.ServerError
+import com.his.core.exception.NetworkConnectionException
+import com.his.core.exception.ServerErrorException
 import com.his.core.extension.*
+import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
-import com.his.features.movies.MovieFailure.NonExistentMovie
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class MovieDetailsFragment : BaseFragment() {
 
-	companion object {
-		private const val PARAM_MOVIE = "param_movie"
-
-		fun forMovie(movie: MovieView): MovieDetailsFragment {
-			val movieDetailsFragment = MovieDetailsFragment()
-			val arguments = Bundle()
-			arguments.putParcelable(PARAM_MOVIE, movie)
-			movieDetailsFragment.arguments = arguments
-
-			return movieDetailsFragment
-		}
-	}
-
+	@Inject
+	lateinit var navigator: Navigator
 	@Inject
 	lateinit var movieDetailsAnimator: MovieDetailsAnimator
 
@@ -92,24 +80,34 @@ class MovieDetailsFragment : BaseFragment() {
 				movieCast.text = cast
 				movieDirector.text = director
 				movieYear.text = year.toString()
-				moviePlay.setOnClickListener { movieDetailsViewModel.playMovie(trailer) }
+				moviePlay.setOnClickListener { navigator.openVideo(activity!!, trailer) }
 			}
 		}
 		movieDetailsAnimator.fadeVisible(scrollView, movieDetails)
 		movieDetailsAnimator.scaleUpView(moviePlay)
 	}
 
-	private fun handleFailure(failure: Failure?) {
+	private fun handleFailure(failure: Throwable?) {
 		when (failure) {
-			is NetworkConnection -> {
+			is NetworkConnectionException -> {
 				notify(R.string.failure_network_connection); close()
 			}
-			is ServerError       -> {
+			is ServerErrorException       -> {
 				notify(R.string.failure_server_error); close()
 			}
-			is NonExistentMovie  -> {
-				notify(R.string.failure_movie_non_existent); close()
-			}
+		}
+	}
+
+	companion object {
+		private const val PARAM_MOVIE = "param_movie"
+
+		fun forMovie(movie: MovieView): MovieDetailsFragment {
+			val movieDetailsFragment = MovieDetailsFragment()
+			val arguments = Bundle()
+			arguments.putParcelable(PARAM_MOVIE, movie)
+			movieDetailsFragment.arguments = arguments
+
+			return movieDetailsFragment
 		}
 	}
 }

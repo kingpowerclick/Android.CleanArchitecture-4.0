@@ -15,12 +15,13 @@
  */
 package com.his.core.interactor
 
-import com.his.core.exception.Failure
-import com.his.core.functional.Either
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
+
 
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
@@ -30,14 +31,53 @@ import kotlinx.coroutines.experimental.launch
  * By convention each [UseCase] implementation will execute its job in a background thread
  * (kotlin coroutine) and will post the result in the UI thread.
  */
-abstract class UseCase<out Type, in Params> where Type : Any {
+abstract class UseCase<Type, in Params> where Type : Any, Params : UseCase.Parameter {
 
-	abstract suspend fun run(params: Params): Either<Failure, Type>
+	private val disposables: CompositeDisposable = CompositeDisposable()
 
-	fun execute(onResult: (Either<Failure, Type>) -> Unit, params: Params) {
-		val job = async(CommonPool) { run(params) }
-		launch(UI) { onResult.invoke(job.await()) }
+	/**
+	 * Builds an [Observable] which will be used when executing the current [UseCase].
+	 */
+	abstract fun buildUseCase(params: Params): Observable<Type>
+
+	/**
+	 * Executes the current use case.
+	 *
+	 * @param observer [DisposableObserver] which will be listening to the observable build
+	 * by [.buildUseCaseObservable] ()} method.
+	 * @param params Parameters (Optional) used to build/execute this use case.
+	 */
+	fun execute(observer: DisposableObserver<Type>, params: Params) {
+		checkNotNull(observer)
+
+		addDisposable(buildUseCase(params)
+			.subscribeOn(Schedulers.io())
+			.observeOn(AndroidSchedulers.mainThread())
+			.subscribeWith(observer))
 	}
 
-	class None
+	/**
+	 * Dispose from current [CompositeDisposable].
+	 */
+	fun dispose() {
+		if (!disposables.isDisposed) {
+			disposables.dispose()
+		}
+	}
+
+	/**
+	 * Dispose from current [CompositeDisposable].
+	 */
+	private fun addDisposable(disposable: Disposable) {
+		checkNotNull(disposable)
+		checkNotNull(disposables)
+		disposables.add(disposable)
+	}
+
+	sealed class Parameter {
+		class None : Parameter()
+
+		/** * Extend this class for feature specific parameters.*/
+		abstract class FeatureParameter : Parameter()
+	}
 }
