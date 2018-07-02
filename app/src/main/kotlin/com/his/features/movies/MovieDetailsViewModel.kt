@@ -44,8 +44,8 @@ class MovieDetailsViewModel
 			handleFailure(e)
 		}
 
-		override fun onNext(t: MovieDetails) {
-			handleMovieDetails(t)
+		override fun onNext(value: MovieDetails) {
+			handleMovieDetails(value)
 		}
 	}
 }

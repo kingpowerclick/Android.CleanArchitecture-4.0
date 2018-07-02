@@ -41,8 +41,8 @@ class MoviesViewModel
 			handleFailure(e)
 		}
 
-		override fun onNext(t: List<Movie>) {
-			handleMovieList(t)
+		override fun onNext(value: List<Movie>) {
+			handleMovieList(value)
 		}
 	}
 }

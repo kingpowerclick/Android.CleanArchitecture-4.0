@@ -2,20 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'jacoco'
 
 android {
-    def config = rootProject.extensions.getByName("ext")
+    def config = rootProject.extensions.ext
 
-    compileSdkVersion config["compile_sdk"]
-    buildToolsVersion config["build_tools"]
+    compileSdkVersion config.compile_sdk
+    buildToolsVersion config.build_tools
 
     defaultConfig {
-        applicationId config["application_id"]
-        minSdkVersion config["min_sdk"]
-        targetSdkVersion config["target_sdk"]
-        versionCode config["version_code"]
-        versionName config["version_name"]
-        testInstrumentationRunner config["test_runner"]
+        applicationId config.application_id
+        minSdkVersion config.min_sdk
+        targetSdkVersion config.target_sdk
+        versionCode config.version_code
+        versionName config.version_name
+        testInstrumentationRunner config.test_runner
     }
 
     packagingOptions {
@@ -47,6 +48,8 @@ android {
 
     buildTypes {
         debug {
+            testCoverageEnabled true
+
             minifyEnabled false
             signingConfig signingConfigs.debug
         }
@@ -61,6 +64,12 @@ android {
         main.java.srcDirs += [file("$buildDir/generated/source/kapt")]
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
 
@@ -115,4 +124,46 @@ dependencies {
 }
 
 kotlin {
+}
+
+jacoco {
+    setToolVersion(rootProject.extensions.ext.jacoco_version)
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/*$InjectAdapter*.*',
+                      '**/*Injector*.*',
+                      '**/BuildConfig.*',
+                      '**/Manifest*.*',
+                      '**/*Test*.*',
+                      '**/*Activity*.*',
+                      '**/*Fragment*.*',
+                      'android/**/*.*',
+                      // Ignore test coverage
+                      '**/*Application*.*',
+                      '**/*Module*.*',
+                      '**/*Exception*.*',
+                      '**/*Companion*.*',
+                      '**/*Parcelable*.',
+                      '**/*Adapter*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/kotlin"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
 }
