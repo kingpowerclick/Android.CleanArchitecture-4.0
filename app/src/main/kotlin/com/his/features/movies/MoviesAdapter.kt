@@ -20,9 +20,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.his.R
 import com.his.core.extension.inflate
-import com.his.core.extension.loadFromUrl
 import com.his.core.navigation.Navigator
-import kotlinx.android.synthetic.main.row_movie.view.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -44,9 +42,9 @@ class MoviesAdapter
 	override fun getItemCount() = collection.size
 
 	class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(movieView: MovieView, clickListener: (MovieView, Navigator.Extras) -> Unit) {
-			itemView.moviePoster.loadFromUrl(movieView.poster)
-			itemView.setOnClickListener { clickListener(movieView, Navigator.Extras(itemView.moviePoster)) }
+		fun bind(moviePacel: MovieView, clickListener: (MovieView, Navigator.Extras) -> Unit) {
+//			itemView.moviePoster.loadFromUrl(moviePacel.poster)
+//			itemView.setOnClickListener { clickListener(moviePacel, Navigator.Extras(itemView.moviePoster)) }
 		}
 	}
 }

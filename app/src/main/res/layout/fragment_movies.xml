@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/movieList"
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/recyclerViewMovie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"

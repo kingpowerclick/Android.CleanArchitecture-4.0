@@ -18,6 +18,7 @@ package com.his.features.movies
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.util.Log
 import android.view.View
 import com.his.R
 import com.his.core.exception.NetworkConnectionException
@@ -25,15 +26,19 @@ import com.his.core.exception.ServerErrorException
 import com.his.core.extension.*
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
+import com.his.features.movies.adapter.epoxymodel.MoviesController
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 class MoviesFragment : BaseFragment() {
 
-	@Inject
-	lateinit var navigator: Navigator
-	@Inject
-	lateinit var moviesAdapter: MoviesAdapter
+	@Inject lateinit var navigator: Navigator
+	@Inject lateinit var moviesAdapter: MoviesAdapter
+
+	private val moviesController by lazy { MoviesController() }
+
+
+//	private val moviesAdapter2 by lazy { com.his.features.mMovies.adapter.MoviesAdapter() }
 
 	private lateinit var moviesViewModel: MoviesViewModel
 
@@ -57,22 +62,33 @@ class MoviesFragment : BaseFragment() {
 
 
 	private fun initializeView() {
-		movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-		movieList.adapter = moviesAdapter
-		moviesAdapter.clickListener = { movie, navigationExtras ->
-			navigator.showMovieDetails(activity!!, movie, navigationExtras)
+		recyclerViewMovie.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+		recyclerViewMovie.setController(moviesController)
+
+		moviesController.cardMovieOnClickListener = { movieModel, navigationExtras ->
+			navigator.showMovieDetails(activity!!, movieModel, navigationExtras)
 		}
+//		moviesAdapter.clickListener = { movie, navigationExtras ->
+//			navigator.showMovieDetails(activity!!, movie, navigationExtras)
+//		}
 	}
 
 	private fun loadMoviesList() {
 		emptyView.invisible()
-		movieList.visible()
+		recyclerViewMovie.visible()
 		showProgress()
 		moviesViewModel.loadMovies()
 	}
 
 	private fun renderMoviesList(movies: List<MovieView>?) {
-		moviesAdapter.collection = movies.orEmpty()
+		Log.e("aaa","getData ${movies.toString()}")
+		if (movies != null) {
+			movies.isNotEmpty().let {
+				moviesController.setMoviesList(movies)
+			}
+		}
+		moviesController.requestModelBuild()
+
 		hideProgress()
 	}
 
@@ -84,7 +100,7 @@ class MoviesFragment : BaseFragment() {
 	}
 
 	private fun renderFailure(@StringRes message: Int) {
-		movieList.invisible()
+		recyclerViewMovie.invisible()
 		emptyView.visible()
 		hideProgress()
 		notifyWithAction(message, R.string.action_refresh, ::loadMoviesList)
