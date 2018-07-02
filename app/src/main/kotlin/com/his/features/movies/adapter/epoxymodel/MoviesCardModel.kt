@@ -36,12 +36,12 @@ abstract class MoviesCardModel : EpoxyModelWithHolder<MoviesCardModel.ViewHolder
 	}
 
 	inner class ViewHolder : EpoxyHolder() {
-		lateinit var moviePoster: ImageView
 		lateinit var movieCard: CardView
+		lateinit var moviePoster: ImageView
 
 		override fun bindView(itemView: View) {
-			moviePoster = itemView.moviePoster
-			movieCard = itemView.movieCard
+			movieCard = itemView.cardViewMovieCard
+			moviePoster = itemView.imageViewMoviePoster
 		}
 	}
 }

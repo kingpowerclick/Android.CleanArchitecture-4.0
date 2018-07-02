@@ -32,9 +32,9 @@ import javax.inject.Inject
 class MoviesFragment : BaseFragment() {
 
 	@Inject lateinit var navigator: Navigator
+	private lateinit var moviesViewModel: MoviesViewModel
 
 	private val moviesController by lazy { MoviesController() }
-	private lateinit var moviesViewModel: MoviesViewModel
 
 	override fun layoutId() = R.layout.fragment_movies
 
@@ -72,11 +72,10 @@ class MoviesFragment : BaseFragment() {
 	}
 
 	private fun renderMoviesList(movies: List<MovieView>?) {
-		if (movies != null) {
-			movies.isNotEmpty().let {
-				moviesController.setMoviesList(movies)
-			}
+		movies?.isNotEmpty().let {
+			moviesController.setMoviesList(movies!!)
 		}
+
 		moviesController.requestModelBuild()
 		hideProgress()
 	}
