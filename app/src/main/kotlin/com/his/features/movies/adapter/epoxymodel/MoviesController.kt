@@ -5,7 +5,6 @@ import com.his.features.movies.MovieView
 
 open class MoviesController : EpoxyController() {
 	var cardMovieOnClickListener: OnMovieClickListener? = null
-
 	private var mData = listOf<MovieView>()
 
 	fun setMoviesList(moviesList : List<MovieView>) {

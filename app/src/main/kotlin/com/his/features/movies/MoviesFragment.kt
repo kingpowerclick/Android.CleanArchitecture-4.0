@@ -18,7 +18,6 @@ package com.his.features.movies
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.util.Log
 import android.view.View
 import com.his.R
 import com.his.core.exception.NetworkConnectionException
@@ -33,13 +32,8 @@ import javax.inject.Inject
 class MoviesFragment : BaseFragment() {
 
 	@Inject lateinit var navigator: Navigator
-	@Inject lateinit var moviesAdapter: MoviesAdapter
 
 	private val moviesController by lazy { MoviesController() }
-
-
-//	private val moviesAdapter2 by lazy { com.his.features.mMovies.adapter.MoviesAdapter() }
-
 	private lateinit var moviesViewModel: MoviesViewModel
 
 	override fun layoutId() = R.layout.fragment_movies
@@ -68,9 +62,6 @@ class MoviesFragment : BaseFragment() {
 		moviesController.cardMovieOnClickListener = { movieModel, navigationExtras ->
 			navigator.showMovieDetails(activity!!, movieModel, navigationExtras)
 		}
-//		moviesAdapter.clickListener = { movie, navigationExtras ->
-//			navigator.showMovieDetails(activity!!, movie, navigationExtras)
-//		}
 	}
 
 	private fun loadMoviesList() {
@@ -81,14 +72,12 @@ class MoviesFragment : BaseFragment() {
 	}
 
 	private fun renderMoviesList(movies: List<MovieView>?) {
-		Log.e("aaa","getData ${movies.toString()}")
 		if (movies != null) {
 			movies.isNotEmpty().let {
 				moviesController.setMoviesList(movies)
 			}
 		}
 		moviesController.requestModelBuild()
-
 		hideProgress()
 	}
 
