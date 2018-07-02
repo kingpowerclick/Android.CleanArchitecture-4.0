@@ -15,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="2a071e4f5b41b045731708f1d39eb72e37c4ed0f" />
+
         <!--Activities-->
         <activity
             android:name="com.his.core.navigation.RouteActivity"

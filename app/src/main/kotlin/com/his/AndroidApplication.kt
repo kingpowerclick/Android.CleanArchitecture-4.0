@@ -16,10 +16,12 @@
 package com.his
 
 import android.app.Application
+import com.crashlytics.android.Crashlytics
 import com.his.core.di.ApplicationComponent
 import com.his.core.di.ApplicationModule
 import com.his.core.di.DaggerApplicationComponent
 import com.squareup.leakcanary.LeakCanary
+import io.fabric.sdk.android.Fabric
 
 class AndroidApplication : Application() {
 
@@ -34,11 +36,16 @@ class AndroidApplication : Application() {
 		super.onCreate()
 		this.injectMembers()
 		this.initializeLeakDetection()
+		this.initializeFabric()
 	}
 
 	private fun injectMembers() = appComponent.inject(this)
 
 	private fun initializeLeakDetection() {
 		if (BuildConfig.DEBUG) LeakCanary.install(this)
+	}
+
+	private fun initializeFabric() {
+		Fabric.with(this, Crashlytics())
 	}
 }
