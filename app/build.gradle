@@ -71,6 +71,10 @@ android {
             includeAndroidResources = true
         }
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
