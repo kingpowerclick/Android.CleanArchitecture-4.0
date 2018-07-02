@@ -50,6 +50,10 @@ task runAcceptanceTests(dependsOn: [':app:connectedAndroidTest']) {
     description 'Run all acceptance tests.'
 }
 
+task runCoverageTests(dependsOn: [':app:jacocoTestReport']) {
+    description 'Run coverage tests.'
+}
+
 task deployDebug(type: Exec, dependsOn: 'app:installDebug') {
     def rootDir = project.rootDir
     def localProperties = new File(rootDir, "local.properties")
