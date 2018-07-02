@@ -25,17 +25,16 @@ import com.his.core.exception.ServerErrorException
 import com.his.core.extension.*
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
+import com.his.features.movies.adapter.epoxymodel.MoviesController
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 class MoviesFragment : BaseFragment() {
 
-	@Inject
-	lateinit var navigator: Navigator
-	@Inject
-	lateinit var moviesAdapter: MoviesAdapter
-
+	@Inject lateinit var navigator: Navigator
 	private lateinit var moviesViewModel: MoviesViewModel
+
+	private val moviesController by lazy { MoviesController() }
 
 	override fun layoutId() = R.layout.fragment_movies
 
@@ -57,22 +56,27 @@ class MoviesFragment : BaseFragment() {
 
 
 	private fun initializeView() {
-		movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-		movieList.adapter = moviesAdapter
-		moviesAdapter.clickListener = { movie, navigationExtras ->
-			navigator.showMovieDetails(activity!!, movie, navigationExtras)
+		recyclerViewMovie.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+		recyclerViewMovie.setController(moviesController)
+
+		moviesController.cardMovieOnClickListener = { movieModel, navigationExtras ->
+			navigator.showMovieDetails(activity!!, movieModel, navigationExtras)
 		}
 	}
 
 	private fun loadMoviesList() {
 		emptyView.invisible()
-		movieList.visible()
+		recyclerViewMovie.visible()
 		showProgress()
 		moviesViewModel.loadMovies()
 	}
 
 	private fun renderMoviesList(movies: List<MovieView>?) {
-		moviesAdapter.collection = movies.orEmpty()
+		movies?.isNotEmpty().let {
+			moviesController.setMoviesList(movies!!)
+		}
+
+		moviesController.requestModelBuild()
 		hideProgress()
 	}
 
@@ -84,7 +88,7 @@ class MoviesFragment : BaseFragment() {
 	}
 
 	private fun renderFailure(@StringRes message: Int) {
-		movieList.invisible()
+		recyclerViewMovie.invisible()
 		emptyView.visible()
 		hideProgress()
 		notifyWithAction(message, R.string.action_refresh, ::loadMoviesList)

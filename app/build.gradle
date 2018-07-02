@@ -71,6 +71,10 @@ android {
             includeAndroidResources = true
         }
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -82,6 +86,7 @@ dependencies {
     //Compile time dependencies
     kapt applicationDependencies.archComponentsCompiler
     kapt applicationDependencies.daggerCompiler
+    kapt applicationDependencies.epoxyProcessor
     compileOnly applicationDependencies.javaxAnnotation
     compileOnly applicationDependencies.javaxInject
 
@@ -101,6 +106,7 @@ dependencies {
     implementation applicationDependencies.okhttpLoggingInterceptor
     implementation applicationDependencies.rxjava
     implementation applicationDependencies.rxandroid
+    implementation applicationDependencies.epoxy
 
     //Unit/Integration tests dependencies
     testImplementation unitTestDependencies.kotlin

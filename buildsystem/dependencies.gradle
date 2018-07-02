@@ -20,6 +20,7 @@ ext {
     okhttp_logging_interceptor_version = '3.10.0'
     rxjava_version = '2.1.16'
     rxandroid_version = '2.0.2'
+    epoxy_version = '2.14.0'
 
     //Unit Testing
     robolectric_version = '3.8'
@@ -54,6 +55,8 @@ ext {
             okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
             rxjava                  : "io.reactivex.rxjava2:rxjava:$rxjava_version",
             rxandroid               : "io.reactivex.rxjava2:rxandroid:$rxandroid_version",
+            epoxy                   : "com.airbnb.android:epoxy:$epoxy_version",
+            epoxyProcessor          : "com.airbnb.android:epoxy-processor:$epoxy_version",
     ]
 
     unitTesting = [

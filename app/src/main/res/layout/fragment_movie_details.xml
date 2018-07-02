@@ -23,7 +23,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <ImageView
-                android:id="@+id/moviePoster"
+                android:id="@+id/imageViewMoviePoster"
                 style="@style/MoviePoster"
                 android:layout_height="240dp"
                 android:layout_centerHorizontal="true"

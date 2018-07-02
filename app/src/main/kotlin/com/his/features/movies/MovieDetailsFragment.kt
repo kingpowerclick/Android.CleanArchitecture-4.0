@@ -56,8 +56,8 @@ class MovieDetailsFragment : BaseFragment() {
 		}
 		else {
 			movieDetailsAnimator.scaleUpView(moviePlay)
-			movieDetailsAnimator.cancelTransition(moviePoster)
-			moviePoster.loadFromUrl((arguments!![PARAM_MOVIE] as MovieView).poster)
+			movieDetailsAnimator.cancelTransition(imageViewMoviePoster)
+			imageViewMoviePoster.loadFromUrl((arguments!![PARAM_MOVIE] as MovieView).poster)
 		}
 	}
 
@@ -66,14 +66,14 @@ class MovieDetailsFragment : BaseFragment() {
 		if (moviePlay.isVisible())
 			movieDetailsAnimator.scaleDownView(moviePlay)
 		else
-			movieDetailsAnimator.cancelTransition(moviePoster)
+			movieDetailsAnimator.cancelTransition(imageViewMoviePoster)
 	}
 
 	private fun renderMovieDetails(movie: MovieDetailsView?) {
 		movie?.let {
 			with(movie) {
 				activity?.let {
-					moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
+					imageViewMoviePoster.loadUrlAndPostponeEnterTransition(poster, it)
 					it.toolbar.title = title
 				}
 				movieSummary.text = summary
