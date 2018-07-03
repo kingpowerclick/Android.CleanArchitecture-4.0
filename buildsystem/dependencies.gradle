@@ -21,6 +21,14 @@ ext {
     rxjava_version = '2.1.16'
     rxandroid_version = '2.0.2'
     epoxy_version = '2.14.0'
+    timber_version = '4.7.1'
+
+    //Analytics
+    crashlytics_version = '2.9.4'
+    answers_version = '1.4.2'
+    firebase_core_version = '16.0.1'
+    firebase_config_version = '16.0.0'
+    firebase_messaging_version = '17.1.0'
 
     //Unit Testing
     robolectric_version = '3.8'
@@ -57,6 +65,13 @@ ext {
             rxandroid               : "io.reactivex.rxjava2:rxandroid:$rxandroid_version",
             epoxy                   : "com.airbnb.android:epoxy:$epoxy_version",
             epoxyProcessor          : "com.airbnb.android:epoxy-processor:$epoxy_version",
+            timber                  : "com.jakewharton.timber:timber:$timber_version",
+            crashlytics             : "com.crashlytics.sdk.android:crashlytics:$crashlytics_version@aar",
+            answers                 : "com.crashlytics.sdk.android:answers:$answers_version@aar",
+            firebaseCore            : "com.google.firebase:firebase-core:$firebase_core_version",
+            firebaseConfig          : "com.google.firebase:firebase-config:$firebase_config_version",
+            firebaseMessaging       : "com.google.firebase:firebase-messaging:$firebase_messaging_version",
+
     ]
 
     unitTesting = [

@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'jacoco'
+apply plugin: 'io.fabric'
 
 android {
     def config = rootProject.extensions.ext
@@ -107,6 +108,16 @@ dependencies {
     implementation applicationDependencies.rxjava
     implementation applicationDependencies.rxandroid
     implementation applicationDependencies.epoxy
+    implementation applicationDependencies.timber
+    implementation applicationDependencies.firebaseCore
+    implementation applicationDependencies.firebaseConfig
+    implementation applicationDependencies.firebaseMessaging
+    implementation(applicationDependencies.crashlytics) {
+        transitive = true
+    }
+    implementation(applicationDependencies.answers) {
+        transitive = true
+    }
 
     //Unit/Integration tests dependencies
     testImplementation unitTestDependencies.kotlin
