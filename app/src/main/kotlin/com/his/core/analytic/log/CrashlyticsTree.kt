@@ -1,4 +1,4 @@
-package com.his.core.analytic
+package com.his.core.analytic.log
 
 import android.util.Log
 import com.crashlytics.android.core.CrashlyticsCore

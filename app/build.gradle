@@ -109,6 +109,9 @@ dependencies {
     implementation applicationDependencies.rxandroid
     implementation applicationDependencies.epoxy
     implementation applicationDependencies.timber
+    implementation applicationDependencies.firebaseCore
+    implementation applicationDependencies.firebaseConfig
+    implementation applicationDependencies.firebaseMessaging
     implementation(applicationDependencies.crashlytics) {
         transitive = true
     }

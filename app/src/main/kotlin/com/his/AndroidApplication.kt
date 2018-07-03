@@ -18,7 +18,7 @@ package com.his
 import android.app.Application
 import com.crashlytics.android.answers.Answers
 import com.crashlytics.android.core.CrashlyticsCore
-import com.his.core.analytic.CrashlyticsTree
+import com.his.core.analytic.log.CrashlyticsTree
 import com.his.core.di.ApplicationComponent
 import com.his.core.di.ApplicationModule
 import com.his.core.di.DaggerApplicationComponent
