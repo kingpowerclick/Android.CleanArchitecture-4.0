@@ -112,6 +112,9 @@ dependencies {
     implementation(applicationDependencies.crashlytics) {
         transitive = true
     }
+    implementation(applicationDependencies.answers) {
+        transitive = true
+    }
 
     //Unit/Integration tests dependencies
     testImplementation unitTestDependencies.kotlin
