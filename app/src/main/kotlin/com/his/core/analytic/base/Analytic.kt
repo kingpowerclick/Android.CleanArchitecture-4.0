@@ -1,4 +1,4 @@
-package com.his.core.analytic
+package com.his.core.analytic.base
 
 interface Analytic {
 
