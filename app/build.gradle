@@ -88,6 +88,7 @@ dependencies {
     kapt applicationDependencies.archComponentsCompiler
     kapt applicationDependencies.daggerCompiler
     kapt applicationDependencies.epoxyProcessor
+    kapt applicationDependencies.roomCompiler
     compileOnly applicationDependencies.javaxAnnotation
     compileOnly applicationDependencies.javaxInject
 
@@ -112,6 +113,8 @@ dependencies {
     implementation applicationDependencies.firebaseCore
     implementation applicationDependencies.firebaseConfig
     implementation applicationDependencies.firebaseMessaging
+    implementation applicationDependencies.room
+    implementation applicationDependencies.roomRxjava
     implementation(applicationDependencies.crashlytics) {
         transitive = true
     }
