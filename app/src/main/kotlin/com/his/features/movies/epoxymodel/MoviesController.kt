@@ -1,4 +1,4 @@
-package com.his.features.movies.adapter.epoxymodel
+package com.his.features.movies.epoxymodel
 
 import com.airbnb.epoxy.EpoxyController
 import com.his.features.movies.MovieView

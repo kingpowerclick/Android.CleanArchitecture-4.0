@@ -1,4 +1,4 @@
-package com.his.features.movies.adapter.epoxymodel
+package com.his.features.movies.epoxymodel
 
 import android.support.v7.widget.CardView
 import android.view.View
