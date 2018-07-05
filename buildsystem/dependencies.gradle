@@ -75,7 +75,6 @@ ext {
             room                    : "android.arch.persistence.room:runtime:$room_version",
             roomCompiler            : "android.arch.persistence.room:compiler:$room_version",
             roomRxjava              : "android.arch.persistence.room:rxjava2:$room_version",
-
     ]
 
     unitTesting = [

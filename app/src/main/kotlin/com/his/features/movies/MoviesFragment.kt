@@ -25,7 +25,7 @@ import com.his.core.exception.ServerErrorException
 import com.his.core.extension.*
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
-import com.his.features.movies.adapter.epoxymodel.MoviesController
+import com.his.features.movies.epoxymodel.MoviesController
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
