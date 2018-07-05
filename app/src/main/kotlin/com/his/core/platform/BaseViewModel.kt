@@ -17,6 +17,8 @@ package com.his.core.platform
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 /**
  * Base ViewModel class with default Failure handling.
@@ -25,10 +27,19 @@ import android.arch.lifecycle.ViewModel
  */
 abstract class BaseViewModel : ViewModel() {
 
+	private val disposables: CompositeDisposable by lazy { CompositeDisposable() }
+
 	var failure: MutableLiveData<Throwable> = MutableLiveData()
 
 	protected fun handleFailure(failure: Throwable) {
 		this.failure.value = failure
 	}
 
+	protected fun Disposable.autoClear() {
+		disposables.add(this)
+	}
+
+	public override fun onCleared() {
+		disposables.dispose()
+	}
 }

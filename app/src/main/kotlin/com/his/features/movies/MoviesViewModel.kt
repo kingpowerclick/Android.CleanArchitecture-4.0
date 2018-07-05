@@ -26,10 +26,10 @@ class MoviesViewModel
 
 	var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
 
-	fun loadMovies() = getMovies.execute(GetMoviesObserver(), Parameter.None())
-
-	override fun onCleared() {
-		getMovies.dispose()
+	fun loadMovies() {
+		getMovies
+			.execute(GetMoviesObserver(), Parameter.None())
+			.autoClear()
 	}
 
 	private fun handleMovieList(movies: List<Movie>) {
