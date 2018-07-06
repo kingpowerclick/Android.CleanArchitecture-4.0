@@ -19,6 +19,7 @@ import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
 import com.his.features.movies.data.MoviesRepository
+import com.his.features.movies.data.repository.MoviesDataRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -48,7 +49,7 @@ class ApplicationModule(private val application: AndroidApplication) {
 
 	@Provides
 	@Singleton
-	fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+	fun provideMoviesRepository(dataSource: MoviesDataRepository): MoviesRepository = dataSource
 
 	private fun createClient(): OkHttpClient {
 		val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
