@@ -16,21 +16,18 @@
 package com.his.features.movies.data.entity
 
 import com.his.core.extension.empty
-import com.his.features.movies.view.model.MovieDetails
 
-data class MovieDetailsEntity(private val id: Int,
-                              private val title: String,
-                              private val poster: String,
-                              private val summary: String,
-                              private val cast: String,
-                              private val director: String,
-                              private val year: Int,
-                              private val trailer: String) {
+data class MovieDetailsEntity(val id: Int,
+                              val title: String,
+                              val poster: String,
+                              val summary: String,
+                              val cast: String,
+                              val director: String,
+                              val year: Int,
+                              val trailer: String) {
 
 	companion object {
 		fun empty() = MovieDetailsEntity(0, String.empty(), String.empty(), String.empty(),
 			String.empty(), String.empty(), 0, String.empty())
 	}
-
-	fun toMovieDetails() = MovieDetails(id, title, poster, summary, cast, director, year, trailer)
 }
