@@ -15,8 +15,4 @@
  */
 package com.his.features.movies.data.entity
 
-import com.his.features.movies.view.model.Movie
-
-data class MovieEntity(private val id: Int, private val poster: String) {
-	fun toMovie() = Movie(id, poster)
-}
+data class MovieEntity(val id: Int, val poster: String)
