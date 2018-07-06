@@ -16,10 +16,12 @@
 package com.his.features.movies
 
 import com.his.AndroidTest
+import com.his.core.platform.DefaultDisposable
+import com.his.utils.TestDisposable
 import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.willReturn
-import io.reactivex.Observable
+import com.nhaarman.mockito_kotlin.verify
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
@@ -36,21 +38,49 @@ class MoviesViewModelTest : AndroidTest() {
 	@Before
 	fun setUp() {
 		moviesViewModel = MoviesViewModel(getMovies)
+
+		given { getMovies.execute(any(), any()) }.willReturn(TestDisposable())
 	}
 
 	@Test
-	fun `loading movies should update live data`() {
-		val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-		given { getMovies.buildUseCase(any()) }.willReturn { Observable.just(moviesList) }
+	fun `loading movies should execute usecase`() {
+		// Act
+		moviesViewModel.loadMovies()
 
-		moviesViewModel.movies.observeForever {
+		// Assert
+		verify(getMovies).execute(any(), any())
+	}
+
+	@Test
+	fun `loading movies success should update movie live data`() {
+		// Act
+		val expectedMoviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
+		movieCaptor.onNext(expectedMoviesList)
+
+		// Assert
+		moviesViewModel.movies.value.let {
 			it!!.size shouldEqualTo 2
 			it[0].id shouldEqualTo 0
 			it[0].poster shouldBeEqualTo "IronMan"
 			it[1].id shouldEqualTo 1
 			it[1].poster shouldBeEqualTo "Batman"
 		}
-
-		moviesViewModel.loadMovies()
 	}
+
+	@Test
+	fun `loading movies fail should update failure live data`() {
+		// Act
+		movieCaptor.onError(Throwable())
+
+		// Assert
+		moviesViewModel.failure.value.let { it is Throwable }
+	}
+
+	private val movieCaptor: DefaultDisposable<List<Movie>>
+		get() {
+			moviesViewModel.loadMovies()
+			return argumentCaptor<DefaultDisposable<List<Movie>>>()
+				.apply { verify(getMovies).execute(this.capture(), any()) }
+				.firstValue
+		}
 }

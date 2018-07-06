@@ -36,7 +36,7 @@ class MoviesViewModel
 		this.movies.value = movies.map { MovieView(it.id, it.poster) }
 	}
 
-	inner class GetMoviesObserver : DefaultDisposable<List<Movie>>() {
+	private inner class GetMoviesObserver : DefaultDisposable<List<Movie>>() {
 		override fun onError(e: Throwable) {
 			handleFailure(e)
 		}

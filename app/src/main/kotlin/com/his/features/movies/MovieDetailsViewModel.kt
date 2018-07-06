@@ -37,7 +37,7 @@ class MovieDetailsViewModel
 			movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
 	}
 
-	inner class GetMovieDetailsObserver : DefaultDisposable<MovieDetails>() {
+	private inner class GetMovieDetailsObserver : DefaultDisposable<MovieDetails>() {
 		override fun onError(e: Throwable) {
 			handleFailure(e)
 		}
