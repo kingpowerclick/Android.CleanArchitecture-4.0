@@ -13,23 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data
 
-import android.content.Context
-import android.content.Intent
-import com.his.core.platform.BaseActivity
+import com.his.features.movies.data.repository.net.api.MoviesApi
+import retrofit2.Retrofit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MovieDetailsActivity : BaseActivity() {
+@Singleton
+class MoviesService
+@Inject constructor(retrofit: Retrofit) : MoviesApi {
+	private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
 
-	companion object {
-		private const val INTENT_EXTRA_PARAM_MOVIE = "com.his.INTENT_PARAM_MOVIE"
-
-		fun callingIntent(context: Context, movie: MovieView): Intent {
-			val intent = Intent(context, MovieDetailsActivity::class.java)
-			intent.putExtra(INTENT_EXTRA_PARAM_MOVIE, movie)
-			return intent
-		}
-	}
-
-	override fun fragment() = MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
+	override fun movies() = moviesApi.movies()
+	override fun movieDetails(movieId: Int) = moviesApi.movieDetails(movieId)
 }

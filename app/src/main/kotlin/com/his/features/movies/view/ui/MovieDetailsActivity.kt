@@ -13,13 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.view.ui
 
-import com.his.core.extension.empty
+import android.content.Context
+import android.content.Intent
+import com.his.core.platform.BaseActivity
+import com.his.features.movies.view.model.MovieView
 
-data class Movie(val id: Int, val poster: String) {
+class MovieDetailsActivity : BaseActivity() {
 
 	companion object {
-		fun empty() = Movie(0, String.empty())
+		private const val INTENT_EXTRA_PARAM_MOVIE = "com.his.INTENT_PARAM_MOVIE"
+
+		fun callingIntent(context: Context, movie: MovieView): Intent {
+			val intent = Intent(context, MovieDetailsActivity::class.java)
+			intent.putExtra(INTENT_EXTRA_PARAM_MOVIE, movie)
+			return intent
+		}
 	}
+
+	override fun fragment() = MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
 }

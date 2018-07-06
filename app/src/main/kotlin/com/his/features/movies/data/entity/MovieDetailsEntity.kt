@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data.entity
 
 import com.his.core.extension.empty
+import com.his.features.movies.view.model.MovieDetails
 
 data class MovieDetailsEntity(private val id: Int,
                               private val title: String,

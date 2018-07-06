@@ -18,7 +18,7 @@ package com.his.core.navigation
 import com.his.AndroidTest
 import com.his.features.login.Authenticator
 import com.his.features.login.LoginActivity
-import com.his.features.movies.MoviesActivity
+import com.his.features.movies.view.ui.MoviesActivity
 import com.his.shouldNavigateTo
 import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Before

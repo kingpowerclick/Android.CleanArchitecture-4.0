@@ -17,6 +17,9 @@ package com.his.features.movies
 
 import com.his.UnitTest
 import com.his.core.interactor.UseCase
+import com.his.features.movies.data.GetMovies
+import com.his.features.movies.data.MoviesRepository
+import com.his.features.movies.view.model.Movie
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions

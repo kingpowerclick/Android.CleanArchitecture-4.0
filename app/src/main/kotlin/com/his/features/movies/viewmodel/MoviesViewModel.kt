@@ -13,37 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
+import com.his.core.interactor.UseCase.Parameter
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
-import com.his.features.movies.GetMovieDetails.Params
+import com.his.features.movies.data.GetMovies
+import com.his.features.movies.view.model.Movie
+import com.his.features.movies.view.model.MovieView
 import javax.inject.Inject
 
-class MovieDetailsViewModel
-@Inject constructor(private val getMovieDetails: GetMovieDetails) : BaseViewModel() {
+class MoviesViewModel
+@Inject constructor(private val getMovies: GetMovies) : BaseViewModel() {
 
-	var movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
+	var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
 
-	fun loadMovieDetails(movieId: Int) {
-		getMovieDetails
-			.execute(GetMovieDetailsObserver(), Params(movieId))
+	fun loadMovies() {
+		getMovies
+			.execute(GetMoviesObserver(), Parameter.None())
 			.autoClear()
 	}
 
-	private fun handleMovieDetails(movie: MovieDetails) {
-		this.movieDetails.value = MovieDetailsView(movie.id, movie.title, movie.poster,
-			movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
+	private fun handleMovieList(movies: List<Movie>) {
+		this.movies.value = movies.map { MovieView(it.id, it.poster) }
 	}
 
-	private inner class GetMovieDetailsObserver : DefaultDisposable<MovieDetails>() {
+	private inner class GetMoviesObserver : DefaultDisposable<List<Movie>>() {
 		override fun onError(e: Throwable) {
 			handleFailure(e)
 		}
 
-		override fun onNext(value: MovieDetails) {
-			handleMovieDetails(value)
+		override fun onNext(value: List<Movie>) {
+			handleMovieList(value)
 		}
 	}
 }

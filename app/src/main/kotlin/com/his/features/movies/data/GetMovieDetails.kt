@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data
 
-import retrofit2.Retrofit
+import com.his.core.interactor.UseCase
+import com.his.features.movies.view.model.MovieDetails
+import io.reactivex.Observable
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class MoviesService
-@Inject constructor(retrofit: Retrofit) : MoviesApi {
-	private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
+class GetMovieDetails
+@Inject constructor(private val moviesRepository: MoviesRepository) : UseCase<MovieDetails, GetMovieDetails.Params>() {
 
-	override fun movies() = moviesApi.movies()
-	override fun movieDetails(movieId: Int) = moviesApi.movieDetails(movieId)
+	override fun buildUseCase(params: Params): Observable<MovieDetails> {
+		return moviesRepository.movieDetails(params.id)
+	}
+
+	data class Params(val id: Int) : Parameter.FeatureParameter()
 }

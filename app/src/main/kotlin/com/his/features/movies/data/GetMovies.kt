@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data
 
-import android.content.Context
-import android.content.Intent
-import com.his.core.platform.BaseActivity
+import com.his.core.interactor.UseCase
+import com.his.core.interactor.UseCase.Parameter
+import com.his.features.movies.data.MoviesRepository
+import com.his.features.movies.view.model.Movie
+import io.reactivex.Observable
+import javax.inject.Inject
 
-class MoviesActivity : BaseActivity() {
+class GetMovies
+@Inject constructor(private val moviesRepository: MoviesRepository) : UseCase<List<Movie>, Parameter.None>() {
 
-	companion object {
-		fun callingIntent(context: Context) = Intent(context, MoviesActivity::class.java)
+	override fun buildUseCase(params: Parameter.None): Observable<List<Movie>> {
+		return moviesRepository.movies()
 	}
-
-	override fun fragment() = MoviesFragment()
 }

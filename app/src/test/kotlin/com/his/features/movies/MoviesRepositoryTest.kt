@@ -18,6 +18,12 @@ package com.his.features.movies
 import com.his.UnitTest
 import com.his.core.extension.empty
 import com.his.core.platform.NetworkHandler
+import com.his.features.movies.data.MoviesRepository
+import com.his.features.movies.data.MoviesService
+import com.his.features.movies.data.entity.MovieDetailsEntity
+import com.his.features.movies.data.entity.MovieEntity
+import com.his.features.movies.view.model.Movie
+import com.his.features.movies.view.model.MovieDetails
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyZeroInteractions

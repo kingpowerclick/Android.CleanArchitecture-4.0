@@ -18,7 +18,7 @@ package com.his.core.di
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
-import com.his.features.movies.MoviesRepository
+import com.his.features.movies.data.MoviesRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
