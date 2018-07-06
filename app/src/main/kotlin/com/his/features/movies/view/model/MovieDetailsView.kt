@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.view.model
 
 data class MovieDetailsView(val id: Int,
                             val title: String,

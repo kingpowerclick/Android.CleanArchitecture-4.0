@@ -1,4 +1,4 @@
-package com.his.features.movies.epoxymodel
+package com.his.features.movies.view.adapter.epoxymodel
 
 import android.support.v7.widget.CardView
 import android.view.View
@@ -10,7 +10,7 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.his.R
 import com.his.core.extension.loadFromUrl
 import com.his.core.navigation.Navigator
-import com.his.features.movies.MovieView
+import com.his.features.movies.view.model.MovieView
 import kotlinx.android.synthetic.main.row_movie.view.*
 
 typealias OnMovieClickListener = (movieModel: MovieView, extra: Navigator.Extras) -> Unit
