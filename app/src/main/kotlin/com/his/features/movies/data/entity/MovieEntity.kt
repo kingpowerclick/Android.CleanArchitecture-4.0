@@ -13,22 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data.entity
 
-import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
+import com.his.features.movies.view.model.Movie
 
-internal interface MoviesApi {
-	@GET(MOVIES)
-	fun movies(): Observable<List<MovieEntity>>
-
-	@GET(MOVIE_DETAILS)
-	fun movieDetails(@Path(PARAM_MOVIE_ID) movieId: Int): Observable<MovieDetailsEntity>
-
-	companion object {
-		private const val PARAM_MOVIE_ID = "movieId"
-		private const val MOVIES = "movies.json"
-		private const val MOVIE_DETAILS = "movie_0{$PARAM_MOVIE_ID}.json"
-	}
+data class MovieEntity(private val id: Int, private val poster: String) {
+	fun toMovie() = Movie(id, poster)
 }

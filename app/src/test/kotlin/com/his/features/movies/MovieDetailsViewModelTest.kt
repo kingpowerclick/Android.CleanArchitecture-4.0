@@ -16,6 +16,9 @@
 package com.his.features.movies
 
 import com.his.AndroidTest
+import com.his.features.movies.data.GetMovieDetails
+import com.his.features.movies.view.model.MovieDetails
+import com.his.features.movies.viewmodel.MovieDetailsViewModel
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.willReturn

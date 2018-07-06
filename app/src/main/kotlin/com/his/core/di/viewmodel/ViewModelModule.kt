@@ -17,8 +17,8 @@ package com.his.core.di.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.his.features.movies.MovieDetailsViewModel
-import com.his.features.movies.MoviesViewModel
+import com.his.features.movies.viewmodel.MovieDetailsViewModel
+import com.his.features.movies.viewmodel.MoviesViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data
 
 import com.his.core.exception.NetworkConnectionException
 import com.his.core.platform.NetworkHandler
+import com.his.features.movies.view.model.Movie
+import com.his.features.movies.view.model.MovieDetails
 import io.reactivex.Observable
 import javax.inject.Inject
 

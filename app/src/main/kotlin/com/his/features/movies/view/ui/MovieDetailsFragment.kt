@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.view.ui
 
 import android.os.Bundle
 import android.view.View
@@ -23,6 +23,10 @@ import com.his.core.exception.ServerErrorException
 import com.his.core.extension.*
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
+import com.his.features.movies.view.MovieDetailsAnimator
+import com.his.features.movies.view.model.MovieDetailsView
+import com.his.features.movies.view.model.MovieView
+import com.his.features.movies.viewmodel.MovieDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject

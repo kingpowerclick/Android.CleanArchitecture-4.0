@@ -18,8 +18,8 @@ package com.his.core.di
 import com.his.AndroidApplication
 import com.his.core.di.viewmodel.ViewModelModule
 import com.his.core.navigation.RouteActivity
-import com.his.features.movies.MovieDetailsFragment
-import com.his.features.movies.MoviesFragment
+import com.his.features.movies.view.ui.MovieDetailsFragment
+import com.his.features.movies.view.ui.MoviesFragment
 import dagger.Component
 import javax.inject.Singleton
 
