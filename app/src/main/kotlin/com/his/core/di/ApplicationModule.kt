@@ -15,11 +15,15 @@
  */
 package com.his.core.di
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
 import com.his.features.movies.data.MoviesRepository
 import com.his.features.movies.data.repository.MoviesDataRepository
+import com.his.features.movies.data.repository.local.AppDatabase
+import com.his.features.movies.data.repository.local.MovieDetailsDao
+import com.his.features.movies.data.repository.local.TestDao
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -46,6 +50,18 @@ class ApplicationModule(private val application: AndroidApplication) {
 			.addConverterFactory(GsonConverterFactory.create())
 			.build()
 	}
+
+	@Provides
+	@Singleton
+	fun provideDatabase(context: Context): AppDatabase = Room.databaseBuilder(context, AppDatabase::class.java, "app_database").build()
+
+	@Provides
+	@Singleton
+	fun provideMovieDetailsDao(db: AppDatabase): MovieDetailsDao = db.movieDetailsDao()
+
+	@Provides
+	@Singleton
+	fun provideTestDao(db: AppDatabase): TestDao = db.testDao()
 
 	@Provides
 	@Singleton

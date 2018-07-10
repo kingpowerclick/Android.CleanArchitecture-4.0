@@ -20,8 +20,9 @@ import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
 import com.his.features.movies.data.GetMovieDetails
 import com.his.features.movies.data.GetMovieDetails.Params
-import com.his.features.movies.view.model.MovieDetailsView
 import com.his.features.movies.view.model.MovieDetails
+import com.his.features.movies.view.model.MovieDetailsView
+import timber.log.Timber
 import javax.inject.Inject
 
 class MovieDetailsViewModel
@@ -44,6 +45,7 @@ class MovieDetailsViewModel
 
 	inner class GetMovieDetailsObserver : DefaultDisposable<MovieDetails>() {
 		override fun onError(e: Throwable) {
+			Timber.e(e)
 			handleFailure(e)
 		}
 
