@@ -10,7 +10,6 @@ import com.his.features.movies.view.model.Movie
 import com.his.features.movies.view.model.MovieDetails
 import io.reactivex.Observable
 import io.reactivex.functions.Function
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -30,12 +29,10 @@ class MoviesDataRepository @Inject constructor(private val networkHandler: Netwo
 
 				val local = dao.getMovieDetailById(movieId)
 					.toObservable()
-					.doOnNext { Timber.e("Local") }
 					.map { MovieDataMapper().toMovieDetails(it) }
 
 				val api = service.movieDetails(movieId)
 					.doOnNext {
-						Timber.e("API")
 						dao.insertOrUpdateMovieDetail(MovieDataMapper().toMovieDetailsRoom(it))
 					}
 					.map { MovieDataMapper().toMovieDetails(it) }
@@ -44,13 +41,11 @@ class MoviesDataRepository @Inject constructor(private val networkHandler: Netwo
 					.onErrorResumeNext(Function {
 						service.movieDetails(movieId)
 							.doOnNext {
-								Timber.e("onErrorResumeNext")
 								dao.insertOrUpdateMovieDetail(MovieDataMapper().toMovieDetailsRoom(it))
 							}
 							.map { MovieDataMapper().toMovieDetails(it) }
 					})
 					.distinct()
-					.doOnNext { Timber.e("NEXT") }
 			}
 
 			false, null -> Observable.error(NetworkConnectionException())
