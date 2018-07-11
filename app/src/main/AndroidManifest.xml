@@ -43,8 +43,6 @@
             android:label="@string/movie_details_screen_title"
             android:theme="@style/AppTheme.Translucent"></activity>
 
-        <activity android:name=".features.movies.view.ui.TestActivity" />
-
         <service
             android:name=".features.service.FCMService">
             <intent-filter>

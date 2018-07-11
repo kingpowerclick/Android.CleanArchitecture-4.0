@@ -15,13 +15,9 @@
  */
 package com.his.features.movies.view.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import com.his.R
 import com.his.core.exception.NetworkConnectionException
@@ -100,21 +96,4 @@ class MoviesFragment : BaseFragment() {
 		hideProgress()
 		notifyWithAction(message, R.string.action_refresh, ::loadMoviesList)
 	}
-
-	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-		inflater.inflate(R.menu.menu_main, menu)
-		super.onCreateOptionsMenu(menu, inflater)
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		when (item.itemId){
-			R.id.actionOpen -> {
-				val intent = Intent(context, TestActivity::class.java)
-				startActivity(intent)
-			}
-		}
-		return super.onOptionsItemSelected(item)
-	}
-
-
 }

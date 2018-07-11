@@ -22,8 +22,7 @@ import com.his.BuildConfig
 import com.his.features.movies.data.MoviesRepository
 import com.his.features.movies.data.repository.MoviesDataRepository
 import com.his.features.movies.data.repository.local.AppDatabase
-import com.his.features.movies.data.repository.local.MovieDetailsDao
-import com.his.features.movies.data.repository.local.TestDao
+import com.his.features.movies.data.repository.local.db.MovieDetailsDao
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -58,10 +57,6 @@ class ApplicationModule(private val application: AndroidApplication) {
 	@Provides
 	@Singleton
 	fun provideMovieDetailsDao(db: AppDatabase): MovieDetailsDao = db.movieDetailsDao()
-
-	@Provides
-	@Singleton
-	fun provideTestDao(db: AppDatabase): TestDao = db.testDao()
 
 	@Provides
 	@Singleton

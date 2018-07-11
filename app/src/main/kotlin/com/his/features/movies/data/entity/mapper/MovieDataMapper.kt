@@ -2,7 +2,7 @@ package com.his.features.movies.data.entity.mapper
 
 import com.his.features.movies.data.entity.MovieDetailsEntity
 import com.his.features.movies.data.entity.MovieEntity
-import com.his.features.movies.data.repository.local.MoviesDetailRoom
+import com.his.features.movies.data.repository.local.db.MoviesDetailRoom
 import com.his.features.movies.view.model.Movie
 import com.his.features.movies.view.model.MovieDetails
 import javax.inject.Inject

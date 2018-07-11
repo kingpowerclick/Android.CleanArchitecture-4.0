@@ -5,7 +5,7 @@ import com.his.core.platform.NetworkHandler
 import com.his.features.movies.data.MoviesRepository
 import com.his.features.movies.data.MoviesService
 import com.his.features.movies.data.entity.mapper.MovieDataMapper
-import com.his.features.movies.data.repository.local.MovieDetailsDao
+import com.his.features.movies.data.repository.local.db.MovieDetailsDao
 import com.his.features.movies.view.model.Movie
 import com.his.features.movies.view.model.MovieDetails
 import io.reactivex.Observable
