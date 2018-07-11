@@ -1,4 +1,4 @@
-package com.his.features.movies.data.repository.local
+package com.his.features.movies.data.repository.local.db
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
