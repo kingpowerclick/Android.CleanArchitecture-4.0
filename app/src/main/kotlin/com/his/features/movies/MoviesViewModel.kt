@@ -26,17 +26,17 @@ class MoviesViewModel
 
 	var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
 
-	fun loadMovies() = getMovies.execute(GetMoviesObserver(), Parameter.None())
-
-	override fun onCleared() {
-		getMovies.dispose()
+	fun loadMovies() {
+		getMovies
+			.execute(GetMoviesObserver(), Parameter.None())
+			.autoClear()
 	}
 
 	private fun handleMovieList(movies: List<Movie>) {
 		this.movies.value = movies.map { MovieView(it.id, it.poster) }
 	}
 
-	inner class GetMoviesObserver : DefaultDisposable<List<Movie>>() {
+	private inner class GetMoviesObserver : DefaultDisposable<List<Movie>>() {
 		override fun onError(e: Throwable) {
 			handleFailure(e)
 		}

@@ -27,11 +27,9 @@ class MovieDetailsViewModel
 	var movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
 
 	fun loadMovieDetails(movieId: Int) {
-		getMovieDetails.execute(GetMovieDetailsObserver(), Params(movieId))
-	}
-
-	override fun onCleared() {
-		getMovieDetails.dispose()
+		getMovieDetails
+			.execute(GetMovieDetailsObserver(), Params(movieId))
+			.autoClear()
 	}
 
 	private fun handleMovieDetails(movie: MovieDetails) {
@@ -39,7 +37,7 @@ class MovieDetailsViewModel
 			movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
 	}
 
-	inner class GetMovieDetailsObserver : DefaultDisposable<MovieDetails>() {
+	private inner class GetMovieDetailsObserver : DefaultDisposable<MovieDetails>() {
 		override fun onError(e: Throwable) {
 			handleFailure(e)
 		}

@@ -16,10 +16,12 @@
 package com.his.features.movies
 
 import com.his.AndroidTest
+import com.his.core.platform.DefaultDisposable
+import com.his.utils.TestDisposable
 import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.willReturn
-import io.reactivex.Observable
+import com.nhaarman.mockito_kotlin.verify
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
@@ -36,13 +38,26 @@ class MovieDetailsViewModelTest : AndroidTest() {
 	@Before
 	fun setUp() {
 		movieDetailsViewModel = MovieDetailsViewModel(getMovieDetails)
+
+		given { getMovieDetails.execute(any(), any()) }.willReturn(TestDisposable())
 	}
 
 	@Test
-	fun `loading movie details should update live data`() {
-		val movieDetails = MovieDetails(0, "IronMan", "poster", "summary", "cast", "director", 2018, "trailer")
-		given { getMovieDetails.buildUseCase(any()) }.willReturn { Observable.just(movieDetails) }
+	fun `loading movies details should execute usecase`() {
+		// Act
+		movieDetailsViewModel.loadMovieDetails(0)
 
+		// Assert
+		verify(getMovieDetails).execute(any(), any())
+	}
+
+	@Test
+	fun `loading movie details success should update movieDetails live data`() {
+		// Act
+		val expectedMovieDetails = MovieDetails(0, "IronMan", "poster", "summary", "cast", "director", 2018, "trailer")
+		movieDetailsCaptor.onNext(expectedMovieDetails)
+
+		// Assert
 		movieDetailsViewModel.movieDetails.observeForever {
 			with(it!!) {
 				id shouldEqualTo 0
@@ -55,7 +70,22 @@ class MovieDetailsViewModelTest : AndroidTest() {
 				trailer shouldBeEqualTo "trailer"
 			}
 		}
-
-		movieDetailsViewModel.loadMovieDetails(0)
 	}
+
+	@Test
+	fun `loading movie details fail should update failure live data`() {
+		// Act
+		movieDetailsCaptor.onError(Throwable())
+
+		// Assert
+		movieDetailsViewModel.failure.value.let { it is Throwable }
+	}
+
+	private val movieDetailsCaptor: DefaultDisposable<MovieDetails>
+		get() {
+			movieDetailsViewModel.loadMovieDetails(0)
+			return argumentCaptor<DefaultDisposable<MovieDetails>>()
+				.apply { verify(getMovieDetails).execute(this.capture(), any()) }
+				.firstValue
+		}
 }
