@@ -1,0 +1,56 @@
+query userLogin($clientId: String!, $clientSecret: String!, $email: String!, $password: String!) {
+    login(clientId: $clientId, clientSecret: $clientSecret, email: $email, password: $password) {
+        tokenType
+        expiresIn
+        accessToken
+        refreshToken
+    }
+}
+
+query forgotPassword($email: String!, $clientId: String!) {
+    forgotPassword(email: $email, clientId: $clientId) {
+        isSuccess
+    }
+}
+
+mutation loginProvider($providerLoginInput: ProviderLoginInput!) {
+    loginProvider(input: $providerLoginInput) {
+        tokenType
+        expiresIn
+        accessToken
+        refreshToken
+    }
+}
+
+mutation checkExisting($providerExistingInput: ProviderExistingInput!) {
+    checkExistingProvider(input: $providerExistingInput) {
+        status
+    }
+}
+
+mutation register($registerInput: RegisterInput!) {
+    register(input: $registerInput) {
+        tokenType
+        expiresIn
+        accessToken
+        refreshToken
+    }
+}
+
+mutation registerProvider($input: SSOProviderRegisterInput!) {
+    registerProvider(input: $input) {
+        tokenType
+        expiresIn
+        accessToken
+        refreshToken
+    }
+}
+
+mutation refreshToken($input: RefreshTokenInput!) {
+    refreshToken(input: $input) {
+        tokenType
+        expiresIn
+        accessToken
+        refreshToken
+    }
+}

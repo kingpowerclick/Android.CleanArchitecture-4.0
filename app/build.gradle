@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.apollographql.android'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -112,6 +113,10 @@ dependencies {
     implementation applicationDependencies.firebaseCore
     implementation applicationDependencies.firebaseConfig
     implementation applicationDependencies.firebaseMessaging
+    implementation applicationDependencies.room
+    implementation applicationDependencies.roomRxjava
+    implementation applicationDependencies.apolloRuntime
+    implementation applicationDependencies.apolloRxSupport
     implementation(applicationDependencies.crashlytics) {
         transitive = true
     }
