@@ -23,6 +23,7 @@ ext {
     rxandroid_version = '2.0.2'
     epoxy_version = '2.14.0'
     timber_version = '4.7.1'
+    apollo_version = '1.0.0-alpha'
 
     //Analytics
     crashlytics_version = '2.9.4'
@@ -75,6 +76,8 @@ ext {
             room                    : "android.arch.persistence.room:runtime:$room_version",
             roomCompiler            : "android.arch.persistence.room:compiler:$room_version",
             roomRxjava              : "android.arch.persistence.room:rxjava2:$room_version",
+            apolloRuntime           : "com.apollographql.apollo:apollo-runtime:$apollo_version",
+            apolloRxSupport         : "com.apollographql.apollo:apollo-rx2-support:$apollo_version",
     ]
 
     unitTesting = [
