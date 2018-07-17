@@ -18,7 +18,11 @@ package com.his.core.di
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
+import com.his.features.login.data.LoginDataRepository
+import com.his.features.login.domain.repository.LoginRepository
 import com.his.features.movies.MoviesRepository
+import com.kingpower.data.net.ApiConnection
+import com.kingpower.data.net.ApiConnectionImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -49,6 +53,14 @@ class ApplicationModule(private val application: AndroidApplication) {
 	@Provides
 	@Singleton
 	fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+
+	@Provides
+	fun provideLoginRepository(dataSource: LoginDataRepository): LoginRepository = dataSource
+
+	@Provides
+	@Singleton internal fun provideApiConnection(apiConnection: ApiConnectionImpl): ApiConnection {
+		return apiConnection
+	}
 
 	private fun createClient(): OkHttpClient {
 		val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()

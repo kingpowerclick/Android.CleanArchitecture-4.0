@@ -13,16 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.login
+package com.his.features.login.data.repository
 
-import android.content.Context
-import android.content.Intent
-import com.his.core.platform.BaseActivity
+import UserLoginQuery
+import com.apollographql.apollo.api.Response
+import com.kingpower.data.net.graphql.GraphQLClient
+import io.reactivex.Observable
 
-class LoginActivity : BaseActivity() {
-	companion object {
-		fun callingIntent(context: Context) = Intent(context, LoginActivity::class.java)
+class CloudLoginDataStore(private val graphQLClient: GraphQLClient) : LoginDataStore {
+	override fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<Response<UserLoginQuery.Data>> {
+		val login = UserLoginQuery.builder()
+			.clientId(clientId)
+			.clientSecret(clientSecret)
+			.email(email)
+			.password(password)
+			.build()
+
+		return graphQLClient.queryRx(login)
 	}
-
-	override fun fragment() = LoginFragment()
 }
+

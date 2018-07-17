@@ -17,6 +17,7 @@ package com.his.core.di.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.his.features.login.viewmodel.LoginViewModel
 import com.his.features.movies.MovieDetailsViewModel
 import com.his.features.movies.MoviesViewModel
 import dagger.Binds
@@ -37,4 +38,9 @@ abstract class ViewModelModule {
 	@IntoMap
 	@ViewModelKey(MovieDetailsViewModel::class)
 	abstract fun bindsMovieDetailsViewModel(movieDetailsViewModel: MovieDetailsViewModel): ViewModel
+
+	@Binds
+	@IntoMap
+	@ViewModelKey(LoginViewModel::class)
+	abstract fun bindsLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 }

@@ -13,11 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.login
+package com.his.features.login.view.ui
 
-import com.his.R
-import com.his.core.platform.BaseFragment
+import android.content.Context
+import android.content.Intent
+import com.his.core.platform.BaseActivity
 
-class LoginFragment : BaseFragment() {
-	override fun layoutId() = R.layout.fragment_login
+class LoginActivity : BaseActivity() {
+	companion object {
+		fun callingIntent(context: Context) = Intent(context, LoginActivity::class.java)
+	}
+
+	override fun fragment() = LoginFragment()
 }
