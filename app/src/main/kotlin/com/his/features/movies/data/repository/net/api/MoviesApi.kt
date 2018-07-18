@@ -21,7 +21,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-internal interface MoviesApi {
+interface MoviesApi {
 	@GET(MOVIES)
 	fun movies(): Observable<List<MovieEntity>>
 

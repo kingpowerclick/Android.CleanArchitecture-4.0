@@ -2,10 +2,8 @@ package com.his.features.movies.data.repository
 
 import com.his.core.exception.NetworkConnectionException
 import com.his.core.platform.NetworkHandler
-import com.his.features.movies.data.MoviesRepository
-import com.his.features.movies.data.MoviesService
-import com.his.features.movies.data.entity.mapper.MovieDataMapper
-import com.his.features.movies.data.repository.local.db.MovieDetailsDao
+import com.his.features.movies.data.repository.local.MoviesLocalDataStore
+import com.his.features.movies.data.repository.net.api.MoviesCloudDataStore
 import com.his.features.movies.view.model.Movie
 import com.his.features.movies.view.model.MovieDetails
 import io.reactivex.Observable
@@ -14,11 +12,11 @@ import javax.inject.Inject
 
 
 class MoviesDataRepository @Inject constructor(private val networkHandler: NetworkHandler,
-                                               private val service: MoviesService,
-                                               private val dao: MovieDetailsDao) : MoviesRepository {
+                                               private val moviesCloudDataStore: MoviesCloudDataStore,
+                                               private val moviesLocalDataStore: MoviesLocalDataStore) : MoviesRepository {
 	override fun movies(): Observable<List<Movie>> {
 		return when (networkHandler.isConnected) {
-			true        -> service.movies().map { it.map { MovieDataMapper().toMovie(it) } }
+			true        -> moviesCloudDataStore.getMovies()
 			false, null -> Observable.error(NetworkConnectionException())
 		}
 	}
@@ -26,24 +24,13 @@ class MoviesDataRepository @Inject constructor(private val networkHandler: Netwo
 	override fun movieDetails(movieId: Int): Observable<MovieDetails> {
 		return when (networkHandler.isConnected) {
 			true        -> {
+				val local = moviesLocalDataStore.getMoviesDetail(movieId)
 
-				val local = dao.getMovieDetailById(movieId)
-					.toObservable()
-					.map { MovieDataMapper().toMovieDetails(it) }
-
-				val api = service.movieDetails(movieId)
-					.doOnNext {
-						dao.insertOrUpdateMovieDetail(MovieDataMapper().toMovieDetailsRoom(it))
-					}
-					.map { MovieDataMapper().toMovieDetails(it) }
+				val api = moviesCloudDataStore.getMoviesDetail(movieId)
 
 				return Observable.concat(local, api)
 					.onErrorResumeNext(Function {
-						service.movieDetails(movieId)
-							.doOnNext {
-								dao.insertOrUpdateMovieDetail(MovieDataMapper().toMovieDetailsRoom(it))
-							}
-							.map { MovieDataMapper().toMovieDetails(it) }
+						moviesCloudDataStore.getMoviesDetail(movieId)
 					})
 					.distinct()
 			}

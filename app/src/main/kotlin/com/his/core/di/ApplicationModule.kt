@@ -19,10 +19,11 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
-import com.his.features.movies.data.MoviesRepository
 import com.his.features.movies.data.repository.MoviesDataRepository
+import com.his.features.movies.data.repository.MoviesRepository
 import com.his.features.movies.data.repository.local.AppDatabase
 import com.his.features.movies.data.repository.local.db.MovieDetailsDao
+import com.his.features.movies.data.repository.net.api.MoviesApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -38,6 +39,18 @@ class ApplicationModule(private val application: AndroidApplication) {
 	@Provides
 	@Singleton
 	fun provideApplicationContext(): Context = application
+
+	@Provides
+	@Singleton
+	fun provideMoviesApi(retrofit: Retrofit): MoviesApi {
+		return retrofit.create(MoviesApi::class.java)
+	}
+
+ //	@Provides
+//	@Singleton
+//	fun provideCloudMoviesDataStore(moviesApi: MoviesApi, moviesDao: MovieDetailsDao, moviesDataMapper: MovieDataMapper) : MoviesCloudDataStore {
+//		return MoviesCloudDataStore(moviesApi, moviesDao, moviesDataMapper)
+//	}
 
 	@Provides
 	@Singleton
