@@ -25,7 +25,6 @@ class MoviesDataRepository @Inject constructor(private val networkHandler: Netwo
 		return when (networkHandler.isConnected) {
 			true        -> {
 				val local = moviesLocalDataStore.getMoviesDetail(movieId)
-
 				val api = moviesCloudDataStore.getMoviesDetail(movieId)
 
 				return Observable.concat(local, api)
