@@ -21,8 +21,8 @@ import com.his.AndroidApplication
 import com.his.BuildConfig
 import com.his.features.login.data.repository.LoginDataRepository
 import com.his.features.login.data.repository.LoginRepository
-import com.his.features.login.data.repository.net.graphql.GraphQLClient
-import com.his.features.login.data.repository.net.graphql.GraphQLClientImpl
+import com.his.core.platform.graphql.GraphQLClient
+import com.his.core.platform.graphql.GraphQLClientImpl
 import com.his.features.movies.data.repository.MoviesDataRepository
 import com.his.features.movies.data.repository.MoviesRepository
 import com.his.features.movies.data.repository.local.AppDatabase

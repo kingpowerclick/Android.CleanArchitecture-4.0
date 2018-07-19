@@ -1,4 +1,4 @@
-package com.his.features.login.data.repository.net.graphql
+package com.his.core.platform.graphql
 
 import com.apollographql.apollo.api.Mutation
 import com.apollographql.apollo.api.Operation
