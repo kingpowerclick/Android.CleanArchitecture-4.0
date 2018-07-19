@@ -1,4 +1,4 @@
-package com.his.features.login.domain.params
+package com.his.features.login.view.model.params
 
 import com.his.core.interactor.UseCase
 

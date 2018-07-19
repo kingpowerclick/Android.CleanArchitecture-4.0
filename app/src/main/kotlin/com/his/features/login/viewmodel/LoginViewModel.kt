@@ -4,8 +4,8 @@ import android.arch.lifecycle.MutableLiveData
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
 import com.his.features.login.data.usecase.LoginByUserId
-import com.his.features.login.domain.model.UserLogin
-import com.his.features.login.domain.params.UserLoginParams
+import com.his.features.login.view.model.UserLogin
+import com.his.features.login.view.model.params.UserLoginParams
 import timber.log.Timber
 import javax.inject.Inject
 

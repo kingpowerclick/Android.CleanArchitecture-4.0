@@ -1,6 +1,6 @@
-package com.his.features.login.domain.repository
+package com.his.features.login.data.repository
 
-import com.his.features.login.domain.model.UserLogin
+import com.his.features.login.view.model.UserLogin
 import io.reactivex.Observable
 
 interface LoginRepository {

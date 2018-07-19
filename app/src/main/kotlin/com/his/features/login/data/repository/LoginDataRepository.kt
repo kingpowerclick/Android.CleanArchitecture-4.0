@@ -1,9 +1,7 @@
 package com.his.features.login.data.repository
 
-import com.his.features.login.data.entity.LoginEntityDataMapper
-import com.his.features.login.data.repository.LoginDataStoreFactory
-import com.his.features.login.domain.model.UserLogin
-import com.his.features.login.domain.repository.LoginRepository
+import com.his.features.login.data.entity.mapper.LoginEntityDataMapper
+import com.his.features.login.view.model.UserLogin
 import io.reactivex.Observable
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.his.features.login.domain.model
+package com.his.features.login.view.model
 
 data class UserLogin (
 	val tokenType: String?,

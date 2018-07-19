@@ -1,9 +1,9 @@
 package com.his.features.login.data.usecase
 
 import com.his.core.interactor.UseCase
-import com.his.features.login.domain.model.UserLogin
-import com.his.features.login.domain.params.UserLoginParams
-import com.his.features.login.domain.repository.LoginRepository
+import com.his.features.login.data.repository.LoginRepository
+import com.his.features.login.view.model.UserLogin
+import com.his.features.login.view.model.params.UserLoginParams
 import io.reactivex.Observable
 import javax.inject.Inject
 

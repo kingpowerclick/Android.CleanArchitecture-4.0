@@ -1,8 +1,8 @@
-package com.his.features.login.data.entity
+package com.his.features.login.data.entity.mapper
 
 import UserLoginQuery
 import com.apollographql.apollo.api.Response
-import com.his.features.login.domain.model.UserLogin
+import com.his.features.login.view.model.UserLogin
 
 class LoginEntityDataMapper {
 	fun toUserLogin(entity: Response<UserLoginQuery.Data>): UserLogin? {

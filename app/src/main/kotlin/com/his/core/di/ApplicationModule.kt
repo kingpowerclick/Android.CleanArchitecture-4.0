@@ -20,7 +20,7 @@ import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
 import com.his.features.login.data.repository.LoginDataRepository
-import com.his.features.login.domain.repository.LoginRepository
+import com.his.features.login.data.repository.LoginRepository
 import com.his.features.movies.data.repository.MoviesDataRepository
 import com.his.features.movies.data.repository.MoviesRepository
 import com.his.features.movies.data.repository.local.AppDatabase
