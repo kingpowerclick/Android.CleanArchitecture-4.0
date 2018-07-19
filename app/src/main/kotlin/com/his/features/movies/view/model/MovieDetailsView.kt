@@ -13,26 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.view.model
 
-import android.os.Parcel
-import com.his.core.platform.KParcelable
-import com.his.core.platform.parcelableCreator
-
-data class MovieView(val id: Int, val poster: String) :
-	KParcelable {
-	companion object {
-		@JvmField
-		val CREATOR = parcelableCreator(
-			::MovieView)
-	}
-
-	constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString())
-
-	override fun writeToParcel(dest: Parcel, flags: Int) {
-		with(dest) {
-			writeInt(id)
-			writeString(poster)
-		}
-	}
-}
+data class MovieDetailsView(val id: Int,
+                            val title: String,
+                            val poster: String,
+                            val summary: String,
+                            val cast: String,
+                            val director: String,
+                            val year: Int,
+                            val trailer: String)

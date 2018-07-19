@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import com.his.core.interactor.UseCase.Parameter
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
+import com.his.features.movies.data.usecase.GetMovies
+import com.his.features.movies.view.model.Movie
+import com.his.features.movies.view.model.MovieView
 import javax.inject.Inject
 
 class MoviesViewModel

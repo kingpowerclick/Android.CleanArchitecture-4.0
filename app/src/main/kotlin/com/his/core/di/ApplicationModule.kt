@@ -15,12 +15,17 @@
  */
 package com.his.core.di
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
+import com.his.features.movies.data.repository.MoviesDataRepository
+import com.his.features.movies.data.repository.MoviesRepository
+import com.his.features.movies.data.repository.local.AppDatabase
+import com.his.features.movies.data.repository.local.db.MovieDetailsDao
+import com.his.features.movies.data.repository.net.api.MoviesApi
 import com.his.features.login.data.LoginDataRepository
 import com.his.features.login.domain.repository.LoginRepository
-import com.his.features.movies.MoviesRepository
 import com.kingpower.data.net.ApiConnection
 import com.kingpower.data.net.ApiConnectionImpl
 import dagger.Module
@@ -41,6 +46,18 @@ class ApplicationModule(private val application: AndroidApplication) {
 
 	@Provides
 	@Singleton
+	fun provideMoviesApi(retrofit: Retrofit): MoviesApi {
+		return retrofit.create(MoviesApi::class.java)
+	}
+
+ //	@Provides
+//	@Singleton
+//	fun provideCloudMoviesDataStore(moviesApi: MoviesApi, moviesDao: MovieDetailsDao, moviesDataMapper: MovieDataMapper) : MoviesCloudDataStore {
+//		return MoviesCloudDataStore(moviesApi, moviesDao, moviesDataMapper)
+//	}
+
+	@Provides
+	@Singleton
 	fun provideRetrofit(): Retrofit {
 		return Retrofit.Builder()
 			.baseUrl("https://raw.githubusercontent.com/android10/Sample-Data/master/Android-CleanArchitecture-Kotlin/")
@@ -52,7 +69,15 @@ class ApplicationModule(private val application: AndroidApplication) {
 
 	@Provides
 	@Singleton
-	fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+	fun provideDatabase(context: Context): AppDatabase = Room.databaseBuilder(context, AppDatabase::class.java, "app_database").build()
+
+	@Provides
+	@Singleton
+	fun provideMovieDetailsDao(db: AppDatabase): MovieDetailsDao = db.movieDetailsDao()
+
+	@Provides
+	@Singleton
+	fun provideMoviesRepository(dataSource: MoviesDataRepository): MoviesRepository = dataSource
 
 	@Provides
 	fun provideLoginRepository(dataSource: LoginDataRepository): LoginRepository = dataSource

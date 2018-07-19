@@ -16,6 +16,9 @@
 package com.his.features.movies
 
 import com.his.UnitTest
+import com.his.features.movies.data.usecase.GetMovieDetails
+import com.his.features.movies.data.repository.MoviesRepository
+import com.his.features.movies.view.model.MovieDetails
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions

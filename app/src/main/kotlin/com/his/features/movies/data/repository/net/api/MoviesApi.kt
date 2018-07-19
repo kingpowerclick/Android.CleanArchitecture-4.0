@@ -13,23 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data.repository.net.api
 
-import android.content.Context
-import android.content.Intent
-import com.his.core.platform.BaseActivity
+import com.his.features.movies.data.entity.MovieDetailsEntity
+import com.his.features.movies.data.entity.MovieEntity
+import io.reactivex.Observable
+import retrofit2.http.GET
+import retrofit2.http.Path
 
-class MovieDetailsActivity : BaseActivity() {
+interface MoviesApi {
+	@GET(MOVIES)
+	fun movies(): Observable<List<MovieEntity>>
+
+	@GET(MOVIE_DETAILS)
+	fun movieDetails(@Path(PARAM_MOVIE_ID) movieId: Int): Observable<MovieDetailsEntity>
 
 	companion object {
-		private const val INTENT_EXTRA_PARAM_MOVIE = "com.his.INTENT_PARAM_MOVIE"
-
-		fun callingIntent(context: Context, movie: MovieView): Intent {
-			val intent = Intent(context, MovieDetailsActivity::class.java)
-			intent.putExtra(INTENT_EXTRA_PARAM_MOVIE, movie)
-			return intent
-		}
+		private const val PARAM_MOVIE_ID = "movieId"
+		private const val MOVIES = "movies.json"
+		private const val MOVIE_DETAILS = "movie_0{$PARAM_MOVIE_ID}.json"
 	}
-
-	override fun fragment() = MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
 }

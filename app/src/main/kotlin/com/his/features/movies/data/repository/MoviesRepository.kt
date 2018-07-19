@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data.repository
 
-import android.content.Context
-import android.content.Intent
-import com.his.core.platform.BaseActivity
+import com.his.features.movies.view.model.Movie
+import com.his.features.movies.view.model.MovieDetails
+import io.reactivex.Observable
 
-class MoviesActivity : BaseActivity() {
-
-	companion object {
-		fun callingIntent(context: Context) = Intent(context, MoviesActivity::class.java)
-	}
-
-	override fun fragment() = MoviesFragment()
+interface MoviesRepository {
+	fun movies(): Observable<List<Movie>>
+	fun movieDetails(movieId: Int): Observable<MovieDetails>
 }

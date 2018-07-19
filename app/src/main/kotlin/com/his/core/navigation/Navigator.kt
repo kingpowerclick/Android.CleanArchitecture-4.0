@@ -26,10 +26,10 @@ import android.view.View
 import android.widget.ImageView
 import com.his.core.extension.empty
 import com.his.features.login.Authenticator
+import com.his.features.movies.view.ui.MovieDetailsActivity
+import com.his.features.movies.view.model.MovieView
+import com.his.features.movies.view.ui.MoviesActivity
 import com.his.features.login.view.ui.LoginActivity
-import com.his.features.movies.MovieDetailsActivity
-import com.his.features.movies.MovieView
-import com.his.features.movies.MoviesActivity
 import javax.inject.Inject
 import javax.inject.Singleton
 

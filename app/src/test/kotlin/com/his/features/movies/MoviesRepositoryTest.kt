@@ -18,6 +18,12 @@ package com.his.features.movies
 import com.his.UnitTest
 import com.his.core.extension.empty
 import com.his.core.platform.NetworkHandler
+import com.his.features.movies.data.repository.MoviesDataRepository
+import com.his.features.movies.data.repository.MoviesRepository
+import com.his.features.movies.data.repository.local.MoviesLocalDataStore
+import com.his.features.movies.data.repository.net.api.MoviesCloudDataStore
+import com.his.features.movies.view.model.Movie
+import com.his.features.movies.view.model.MovieDetails
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyZeroInteractions
@@ -29,96 +35,101 @@ import org.mockito.Mock
 
 class MoviesRepositoryTest : UnitTest() {
 
-	private lateinit var networkRepository: MoviesRepository.Network
+	private lateinit var moviesRepository: MoviesRepository
 
 	@Mock
 	private lateinit var networkHandler: NetworkHandler
 	@Mock
-	private lateinit var service: MoviesService
+	private lateinit var moviesCloudDataStore: MoviesCloudDataStore
+	@Mock
+	private lateinit var moviesLocalDataStore: MoviesLocalDataStore
 
 	@Before
 	fun setUp() {
-		networkRepository = MoviesRepository.Network(networkHandler, service)
+		moviesRepository = MoviesDataRepository(networkHandler, moviesCloudDataStore, moviesLocalDataStore)
 	}
 
 	@Test
 	fun `should return empty list by default`() {
 		given { networkHandler.isConnected }.willReturn(true)
-		given { service.movies() }.willReturn(Observable.just(emptyList()))
+		given { moviesCloudDataStore.getMovies() }.willReturn(Observable.just(emptyList()))
 
-		val movies = networkRepository.movies().blockingFirst()
+		val movies = moviesRepository.movies().blockingFirst()
 
 		movies shouldEqual emptyList()
-		verify(service).movies()
+		verify(moviesCloudDataStore).getMovies()
 	}
 
 	@Test
 	fun `should get movie list from service`() {
 		given { networkHandler.isConnected }.willReturn(true)
-		given { service.movies() }.willReturn(Observable.just(listOf(MovieEntity(1, "poster"))))
+		given { moviesCloudDataStore.getMovies() }.willReturn(Observable.just(listOf(Movie(1, "poster"))))
 
-		val movies = networkRepository.movies().blockingFirst()
+		val movies = moviesRepository.movies().blockingFirst()
 
 		movies shouldEqual listOf(Movie(1, "poster"))
-		verify(service).movies()
+		verify(moviesCloudDataStore).getMovies()
 	}
 
 	@Test
 	fun `movies service should return network failure when no connection`() {
 		given { networkHandler.isConnected }.willReturn(false)
 
-		networkRepository.movies()
+		moviesRepository.movies()
 
-		verifyZeroInteractions(service)
+		verifyZeroInteractions(moviesCloudDataStore)
 	}
 
 	@Test
 	fun `movies service should return network failure when undefined connection`() {
 		given { networkHandler.isConnected }.willReturn(null)
 
-		networkRepository.movies()
+		moviesRepository.movies()
 
-		verifyZeroInteractions(service)
+		verifyZeroInteractions(moviesCloudDataStore)
 	}
 
 	@Test
 	fun `should return empty movie details by default`() {
+		val expectedResult = Observable.just(MovieDetails.empty())
 		given { networkHandler.isConnected }.willReturn(true)
-		given { service.movieDetails(1) }.willReturn(Observable.just(MovieDetailsEntity.empty()))
+		given { moviesCloudDataStore.getMoviesDetail(1) }.willReturn(expectedResult)
+		given { moviesLocalDataStore.getMoviesDetail(1) }.willReturn(expectedResult)
 
-		val movieDetails = networkRepository.movieDetails(1).blockingFirst()
+		val movieDetails = moviesRepository.movieDetails(1).blockingFirst()
 
 		movieDetails shouldEqual MovieDetails.empty()
-		verify(service).movieDetails(1)
+		verify(moviesCloudDataStore).getMoviesDetail(1)
 	}
 
 	@Test
 	fun `should get movie details from service`() {
+		val expectedResult = Observable.just(MovieDetails(8, "title", String.empty(), String.empty(), String.empty(), String.empty(), 0, String.empty()))
 		given { networkHandler.isConnected }.willReturn(true)
-		given { service.movieDetails(1) }.willReturn(Observable.just(
-			MovieDetailsEntity(8, "title", String.empty(), String.empty(), String.empty(), String.empty(), 0, String.empty())))
+		given { moviesCloudDataStore.getMoviesDetail(1) }.willReturn(expectedResult)
+		given { moviesLocalDataStore.getMoviesDetail(1) }.willReturn(expectedResult)
 
-		val movieDetails = networkRepository.movieDetails(1).blockingFirst()
+		val movieDetails = moviesRepository.movieDetails(1).blockingFirst()
 
 		movieDetails shouldEqual MovieDetails(8, "title", String.empty(), String.empty(), String.empty(), String.empty(), 0, String.empty())
-		verify(service).movieDetails(1)
+		verify(moviesCloudDataStore).getMoviesDetail(1)
 	}
 
 	@Test
 	fun `movie details service should return network failure when no connection`() {
 		given { networkHandler.isConnected }.willReturn(false)
 
-		networkRepository.movieDetails(1)
+		moviesRepository.movieDetails(1)
 
-		verifyZeroInteractions(service)
+		verifyZeroInteractions(moviesCloudDataStore)
 	}
 
 	@Test
 	fun `movie details service should return network failure when undefined connection`() {
 		given { networkHandler.isConnected }.willReturn(null)
 
-		networkRepository.movieDetails(1)
+		moviesRepository.movieDetails(1)
 
-		verifyZeroInteractions(service)
+		verifyZeroInteractions(moviesCloudDataStore)
 	}
 }
