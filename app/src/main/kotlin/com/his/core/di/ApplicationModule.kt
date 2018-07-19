@@ -19,6 +19,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
+import com.his.features.login.data.ClientCreator
 import com.his.features.login.data.repository.LoginDataRepository
 import com.his.features.login.data.repository.LoginRepository
 import com.his.features.movies.data.repository.MoviesDataRepository
@@ -28,6 +29,8 @@ import com.his.features.movies.data.repository.local.db.MovieDetailsDao
 import com.his.features.movies.data.repository.net.api.MoviesApi
 import com.kingpower.data.net.ApiConnection
 import com.kingpower.data.net.ApiConnectionImpl
+import com.kingpower.data.net.graphql.GraphQLClient
+import com.kingpower.data.net.graphql.GraphQLClientImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -87,6 +90,12 @@ class ApplicationModule(private val application: AndroidApplication) {
 	@Singleton
 	fun provideApiConnection(apiConnection: ApiConnectionImpl): ApiConnection {
 		return apiConnection
+	}
+
+	@Provides
+	@Singleton
+	fun provideGraphQLClient(clientCreator: ClientCreator): GraphQLClient {
+		return GraphQLClientImpl(clientCreator)
 	}
 
 	private fun createClient(): OkHttpClient {

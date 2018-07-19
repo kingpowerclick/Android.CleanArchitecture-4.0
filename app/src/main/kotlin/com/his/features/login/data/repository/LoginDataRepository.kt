@@ -5,8 +5,8 @@ import com.his.features.login.view.model.UserLogin
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class LoginDataRepository @Inject constructor(private val mLoginDataStoreFactory: LoginDataStoreFactory) : LoginRepository {
+class LoginDataRepository @Inject constructor(private val mLoginDataStore: LoginCloudDataStore) : LoginRepository {
 	override fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<UserLogin> {
-		return mLoginDataStoreFactory.createCloudDataStore().login(clientId, clientSecret, email, password).map { LoginEntityDataMapper().toUserLogin(it) }
+		return mLoginDataStore.login(clientId, clientSecret, email, password).map { LoginEntityDataMapper().toUserLogin(it) }
 	}
 }
