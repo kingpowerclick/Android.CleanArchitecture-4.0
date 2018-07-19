@@ -28,13 +28,13 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 			handleFailure(e)
 		}
 
-		override fun onNext(t: UserLogin) {
-			if (t.accessToken.isNullOrEmpty()) {
+		override fun onNext(value: UserLogin) {
+			if (value.accessToken.isNullOrEmpty()) {
 				Timber.e("Sign In Fail")
 			}
 			else {
 				Timber.e("Sign In Success")
-				userLogin.value = t
+				userLogin.value = value
 			}
 		}
 	}

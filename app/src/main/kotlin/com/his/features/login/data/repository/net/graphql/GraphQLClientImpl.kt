@@ -1,4 +1,4 @@
-package com.kingpower.data.net.graphql
+package com.his.features.login.data.repository.net.graphql
 
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloClient
@@ -8,28 +8,28 @@ import com.apollographql.apollo.api.Query
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.internal.util.Cancelable
-import com.his.features.login.data.ClientCreator
+import com.his.core.exception.ServerErrorException
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.disposables.Disposable
 import io.reactivex.exceptions.Exceptions
+import okhttp3.OkHttpClient
 import timber.log.Timber
 
-class GraphQLClientImpl(clientCreator: ClientCreator) : GraphQLClient {
-	private val BASE_API_GATEWAY_URL = "https://dev-api.kpc-dev.com/"
+class GraphQLClientImpl(httpClient: OkHttpClient) : GraphQLClient {
 
-	private val mApolloClient = ApolloClient.builder()
+	private val apolloClient = ApolloClient.builder()
 		.serverUrl(BASE_API_GATEWAY_URL)
-		.okHttpClient(clientCreator.createHttpClient())
+		.okHttpClient(httpClient)
 		.build()
 
 	override fun <D : Operation.Data, T, V : Operation.Variables> queryRx(query: Query<D, T, V>): Observable<Response<T>> {
-		val apolloQueryCall = mApolloClient.query(query)
+		val apolloQueryCall = apolloClient.query(query)
 		return toRx(apolloQueryCall)
 	}
 
 	override fun <D : Operation.Data, T, V : Operation.Variables> mutateRx(mutation: Mutation<D, T, V>): Observable<Response<T>> {
-		val apolloMutateCall = mApolloClient.mutate(mutation)
+		val apolloMutateCall = apolloClient.mutate(mutation)
 		return toRx(apolloMutateCall)
 	}
 
@@ -40,7 +40,7 @@ class GraphQLClientImpl(clientCreator: ClientCreator) : GraphQLClient {
 	 * Original source code by [com.apollographql.apollo.rx2.Rx2Apollo] (0.4.1)
 	 */
 	private fun <T> toRx(originalCall: ApolloCall<T>): Observable<Response<T>> {
-		checkNotNull(originalCall, { "call == null" })
+		checkNotNull(originalCall) { "call == null" }
 
 		return Observable.create { emitter ->
 			cancelOnObservableDisposed(emitter, originalCall)
@@ -51,23 +51,7 @@ class GraphQLClientImpl(clientCreator: ClientCreator) : GraphQLClient {
 							emitter.onNext(response)
 						}
 						else {
-							try {
-//								val apiErrorList = mResource 0..getErrorMessage().blockingFirst()
-//								val graphQLErrorMessageList = apiErrorMapper(response.errors(), apiErrorList)
-//
-//								val firstErrorMessage = response.errors().firstOrNull()?.message()
-//								val graphQLException = ApiException(firstErrorMessage, graphQLErrorMessageList)
-//								emitter.tryOnError(graphQLException)
-//
-//								originalCall.operation().apply {
-//									val queryLog = "${name().name()} ${variables()?.valueMap()}"
-//									Timber.i(graphQLException, "GraphQL error message: $queryLog")
-//								}
-							}
-							catch (e: Exception) {
-								Timber.i(e, "GraphQL error mapping exception")
-								emitter.tryOnError(IllegalArgumentException("Error message not found"))
-							}
+							emitter.tryOnError(ServerErrorException())
 						}
 					}
 				}
@@ -104,5 +88,9 @@ class GraphQLClientImpl(clientCreator: ClientCreator) : GraphQLClient {
 				return cancelable.isCanceled
 			}
 		}
+	}
+
+	companion object {
+		private const val BASE_API_GATEWAY_URL = "https://dev-api.kpc-dev.com/"
 	}
 }

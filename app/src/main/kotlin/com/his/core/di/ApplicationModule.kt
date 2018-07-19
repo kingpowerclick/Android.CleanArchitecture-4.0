@@ -19,16 +19,15 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
-import com.his.features.login.data.ClientCreator
 import com.his.features.login.data.repository.LoginDataRepository
 import com.his.features.login.data.repository.LoginRepository
+import com.his.features.login.data.repository.net.graphql.GraphQLClient
+import com.his.features.login.data.repository.net.graphql.GraphQLClientImpl
 import com.his.features.movies.data.repository.MoviesDataRepository
 import com.his.features.movies.data.repository.MoviesRepository
 import com.his.features.movies.data.repository.local.AppDatabase
 import com.his.features.movies.data.repository.local.db.MovieDetailsDao
 import com.his.features.movies.data.repository.net.api.MoviesApi
-import com.kingpower.data.net.graphql.GraphQLClient
-import com.kingpower.data.net.graphql.GraphQLClientImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -36,6 +35,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -80,16 +80,28 @@ class ApplicationModule(private val application: AndroidApplication) {
 
 	@Provides
 	@Singleton
-	fun provideGraphQLClient(clientCreator: ClientCreator): GraphQLClient {
-		return GraphQLClientImpl(clientCreator)
-	}
+	fun provideGraphQLClient(): GraphQLClient = GraphQLClientImpl(createClient())
 
 	private fun createClient(): OkHttpClient {
-		val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+		val okHttpClientBuilder = OkHttpClient.Builder()
+			.connectTimeout(15, TimeUnit.SECONDS)
+			.readTimeout(30, TimeUnit.SECONDS)
+			.addInterceptor { chain ->
+				val originalRequest = chain.request()
+				val request = originalRequest.newBuilder()
+					.header("Accept", "application/json")
+					.method(originalRequest.method(), originalRequest.body())
+
+				chain.proceed(request.build())
+			}
+
+		// Add Http Logging for debug mode
 		if (BuildConfig.DEBUG) {
-			val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-			okHttpClientBuilder.addInterceptor(loggingInterceptor)
+			val interceptor = HttpLoggingInterceptor()
+			interceptor.level = HttpLoggingInterceptor.Level.BODY
+			okHttpClientBuilder.addInterceptor(interceptor)
 		}
+
 		return okHttpClientBuilder.build()
 	}
 }

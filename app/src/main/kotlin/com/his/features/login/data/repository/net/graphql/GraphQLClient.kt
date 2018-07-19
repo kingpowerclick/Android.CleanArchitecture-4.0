@@ -1,4 +1,4 @@
-package com.kingpower.data.net.graphql
+package com.his.features.login.data.repository.net.graphql
 
 import com.apollographql.apollo.api.Mutation
 import com.apollographql.apollo.api.Operation

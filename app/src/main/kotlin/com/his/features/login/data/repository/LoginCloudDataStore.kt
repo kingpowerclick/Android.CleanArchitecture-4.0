@@ -16,15 +16,16 @@
 package com.his.features.login.data.repository
 
 import UserLoginQuery
-import com.apollographql.apollo.api.Response
-import com.kingpower.data.net.graphql.GraphQLClient
+import com.his.features.login.data.entity.mapper.LoginEntityDataMapper
+import com.his.features.login.data.repository.net.graphql.GraphQLClient
+import com.his.features.login.view.model.UserLogin
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class LoginCloudDataStore @Inject constructor(private val graphQLClient: GraphQLClient) : LoginDataStore {
-	override fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<Response<UserLoginQuery.Data>> {
+	override fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<UserLogin> {
 		val login = UserLoginQuery.builder()
 			.clientId(clientId)
 			.clientSecret(clientSecret)
@@ -32,7 +33,7 @@ class LoginCloudDataStore @Inject constructor(private val graphQLClient: GraphQL
 			.password(password)
 			.build()
 
-		return graphQLClient.queryRx(login)
+		return graphQLClient.queryRx(login).map { LoginEntityDataMapper().toUserLogin(it) }
 	}
 }
 

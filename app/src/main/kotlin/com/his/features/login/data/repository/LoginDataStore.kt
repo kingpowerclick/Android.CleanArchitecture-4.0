@@ -1,9 +1,8 @@
 package com.his.features.login.data.repository
 
-import UserLoginQuery
-import com.apollographql.apollo.api.Response
+import com.his.features.login.view.model.UserLogin
 import io.reactivex.Observable
 
 interface LoginDataStore {
-	fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<Response<UserLoginQuery.Data>>
+	fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<UserLogin>
 }
