@@ -13,13 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data.entity
 
-data class MovieDetailsView(val id: Int,
-                            val title: String,
-                            val poster: String,
-                            val summary: String,
-                            val cast: String,
-                            val director: String,
-                            val year: Int,
-                            val trailer: String)
+data class MovieEntity(val id: Int, val poster: String)

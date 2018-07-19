@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.his.features.movies
+package com.his.features.movies.data.usecase
 
 import com.his.core.interactor.UseCase
 import com.his.core.interactor.UseCase.Parameter
+import com.his.features.movies.data.repository.MoviesRepository
+import com.his.features.movies.view.model.Movie
 import io.reactivex.Observable
 import javax.inject.Inject
 

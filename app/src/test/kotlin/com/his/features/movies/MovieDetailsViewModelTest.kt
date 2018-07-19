@@ -17,6 +17,9 @@ package com.his.features.movies
 
 import com.his.AndroidTest
 import com.his.core.platform.DefaultDisposable
+import com.his.features.movies.data.usecase.GetMovieDetails
+import com.his.features.movies.view.model.MovieDetails
+import com.his.features.movies.viewmodel.MovieDetailsViewModel
 import com.his.utils.TestDisposable
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.argumentCaptor
