@@ -25,7 +25,7 @@ import android.support.v4.view.ViewCompat
 import android.view.View
 import android.widget.ImageView
 import com.his.core.extension.empty
-import com.his.features.login.Authenticator
+import com.his.features.login.data.Authenticator
 import com.his.features.movies.view.ui.MovieDetailsActivity
 import com.his.features.movies.view.model.MovieView
 import com.his.features.movies.view.ui.MoviesActivity

@@ -3,7 +3,7 @@ package com.his.features.login.viewmodel
 import android.arch.lifecycle.MutableLiveData
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
-import com.his.features.login.data.LoginByUserId
+import com.his.features.login.data.usecase.LoginByUserId
 import com.his.features.login.domain.model.UserLogin
 import com.his.features.login.domain.params.UserLoginParams
 import timber.log.Timber

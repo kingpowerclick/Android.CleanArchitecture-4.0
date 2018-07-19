@@ -24,7 +24,7 @@ import com.his.features.movies.data.repository.MoviesRepository
 import com.his.features.movies.data.repository.local.AppDatabase
 import com.his.features.movies.data.repository.local.db.MovieDetailsDao
 import com.his.features.movies.data.repository.net.api.MoviesApi
-import com.his.features.login.data.LoginDataRepository
+import com.his.features.login.data.repository.LoginDataRepository
 import com.his.features.login.domain.repository.LoginRepository
 import com.kingpower.data.net.ApiConnection
 import com.kingpower.data.net.ApiConnectionImpl

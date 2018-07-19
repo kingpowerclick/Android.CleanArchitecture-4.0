@@ -1,4 +1,4 @@
-package com.his.features.login.data
+package com.his.features.login.data.usecase
 
 import com.his.core.interactor.UseCase
 import com.his.features.login.domain.model.UserLogin

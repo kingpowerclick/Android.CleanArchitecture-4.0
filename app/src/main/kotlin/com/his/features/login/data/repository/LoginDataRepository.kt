@@ -1,4 +1,4 @@
-package com.his.features.login.data
+package com.his.features.login.data.repository
 
 import com.his.features.login.data.entity.LoginEntityDataMapper
 import com.his.features.login.data.repository.LoginDataStoreFactory
