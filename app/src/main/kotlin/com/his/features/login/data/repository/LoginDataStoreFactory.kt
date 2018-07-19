@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class LoginDataStoreFactory @Inject constructor(private val apiConnection: ApiConnection) {
 	fun createCloudDataStore(): LoginDataStore {
-		return CloudLoginDataStore(apiConnection.createGraphQLClient())
+		return LoginCloudDataStore(apiConnection.createGraphQLClient())
 	}
 }

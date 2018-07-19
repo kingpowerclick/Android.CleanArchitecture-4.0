@@ -19,13 +19,13 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
+import com.his.features.login.data.repository.LoginDataRepository
+import com.his.features.login.domain.repository.LoginRepository
 import com.his.features.movies.data.repository.MoviesDataRepository
 import com.his.features.movies.data.repository.MoviesRepository
 import com.his.features.movies.data.repository.local.AppDatabase
 import com.his.features.movies.data.repository.local.db.MovieDetailsDao
 import com.his.features.movies.data.repository.net.api.MoviesApi
-import com.his.features.login.data.repository.LoginDataRepository
-import com.his.features.login.domain.repository.LoginRepository
 import com.kingpower.data.net.ApiConnection
 import com.kingpower.data.net.ApiConnectionImpl
 import dagger.Module
@@ -80,10 +80,12 @@ class ApplicationModule(private val application: AndroidApplication) {
 	fun provideMoviesRepository(dataSource: MoviesDataRepository): MoviesRepository = dataSource
 
 	@Provides
+	@Singleton
 	fun provideLoginRepository(dataSource: LoginDataRepository): LoginRepository = dataSource
 
 	@Provides
-	@Singleton internal fun provideApiConnection(apiConnection: ApiConnectionImpl): ApiConnection {
+	@Singleton
+	fun provideApiConnection(apiConnection: ApiConnectionImpl): ApiConnection {
 		return apiConnection
 	}
 

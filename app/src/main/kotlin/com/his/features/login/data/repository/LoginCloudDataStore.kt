@@ -20,7 +20,7 @@ import com.apollographql.apollo.api.Response
 import com.kingpower.data.net.graphql.GraphQLClient
 import io.reactivex.Observable
 
-class CloudLoginDataStore(private val graphQLClient: GraphQLClient) : LoginDataStore {
+class LoginCloudDataStore(private val graphQLClient: GraphQLClient) : LoginDataStore {
 	override fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<Response<UserLoginQuery.Data>> {
 		val login = UserLoginQuery.builder()
 			.clientId(clientId)
