@@ -24,7 +24,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LoginCloudDataStore @Inject constructor(private val graphQLClient: GraphQLClient) : LoginDataStore {
+class LoginCloudDataStore @Inject constructor(private val graphQLClient: GraphQLClient,
+                                              private val mapper: LoginEntityDataMapper) : LoginDataStore {
 	override fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<UserLogin> {
 		val login = UserLoginQuery.builder()
 			.clientId(clientId)
@@ -33,7 +34,7 @@ class LoginCloudDataStore @Inject constructor(private val graphQLClient: GraphQL
 			.password(password)
 			.build()
 
-		return graphQLClient.queryRx(login).map { LoginEntityDataMapper().toUserLogin(it) }
+		return graphQLClient.queryRx(login).map { mapper.toUserLogin(it.data()?.login()?.fragments()?.loginResponse()) }
 	}
 }
 
