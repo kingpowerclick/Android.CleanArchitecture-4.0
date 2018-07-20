@@ -16,8 +16,8 @@
 package com.his.features.login.data.repository
 
 import UserLoginQuery
-import com.his.features.login.data.entity.mapper.LoginEntityDataMapper
 import com.his.core.platform.graphql.GraphQLClient
+import com.his.features.login.data.entity.mapper.LoginEntityDataMapper
 import com.his.features.login.view.model.UserLogin
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -25,7 +25,7 @@ import javax.inject.Singleton
 
 @Singleton
 class LoginCloudDataStore @Inject constructor(private val graphQLClient: GraphQLClient,
-                                              private val loginEntityDataMapper: LoginEntityDataMapper) : LoginDataStore {
+                                              private val mapper: LoginEntityDataMapper) : LoginDataStore {
 	override fun login(clientId: String, clientSecret: String, email: String, password: String): Observable<UserLogin> {
 		val login = UserLoginQuery.builder()
 			.clientId(clientId)
@@ -34,7 +34,7 @@ class LoginCloudDataStore @Inject constructor(private val graphQLClient: GraphQL
 			.password(password)
 			.build()
 
-		return graphQLClient.queryRx(login).map { loginEntityDataMapper.toUserLogin(it) }
+		return graphQLClient.queryRx(login).map { mapper.toUserLogin(it.data()?.login()?.fragments()?.loginResponse()) }
 	}
 }
 

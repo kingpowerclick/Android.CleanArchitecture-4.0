@@ -1,9 +1,6 @@
 query userLogin($clientId: String!, $clientSecret: String!, $email: String!, $password: String!) {
     login(clientId: $clientId, clientSecret: $clientSecret, email: $email, password: $password) {
-        tokenType
-        expiresIn
-        accessToken
-        refreshToken
+        ... LoginResponse
     }
 }
 
@@ -53,4 +50,11 @@ mutation refreshToken($input: RefreshTokenInput!) {
         accessToken
         refreshToken
     }
+}
+
+fragment LoginResponse on loginResponse {
+    tokenType
+    expiresIn
+    accessToken
+    refreshToken
 }
