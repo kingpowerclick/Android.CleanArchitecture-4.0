@@ -26,7 +26,10 @@ import com.his.core.extension.observe
 import com.his.core.extension.viewModel
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
+import com.his.features.login.view.extensions.getText
+import com.his.features.login.view.extensions.validateInput
 import com.his.features.login.view.model.UserLogin
+import com.his.features.login.view.validator.FormValidator
 import com.his.features.login.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
@@ -34,6 +37,8 @@ import javax.inject.Inject
 class LoginFragment : BaseFragment() {
 	@Inject lateinit var navigator: Navigator
 	private lateinit var loginViewModel: LoginViewModel
+	private lateinit var mFormValidator: FormValidator
+
 
 	override fun layoutId() = R.layout.fragment_login
 
@@ -55,11 +60,44 @@ class LoginFragment : BaseFragment() {
 
 	private fun onBindEvent() {
 		buttonSignIn.setOnClickListener {
-			loginViewModel.signIn(
-				email = editTextEmail.text.toString(),
-				password = editTextPassword.text.toString()
-			)
+			if (isValid()) {
+				loginViewModel.signIn(
+					email = editTextEmail.text.toString(),
+					password = editTextPassword.text.toString())
+			}
 		}
+	}
+
+	private fun isValid(): Boolean {
+		val validateResults = mutableListOf<Boolean>()
+
+		if (mFormValidator.isInputNotEmpty(textInputLayoutEmail.getText() ?: "").not()) {
+			validateResults.add(textInputLayoutEmail.validateInput(
+				errorText = getString(R.string.form_error_required_email),
+				validator = false
+			))
+		}
+		else {
+			validateResults.add(textInputLayoutEmail.validateInput(
+				errorText = getString(R.string.form_error_email_invalid),
+				validator = mFormValidator.isEmailFormatValid(textInputLayoutEmail.getText() ?: "")
+			))
+		}
+
+		if (mFormValidator.isInputNotEmpty(textInputLayoutPassword.getText() ?: "").not()) {
+			validateResults.add(textInputLayoutPassword.validateInput(
+				errorText = getString(R.string.form_error_required_password),
+				validator = false
+			))
+		}
+		else {
+			validateResults.add(textInputLayoutPassword.validateInput(
+				errorText = getString(R.string.form_error_password_invalid),
+				validator = mFormValidator.isPasswordFormatValid(textInputLayoutPassword.getText() ?: "")
+			))
+		}
+
+		return validateResults.all { it }
 	}
 
 	private fun renderUserLogin(userLogin: UserLogin?) {
