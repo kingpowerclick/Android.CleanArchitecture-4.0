@@ -19,6 +19,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.his.features.movies.viewmodel.MovieDetailsViewModel
 import com.his.features.movies.viewmodel.MoviesViewModel
+import com.his.features.login.viewmodel.LoginViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -37,4 +38,9 @@ abstract class ViewModelModule {
 	@IntoMap
 	@ViewModelKey(MovieDetailsViewModel::class)
 	abstract fun bindsMovieDetailsViewModel(movieDetailsViewModel: MovieDetailsViewModel): ViewModel
+
+	@Binds
+	@IntoMap
+	@ViewModelKey(LoginViewModel::class)
+	abstract fun bindsLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 }

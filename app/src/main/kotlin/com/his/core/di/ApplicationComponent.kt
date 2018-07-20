@@ -20,6 +20,7 @@ import com.his.core.di.viewmodel.ViewModelModule
 import com.his.core.navigation.RouteActivity
 import com.his.features.movies.view.ui.MovieDetailsFragment
 import com.his.features.movies.view.ui.MoviesFragment
+import com.his.features.login.view.ui.LoginFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -31,4 +32,5 @@ interface ApplicationComponent {
 
 	fun inject(moviesFragment: MoviesFragment)
 	fun inject(movieDetailsFragment: MovieDetailsFragment)
+	fun inject(loginFragment: LoginFragment)
 }

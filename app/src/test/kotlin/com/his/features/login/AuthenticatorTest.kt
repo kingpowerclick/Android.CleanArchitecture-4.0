@@ -16,6 +16,7 @@
 package com.his.features.login
 
 import com.his.UnitTest
+import com.his.features.login.data.Authenticator
 import org.amshove.kluent.shouldBe
 import org.junit.Test
 

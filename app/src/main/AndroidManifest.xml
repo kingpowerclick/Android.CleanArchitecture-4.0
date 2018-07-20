@@ -24,6 +24,13 @@
             android:name="com.his.core.navigation.RouteActivity"
             android:noHistory="true"
             android:theme="@style/AppTheme.Translucent">
+
+        </activity>
+
+        <activity
+            android:name=".features.login.view.ui.LoginActivity"
+            android:label="@string/login_screen_title">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
