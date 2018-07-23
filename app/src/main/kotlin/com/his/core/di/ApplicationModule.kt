@@ -19,15 +19,17 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig
-import com.his.features.login.data.repository.LoginDataRepository
-import com.his.features.login.data.repository.LoginRepository
 import com.his.core.platform.graphql.GraphQLClient
 import com.his.core.platform.graphql.GraphQLClientImpl
+import com.his.features.login.data.repository.LoginDataRepository
+import com.his.features.login.data.repository.LoginRepository
 import com.his.features.movies.data.repository.MoviesDataRepository
 import com.his.features.movies.data.repository.MoviesRepository
 import com.his.features.movies.data.repository.local.AppDatabase
 import com.his.features.movies.data.repository.local.db.MovieDetailsDao
 import com.his.features.movies.data.repository.net.api.MoviesApi
+import com.his.features.productlist.data.repository.ProductListDataRepository
+import com.his.features.productlist.data.repository.ProductListRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -77,6 +79,10 @@ class ApplicationModule(private val application: AndroidApplication) {
 	@Provides
 	@Singleton
 	fun provideLoginRepository(dataSource: LoginDataRepository): LoginRepository = dataSource
+
+	@Provides
+	@Singleton
+	fun provideProductListRepository(dataSource: ProductListDataRepository): ProductListRepository = dataSource
 
 	@Provides
 	@Singleton
