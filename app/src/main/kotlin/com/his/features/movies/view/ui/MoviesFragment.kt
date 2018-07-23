@@ -47,7 +47,7 @@ class MoviesFragment : BaseFragment() {
 
 		moviesViewModel = viewModel(viewModelFactory) {
 			observe(movies, ::renderMoviesList)
-			failure(failure, ::handleFailure)
+			failure(error, ::handleFailure)
 		}
 	}
 

@@ -49,7 +49,7 @@ class MovieDetailsFragment : BaseFragment() {
 
 		movieDetailsViewModel = viewModel(viewModelFactory) {
 			observe(movieDetails, ::renderMovieDetails)
-			failure(failure, ::handleFailure)
+			failure(error, ::handleFailure)
 		}
 	}
 

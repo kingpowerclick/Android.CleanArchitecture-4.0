@@ -29,8 +29,8 @@ class BaseViewModelTest : AndroidTest() {
 
 		viewModel.handleError(NetworkErrorException())
 
-		val failure = viewModel.failure
-		val error = viewModel.failure.value
+		val failure = viewModel.error
+		val error = viewModel.error.value
 
 		failure shouldBeInstanceOf MutableLiveData::class.java
 		error shouldBeInstanceOf NetworkErrorException::class.java
