@@ -34,21 +34,21 @@ class GetProductList @Inject constructor(private val getProductListRepository: P
 	}
 
 	class Param(
-		val sku: String?,
-		val category: String?,
-		val brand: String?,
-		val prettyUrl: String?,
-		val sortBy: ProductSortableFieldEnum?,
-		val sortType: SortType?,
-		val page: Int?,
-		val recordPerPage: Int?,
+		val sku: String? = null,
+		val category: String? = null,
+		val brand: String? = null,
+		val prettyUrl: String? = null,
+		val sortBy: ProductSortableFieldEnum? = null,
+		val sortType: SortType? = null,
+		val page: Int? = null,
+		val recordPerPage: Int? = null,
 		val lang: LocaleType,
-		val keyword: String?,
-		val brands: List<String>?,
-		val categories: List<String>?,
-		val genders: List<String>?,
-		val priceMax: Double?,
-		val priceMin: Double?,
-		val isDutyFree: Boolean?
+		val keyword: String? = null,
+		val brands: List<String>? = null,
+		val categories: List<String>? = null,
+		val genders: List<String>? = null,
+		val priceMax: Double? = null,
+		val priceMin: Double? = null,
+		val isDutyFree: Boolean? = null
 	) : UseCase.Parameter.FeatureParameter()
 }

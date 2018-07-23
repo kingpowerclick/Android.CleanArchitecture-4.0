@@ -26,10 +26,11 @@ import android.view.View
 import android.widget.ImageView
 import com.his.core.extension.empty
 import com.his.features.login.data.Authenticator
-import com.his.features.movies.view.ui.MovieDetailsActivity
-import com.his.features.movies.view.model.MovieView
-import com.his.features.movies.view.ui.MoviesActivity
 import com.his.features.login.view.ui.LoginActivity
+import com.his.features.movies.view.model.MovieView
+import com.his.features.movies.view.ui.MovieDetailsActivity
+import com.his.features.movies.view.ui.MoviesActivity
+import com.his.features.productlist.view.ui.ProductListActivity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -51,6 +52,10 @@ class Navigator
 		val activityOptions = ActivityOptionsCompat
 			.makeSceneTransitionAnimation(activity, sharedView, ViewCompat.getTransitionName(sharedView))
 		activity.startActivity(intent, activityOptions.toBundle())
+	}
+
+	fun showProductList(context: Context) {
+		context.startActivity(ProductListActivity.getCallingIntent(context))
 	}
 
 	fun openVideo(context: Context, videoUrl: String) {
