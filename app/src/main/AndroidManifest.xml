@@ -42,7 +42,9 @@
             android:label="@string/movie_details_screen_title"
             android:theme="@style/AppTheme.Translucent" />
 
-        <activity android:name=".features.productlist.view.ui.ProductListActivity"/>
+        <activity
+            android:label="@string/product_list"
+            android:name=".features.productlist.view.ui.ProductListActivity"/>
 
         <service android:name=".features.service.FCMService">
             <intent-filter>

@@ -10,6 +10,7 @@ import com.his.core.extension.viewModel
 import com.his.core.platform.BaseFragment
 import com.his.features.productlist.data.entity.ProductItem
 import com.his.features.productlist.view.adapter.ProductListController
+import com.his.features.productlist.view.widget.ProductListMarginDecoration
 import com.his.features.productlist.viewmodel.ProductListViewModel
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import timber.log.Timber
@@ -17,6 +18,7 @@ import timber.log.Timber
 class ProductListFragment : BaseFragment() {
 	private lateinit var mProductListViewModel: ProductListViewModel
 	private lateinit var mProductListController: ProductListController
+	private val mProductItemDecorator by lazy { ProductListMarginDecoration(context!!, R.dimen.spacing_tiny, false) }
 
 	override fun layoutId() = R.layout.fragment_product_list
 
@@ -45,6 +47,7 @@ class ProductListFragment : BaseFragment() {
 		layoutManager.spanSizeLookup = mProductListController.spanSizeLookup
 		recyclerViewProductList.layoutManager = layoutManager
 		recyclerViewProductList.setController(mProductListController)
+		recyclerViewProductList.addItemDecoration(mProductItemDecorator)
 	}
 
 	private fun renderProductList(productList: List<ProductItem>?) {
