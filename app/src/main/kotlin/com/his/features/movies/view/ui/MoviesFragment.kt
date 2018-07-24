@@ -18,6 +18,9 @@ package com.his.features.movies.view.ui
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import com.his.R
 import com.his.core.exception.NetworkConnectionException
@@ -47,7 +50,7 @@ class MoviesFragment : BaseFragment() {
 
 		moviesViewModel = viewModel(viewModelFactory) {
 			observe(movies, ::renderMoviesList)
-			failure(failure, ::handleFailure)
+			failure(error, ::handleFailure)
 		}
 	}
 
@@ -55,6 +58,22 @@ class MoviesFragment : BaseFragment() {
 		super.onViewCreated(view, savedInstanceState)
 		initializeView()
 		loadMoviesList()
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+		inflater?.inflate(R.menu.movies_menu, menu)
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+		return when(item?.itemId) {
+			R.id.menuProductList  -> {
+				navigator.showProductList(context!!)
+				 true
+			}
+			else                -> {
+				super.onOptionsItemSelected(item)
+			}
+		}
 	}
 
 

@@ -43,7 +43,7 @@ class LoginFragment : BaseFragment() {
 
 		loginViewModel = viewModel(viewModelFactory) {
 			observe(userLogin, ::renderUserLogin)
-			failure(failure, ::handleFailure)
+			failure(error, ::handleFailure)
 		}
 	}
 

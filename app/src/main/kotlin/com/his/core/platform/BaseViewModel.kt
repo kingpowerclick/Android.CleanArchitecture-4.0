@@ -29,10 +29,10 @@ abstract class BaseViewModel : ViewModel() {
 
 	private val disposables: CompositeDisposable by lazy { CompositeDisposable() }
 
-	var failure: MutableLiveData<Throwable> = MutableLiveData()
+	var error: MutableLiveData<Throwable> = MutableLiveData()
 
 	protected fun handleFailure(failure: Throwable) {
-		this.failure.value = failure
+		this.error.value = failure
 	}
 
 	protected fun Disposable.autoClear() {

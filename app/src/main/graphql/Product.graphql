@@ -1,0 +1,36 @@
+query getProductList($sku: String, $category: String, $brand: String, $prettyUrl: String, $sortBy: ProductSortableFieldEnum, $sortType: SortEnumType, $page: Int,$recordPerPage: Int,
+    $lang: LocaleType, $keyword: String, $filter: ProductFilterQuery, $collectionName: String) {
+    products(sku: $sku, category: $category, brand: $brand, prettyUrl: $prettyUrl, sortBy: $sortBy, sortType: $sortType, page: $page, recordsPerPage: $recordPerPage,
+    lang:$lang, keyword: $keyword, filter: $filter, collectionName: $collectionName) {
+        ... ProductsResponse
+    }
+}
+
+fragment ProductsResponse on ProductsResponse {
+    data {
+        ... ProductItem
+    }
+}
+
+fragment ProductItem on Product {
+    sku
+    name
+    dutyFree
+    pickup
+    hotItem
+    exclusiveKP
+    bestSeller
+    lag
+    soldOut
+    images {
+        ... Image
+    }
+    prettyUrl
+}
+
+fragment Image on Image {
+    filename
+    version
+    baseUri
+    prefix
+}

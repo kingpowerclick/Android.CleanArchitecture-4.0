@@ -12,4 +12,6 @@
 
     <!-- Progress view. -->
     <dimen name="progress_view_height">10dp</dimen>
+
+    <dimen name="spacing_tiny">4dp</dimen>
 </resources>

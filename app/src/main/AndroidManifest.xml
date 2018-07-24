@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.his">
 
-    <!--Permissions-->
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!--Application-->
+    <!-- Application -->
     <application
         android:name=".AndroidApplication"
         android:allowBackup="true"
@@ -14,50 +14,43 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="2a071e4f5b41b045731708f1d39eb72e37c4ed0f" />
 
-        <!--Activities-->
+        <!-- Activities -->
         <activity
-            android:name="com.his.core.navigation.RouteActivity"
+            android:name=".core.navigation.RouteActivity"
             android:noHistory="true"
-            android:theme="@style/AppTheme.Translucent">
-
-        </activity>
-
+            android:theme="@style/AppTheme.Translucent"/>
         <activity
             android:name=".features.login.view.ui.LoginActivity"
             android:label="@string/login_screen_title">
-
+        </activity>
+        <activity
+            android:name=".features.movies.view.ui.MoviesActivity"
+            android:label="@string/movies_screen_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".features.login.LoginActivity"
-            android:label="@string/login_screen_title"></activity>
-
-        <activity
-            android:name=".features.movies.view.ui.MoviesActivity"
-            android:label="@string/movies_screen_title"></activity>
-
-        <activity
             android:name=".features.movies.view.ui.MovieDetailsActivity"
             android:label="@string/movie_details_screen_title"
-            android:theme="@style/AppTheme.Translucent"></activity>
+            android:theme="@style/AppTheme.Translucent" />
 
-        <service
-            android:name=".features.service.FCMService">
+        <activity
+            android:label="@string/product_list"
+            android:name=".features.productlist.view.ui.ProductListActivity"/>
+
+        <service android:name=".features.service.FCMService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
-

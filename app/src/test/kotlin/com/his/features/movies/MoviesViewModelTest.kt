@@ -76,7 +76,7 @@ class MoviesViewModelTest : AndroidTest() {
 		movieCaptor.onError(Throwable())
 
 		// Assert
-		moviesViewModel.failure.value.let { it is Throwable }
+		moviesViewModel.error.value.let { it is Throwable }
 	}
 
 	private val movieCaptor: DefaultDisposable<List<Movie>>
