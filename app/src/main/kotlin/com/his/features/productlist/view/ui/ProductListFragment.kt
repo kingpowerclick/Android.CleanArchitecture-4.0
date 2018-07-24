@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.fragment_product_list.*
 import timber.log.Timber
 
 class ProductListFragment : BaseFragment() {
-	private lateinit var mProductListViewModel: ProductListViewModel
-	private lateinit var mProductListController: ProductListController
-	private val mProductItemDecorator by lazy { ProductListMarginDecoration(context!!, R.dimen.spacing_tiny, false) }
+	private lateinit var productListViewModel: ProductListViewModel
+	private lateinit var productListController: ProductListController
+	private val productItemDecorator by lazy { ProductListMarginDecoration(context!!, R.dimen.spacing_tiny, false) }
 
 	override fun layoutId() = R.layout.fragment_product_list
 
@@ -26,7 +26,7 @@ class ProductListFragment : BaseFragment() {
 		super.onCreate(savedInstanceState)
 		appComponent.inject(this)
 
-		mProductListViewModel = viewModel(viewModelFactory) {
+		productListViewModel = viewModel(viewModelFactory) {
 			observe(productList, ::renderProductList)
 			failure(error, ::handleFailure)
 		}
@@ -36,23 +36,23 @@ class ProductListFragment : BaseFragment() {
 		super.onViewCreated(view, savedInstanceState)
 		initView()
 		if (firstTimeCreated(savedInstanceState)) {
-			mProductListViewModel.loadProductList()
+			productListViewModel.loadProductList()
 		}
 	}
 
 	private fun initView() {
 		val layoutManager =  GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-		mProductListController = ProductListController()
-		mProductListController.spanCount = 2
-		layoutManager.spanSizeLookup = mProductListController.spanSizeLookup
+		productListController = ProductListController()
+		productListController.spanCount = 2
+		layoutManager.spanSizeLookup = productListController.spanSizeLookup
 		recyclerViewProductList.layoutManager = layoutManager
-		recyclerViewProductList.setController(mProductListController)
-		recyclerViewProductList.addItemDecoration(mProductItemDecorator)
+		recyclerViewProductList.setController(productListController)
+		recyclerViewProductList.addItemDecoration(productItemDecorator)
 	}
 
 	private fun renderProductList(productList: List<ProductItem>?) {
 		productList?.let {
-			mProductListController.setProductItemList(it)
+			productListController.setProductItemList(it)
 		}
 	}
 
