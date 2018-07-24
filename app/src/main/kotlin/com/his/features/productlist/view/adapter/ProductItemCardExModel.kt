@@ -9,11 +9,11 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.his.R
 import com.his.core.extension.loadFromUrl
-import com.his.features.productlist.data.entity.ProductItem
+import com.his.features.productlist.data.model.ProductItem
 import kotlinx.android.synthetic.main.row_product_item.view.*
 
 @EpoxyModelClass(layout = R.layout.row_product_item)
-abstract class ProductItemCard : EpoxyModelWithHolder<ProductItemCard.ViewHolder>() {
+abstract class ProductItemCardExModel : EpoxyModelWithHolder<ProductItemCardExModel.ViewHolder>() {
 
 	@EpoxyAttribute(EpoxyAttribute.Option.NoGetter) protected var productItem: ProductItem? = null
 

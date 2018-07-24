@@ -1,4 +1,4 @@
-package com.his.features.login.view.model
+package com.his.features.login.data.entity.mapper
 
 data class UserLogin (
 	val tokenType: String?,

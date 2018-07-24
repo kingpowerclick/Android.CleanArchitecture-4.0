@@ -3,8 +3,8 @@ package com.his.features.productlist.viewmodel
 import android.arch.lifecycle.MutableLiveData
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
-import com.his.features.productlist.data.entity.LocaleType
-import com.his.features.productlist.data.entity.ProductItem
+import com.his.features.core.data.model.LocaleType
+import com.his.features.productlist.data.model.ProductItem
 import com.his.features.productlist.data.usecase.GetProductList
 import javax.inject.Inject
 

@@ -1,5 +1,6 @@
-package com.his.features.productlist.data.entity
+package com.his.features.productlist.data.model
 
+import com.his.features.core.data.model.mapper.ImageMapper
 import javax.inject.Inject
 import javax.inject.Singleton
 

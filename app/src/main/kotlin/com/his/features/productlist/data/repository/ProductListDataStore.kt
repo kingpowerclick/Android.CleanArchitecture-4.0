@@ -1,8 +1,9 @@
 package com.his.features.productlist.data.repository
 
-import com.his.features.productlist.data.entity.ProductItem
-import com.his.features.productlist.data.entity.ProductSortableFieldEnum
-import com.his.features.productlist.data.entity.SortType
+import com.his.features.core.data.model.LocaleType
+import com.his.features.productlist.data.model.ProductItem
+import com.his.features.productlist.data.model.ProductSortableFieldEnum
+import com.his.features.productlist.data.model.SortType
 import io.reactivex.Observable
 
 
@@ -15,7 +16,7 @@ interface ProductListDataStore {
 	                   sortType: SortType?,
 	                   page: Int?,
 	                   recordPerPage: Int?,
-	                   lang: com.his.features.productlist.data.entity.LocaleType,
+	                   lang: LocaleType,
 	                   keyword: String?,
 	                   brands :List<String>?,
 	                   categories: List<String>?,

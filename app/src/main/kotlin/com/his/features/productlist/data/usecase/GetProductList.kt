@@ -1,10 +1,10 @@
 package com.his.features.productlist.data.usecase
 
 import com.his.core.interactor.UseCase
-import com.his.features.productlist.data.entity.LocaleType
-import com.his.features.productlist.data.entity.ProductItem
-import com.his.features.productlist.data.entity.ProductSortableFieldEnum
-import com.his.features.productlist.data.entity.SortType
+import com.his.features.core.data.model.LocaleType
+import com.his.features.productlist.data.model.ProductItem
+import com.his.features.productlist.data.model.ProductSortableFieldEnum
+import com.his.features.productlist.data.model.SortType
 import com.his.features.productlist.data.repository.ProductListRepository
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -33,7 +33,7 @@ class GetProductList @Inject constructor(private val getProductListRepository: P
 		)
 	}
 
-	class Param(
+	data class Param(
 		val sku: String? = null,
 		val category: String? = null,
 		val brand: String? = null,
