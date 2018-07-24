@@ -22,34 +22,33 @@
         <activity
             android:name=".core.navigation.RouteActivity"
             android:noHistory="true"
-            android:theme="@style/AppTheme.Translucent"></activity>
+            android:theme="@style/AppTheme.Translucent"/>
         <activity
             android:name=".features.login.view.ui.LoginActivity"
             android:label="@string/login_screen_title">
+        </activity>
+        <activity
+            android:name=".features.movies.view.ui.MoviesActivity"
+            android:label="@string/movies_screen_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".features.login.LoginActivity"
-            android:label="@string/login_screen_title" />
-        <activity
-            android:name=".features.movies.view.ui.MoviesActivity"
-            android:label="@string/movies_screen_title" />
+
         <activity
             android:name=".features.movies.view.ui.MovieDetailsActivity"
             android:label="@string/movie_details_screen_title"
             android:theme="@style/AppTheme.Translucent" />
+
+        <activity android:name=".features.productlist.view.ui.ProductListActivity"/>
 
         <service android:name=".features.service.FCMService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <activity android:name=".features.productlist.view.ui.ProductListActivity"></activity>
     </application>
 
 </manifest>
