@@ -6,7 +6,7 @@ import javax.inject.Singleton
 @Singleton
 class ImageMapper @Inject constructor() {
 	fun toImage(imageEntity: fragment.Image?): Image? {
-		return if (imageEntity?.baseUri()?.isNotEmpty() == true && imageEntity.filename()?.isNotEmpty() != true) {
+		return if (imageEntity?.baseUri()?.isNotBlank() == true && imageEntity.filename()?.isNotBlank() == true) {
 			Image(
 				fileName = imageEntity.filename()!!,
 				version = imageEntity.version() ?: "",

@@ -9,5 +9,5 @@ data class ProductItem(val sku: String,
                        val bestSeller: Boolean,
                        val lag: Boolean,
                        val soldOut: Boolean,
-                       val images: List<Image>?,
+                       val image: Image?,
                        val prettyUrl: String)

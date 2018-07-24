@@ -20,7 +20,7 @@ abstract class ProductItemCard : EpoxyModelWithHolder<ProductItemCard.ViewHolder
 	override fun bind(holder: ViewHolder) {
 		super.bind(holder)
 		with(holder) {
-			imageViewProductItem.loadFromUrl(productItem?.prettyUrl ?: "")
+			imageViewProductItem.loadFromUrl(productItem?.image?.getImageUrl() ?: "")
 			textViewProductName.text = productItem?.name ?: ""
 		}
 	}

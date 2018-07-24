@@ -48,7 +48,9 @@ class ProductListFragment : BaseFragment() {
 	}
 
 	private fun renderProductList(productList: List<ProductItem>?) {
-		Timber.e("${productList}")
+		productList?.let {
+			mProductListController.setProductItemList(it)
+		}
 	}
 
 

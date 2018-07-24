@@ -20,7 +20,7 @@ class ProductListEntityMapper @Inject constructor(private val imageMapper: Image
 					bestSeller = it.bestSeller() ?: false,
 					lag = it.lag() ?: false,
 					soldOut = it.soldOut() ?: false,
-					images = it.images()?.mapNotNull { imageMapper.toImage(it?.fragments()?.image()) },
+					image = it.images()?.mapNotNull { imageMapper.toImage(it?.fragments()?.image()) }?.firstOrNull(),
 					prettyUrl = it.prettyUrl() ?: ""
 				)
 			}

@@ -7,7 +7,8 @@ open class ProductListController : EpoxyController() {
 	private var mProductList: List<ProductItem> = listOf()
 
 	fun setProductItemList(productItemList: List<ProductItem>) {
-		this.mProductList = productItemList
+		mProductList = productItemList
+		requestModelBuild()
 	}
 
 	override fun buildModels() {
@@ -15,6 +16,8 @@ open class ProductListController : EpoxyController() {
 			mProductList.forEach {
 				ProductItemCard_()
 					.productItem(it)
+					.id(it.sku)
+					.addTo(this)
 			}
 		}
 	}
