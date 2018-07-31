@@ -1,4 +1,4 @@
-package com.his.features.productlist.data.entity
+package com.his.features.core.data.model
 
 data class Image(val fileName: String,
                  val version: String,

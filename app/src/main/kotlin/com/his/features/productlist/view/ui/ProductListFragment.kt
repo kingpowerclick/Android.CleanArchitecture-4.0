@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.his.R
+import com.his.R.id.recyclerViewProductList
 import com.his.core.extension.failure
 import com.his.core.extension.observe
 import com.his.core.extension.viewModel
 import com.his.core.platform.BaseFragment
-import com.his.features.productlist.data.entity.ProductItem
+import com.his.features.productlist.data.model.ProductItem
 import com.his.features.productlist.view.adapter.ProductListController
 import com.his.features.productlist.view.widget.ProductListMarginDecoration
 import com.his.features.productlist.viewmodel.ProductListViewModel

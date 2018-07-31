@@ -18,7 +18,7 @@ package com.his.features.login.data.repository
 import UserLoginQuery
 import com.his.core.platform.graphql.GraphQLClient
 import com.his.features.login.data.entity.mapper.LoginEntityDataMapper
-import com.his.features.login.view.model.UserLogin
+import com.his.features.login.data.entity.mapper.UserLogin
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -1,4 +1,6 @@
-package com.his.features.productlist.data.entity
+package com.his.features.productlist.data.model
+
+import com.his.features.core.data.model.Image
 
 data class ProductItem(val sku: String,
                        val name: String,

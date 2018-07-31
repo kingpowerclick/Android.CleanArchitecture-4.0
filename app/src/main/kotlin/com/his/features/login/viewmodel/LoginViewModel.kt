@@ -3,9 +3,8 @@ package com.his.features.login.viewmodel
 import android.arch.lifecycle.MutableLiveData
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
+import com.his.features.login.data.entity.mapper.UserLogin
 import com.his.features.login.data.usecase.LoginByUserId
-import com.his.features.login.view.model.UserLogin
-import com.his.features.login.view.model.params.UserLoginParams
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -13,12 +12,7 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 	var userLogin: MutableLiveData<UserLogin> = MutableLiveData()
 
 	fun signIn(email: String, password: String) {
-		val params = UserLoginParams(
-			clientId = KEY_CLIENT_ID,
-			clientSecret = KEY_CLIENT_SECRET,
-			email = email,
-			password = password
-		)
+		val params = LoginByUserId.UserLoginParams(clientId = KEY_CLIENT_ID, clientSecret = KEY_CLIENT_SECRET, email = email, password = password)
 		mLogin.execute(LoginObserver(), params)
 	}
 

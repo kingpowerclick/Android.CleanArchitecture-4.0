@@ -1,9 +1,9 @@
 package com.his.features.productlist.data.repository
 
-import com.his.features.productlist.data.entity.LocaleType
-import com.his.features.productlist.data.entity.ProductItem
-import com.his.features.productlist.data.entity.ProductSortableFieldEnum
-import com.his.features.productlist.data.entity.SortType
+import com.his.features.core.data.model.LocaleType
+import com.his.features.productlist.data.model.ProductItem
+import com.his.features.productlist.data.model.ProductSortableFieldEnum
+import com.his.features.productlist.data.model.SortType
 import io.reactivex.Observable
 import javax.inject.Inject
 
