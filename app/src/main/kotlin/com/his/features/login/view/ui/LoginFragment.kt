@@ -55,7 +55,7 @@ class LoginFragment : BaseFragment() {
 			textInputLayoutPassword.error = errorText
 		})
 
-		loginViewModel.failure.observe(this, Observer { failure ->
+		loginViewModel.error.observe(this, Observer { failure ->
 			handleFailure(failure)
 		})
 	}

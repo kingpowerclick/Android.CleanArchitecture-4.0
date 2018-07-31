@@ -65,7 +65,7 @@ class LoginViewModelTest : UnitTest() {
 	@Test
 	fun `loading user login fail should update user login live data`() {
 		userLogin.onError(Throwable())
-		loginViewModel.failure.value.let { it is Throwable }
+		loginViewModel.error.value.let { it is Throwable }
 	}
 
 	private val userLogin: DefaultDisposable<UserLogin>
