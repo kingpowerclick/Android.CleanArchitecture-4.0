@@ -5,9 +5,9 @@ import android.content.Context
 import com.his.R
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
+import com.his.features.core.view.validator.FormValidator
 import com.his.features.login.data.entity.mapper.UserLogin
 import com.his.features.login.data.usecase.LoginByUserId
-import com.his.features.login.view.validator.FormValidator
 import timber.log.Timber
 import javax.inject.Inject
 
