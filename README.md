@@ -1,4 +1,4 @@
-# Android - Clean Architecture - Kotlin [![CircleCI](https://circleci.com/gh/kingpowerclick/Android.CleanArchitecture-4.0/tree/develop.svg?style=shield)](https://circleci.com/gh/kingpowerclick/Android.CleanArchitecture-4.0/tree/develop)
+# Android - Clean Architecture - Kotlin [![CircleCI](https://circleci.com/gh/kingpowerclick/HIS.Android/tree/develop.svg?style=shield)](https://circleci.com/gh/kingpowerclick/HIS.Android/tree/develop)
 The purpose of this repo is to follow up Clean Architecture principles by bringing them to Android. It is worth saying that the idea is to take advantage of the Kotlin Programming Language features plus also pull in lessons learned and ideas from other interesting aproaches like Functional Programming.
 
 ## Blog post with implementation details explanation:
