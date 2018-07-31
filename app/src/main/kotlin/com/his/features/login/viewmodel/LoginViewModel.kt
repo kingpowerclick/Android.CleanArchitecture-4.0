@@ -5,10 +5,8 @@ import android.content.Context
 import com.his.R
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
+import com.his.features.login.data.entity.mapper.UserLogin
 import com.his.features.login.data.usecase.LoginByUserId
-import com.his.features.login.view.model.UserLogin
-import com.his.features.login.view.model.params.UserLoginParams
-import com.his.features.login.view.validator.FormValidator
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -17,13 +15,8 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 	var errorTextEmail: MutableLiveData<String> = MutableLiveData()
 	var errorTextPassword: MutableLiveData<String> = MutableLiveData()
 
-	private fun doSignIn(email: String, password: String) {
-		val params = UserLoginParams(
-			clientId = KEY_CLIENT_ID,
-			clientSecret = KEY_CLIENT_SECRET,
-			email = email,
-			password = password
-		)
+	fun signIn(email: String, password: String) {
+		val params = LoginByUserId.UserLoginParams(clientId = KEY_CLIENT_ID, clientSecret = KEY_CLIENT_SECRET, email = email, password = password)
 		mLogin.execute(LoginObserver(), params)
 	}
 

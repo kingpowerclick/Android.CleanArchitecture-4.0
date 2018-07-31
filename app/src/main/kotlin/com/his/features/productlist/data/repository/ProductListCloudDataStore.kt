@@ -2,7 +2,9 @@ package com.his.features.productlist.data.repository
 
 import GetProductListQuery
 import com.his.core.platform.graphql.GraphQLClient
-import com.his.features.productlist.data.entity.*
+import com.his.features.core.data.model.LocaleType
+import com.his.features.core.data.model.mapper.LocaleTypeMapper
+import com.his.features.productlist.data.model.*
 import io.reactivex.Observable
 import type.ProductFilterQuery
 import javax.inject.Inject
@@ -21,7 +23,7 @@ class ProductListCloudDataStore @Inject constructor(private val graphQLClient: G
 	                            sortType: SortType?,
 	                            page: Int?,
 	                            recordPerPage: Int?,
-	                            lang: com.his.features.productlist.data.entity.LocaleType,
+	                            lang: LocaleType,
 	                            keyword: String?,
 	                            brands: List<String>?,
 	                            categories: List<String>?,

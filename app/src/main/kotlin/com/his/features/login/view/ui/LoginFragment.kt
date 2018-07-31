@@ -17,18 +17,18 @@ package com.his.features.login.view.ui
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import kotlinx.android.synthetic.main.fragment_login.*
 import android.support.annotation.StringRes
 import android.view.View
 import com.his.R
+import com.his.R.id.*
 import com.his.core.exception.NetworkConnectionException
 import com.his.core.exception.ServerErrorException
 import com.his.core.extension.viewModel
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
-import com.his.features.login.view.extensions.getText
-import com.his.features.login.view.model.UserLogin
+import com.his.features.login.data.entity.mapper.UserLogin
 import com.his.features.login.viewmodel.LoginViewModel
-import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment() {
