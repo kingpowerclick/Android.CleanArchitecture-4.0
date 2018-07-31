@@ -8,4 +8,35 @@
     <string name="failure_server_error">Server Error</string>
     <string name="failure_movies_list_unavailable">Movies Unavailable.</string>
     <string name="failure_movie_non_existent">Movie Not Existent.</string>
+
+    <!-- Form Error -->
+    <string name="form_error_credit_card_name">Sorry, Only Letters (a-z) are allowed.</string>
+    <string name="form_error_credit_card_number">Invalid Credit Card Number</string>
+    <string name="form_error_credit_card_cvv">Minimum Length 3 Characters</string>
+    <string name="form_error_credit_card_expiration">Expire Date must be in (MM/YY) format</string>
+
+    <string name="form_error_email_invalid">Invalid Email Address.</string>
+    <string name="form_error_phone_number_invalid">Mobile phone is Invalid</string>
+    <string name="form_error_first_name_invalid">Please fill-in first name in English and maximum 255 characters only</string>
+    <string name="form_error_last_name_invalid">Please fill-in last name in English and maximum 255 characters only</string>
+    <string name="form_error_tax_code_invalid">Tax code is Invalid</string>
+    <string name="form_error_address_invalid">Address is Invalid</string>
+    <string name="form_error_district_invalid">District is Invalid</string>
+    <string name="form_error_post_code_invalid">Postcode is Invalid</string>
+    <string name="form_error_passport_invalid">The Passport ID field is maximum 255 characters</string>
+    <string name="form_error_order_id_invalid">Order No. is not correct</string>
+    <string name="form_error_nationality_id_invalid">This field is require 13 digits.</string>
+
+    <string name="form_error_required_field">*Required</string>
+    <string name="form_error_required_email">The email address is required.</string>
+    <string name="form_error_required_password">The password is required.</string>
+    <string name="form_error_required_title">The Title field is required.</string>
+    <string name="form_error_required_nationality">The nationality field is required.</string>
+    <string name="form_error_required_first_name">The First name field is required.</string>
+    <string name="form_error_required_last_name">The Last name field is required.</string>
+    <string name="form_error_required_birthday">Birthday field is required.</string>
+    <string name="form_error_required_mobile_phone">Please fill in your mobile phone.</string>
+
+    <string name="form_error_password_invalid">The password must be at least 6 Characters to maximum 30 Characters.</string>
+    <string name="form_error_confirm_password_invalid">*Confirm password did not match.</string>
 </resources>

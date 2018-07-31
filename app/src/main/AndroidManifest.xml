@@ -26,15 +26,15 @@
         <activity
             android:name=".features.login.view.ui.LoginActivity"
             android:label="@string/login_screen_title">
-        </activity>
-        <activity
-            android:name=".features.movies.view.ui.MoviesActivity"
-            android:label="@string/movies_screen_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".features.movies.view.ui.MoviesActivity"
+            android:label="@string/movies_screen_title">
         </activity>
 
         <activity

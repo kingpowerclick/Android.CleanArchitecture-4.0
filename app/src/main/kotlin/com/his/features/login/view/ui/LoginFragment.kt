@@ -15,6 +15,7 @@
  */
 package com.his.features.login.view.ui
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import kotlinx.android.synthetic.main.fragment_login.*
 import android.support.annotation.StringRes
@@ -23,17 +24,17 @@ import com.his.R
 import com.his.R.id.*
 import com.his.core.exception.NetworkConnectionException
 import com.his.core.exception.ServerErrorException
-import com.his.core.extension.failure
-import com.his.core.extension.observe
 import com.his.core.extension.viewModel
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
 import com.his.features.login.data.entity.mapper.UserLogin
+import com.his.features.login.view.extensions.getText
 import com.his.features.login.viewmodel.LoginViewModel
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment() {
-	@Inject lateinit var navigator: Navigator
+	@Inject
+	lateinit var navigator: Navigator
 	private lateinit var loginViewModel: LoginViewModel
 
 	override fun layoutId() = R.layout.fragment_login
@@ -41,25 +42,33 @@ class LoginFragment : BaseFragment() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		appComponent.inject(this)
+		loginViewModel = viewModel(viewModelFactory) {}
 
-		loginViewModel = viewModel(viewModelFactory) {
-			observe(userLogin, ::renderUserLogin)
-			failure(error, ::handleFailure)
-		}
+		loginViewModel.userLogin.observe(this, Observer { userLogin ->
+			renderUserLogin(userLogin)
+		})
+
+		loginViewModel.errorTextEmail.observe(this, Observer { errorText ->
+			textInputLayoutEmail.error = errorText
+		})
+
+		loginViewModel.errorTextPassword.observe(this, Observer { errorText ->
+			textInputLayoutPassword.error = errorText
+		})
+
+		loginViewModel.error.observe(this, Observer { failure ->
+			handleFailure(failure)
+		})
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		onBindEvent()
-
 	}
 
 	private fun onBindEvent() {
 		buttonSignIn.setOnClickListener {
-			loginViewModel.signIn(
-				email = editTextEmail.text.toString(),
-				password = editTextPassword.text.toString()
-			)
+			loginViewModel.signIn(textInputLayoutEmail.getText() ?: "", textInputLayoutPassword.getText() ?: "", context!!)
 		}
 	}
 
