@@ -71,6 +71,7 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            returnDefaultValues = true
         }
     }
 
@@ -132,6 +133,7 @@ dependencies {
     testImplementation unitTestDependencies.junit
     testImplementation unitTestDependencies.mockito
     testImplementation unitTestDependencies.kluent
+    testImplementation unitTestDependencies.core
 
     //Acceptance tests dependencies
     androidTestImplementation acceptanceTestDependencies.testRunner
