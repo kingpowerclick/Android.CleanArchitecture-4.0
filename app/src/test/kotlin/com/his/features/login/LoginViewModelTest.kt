@@ -5,8 +5,8 @@ import android.content.Context
 import android.test.mock.MockContext
 import com.his.UnitTest
 import com.his.core.platform.DefaultDisposable
+import com.his.features.login.data.entity.mapper.UserLogin
 import com.his.features.login.data.usecase.LoginByUserId
-import com.his.features.login.view.model.UserLogin
 import com.his.features.login.viewmodel.LoginViewModel
 import com.his.utils.TestDisposable
 import com.nhaarman.mockito_kotlin.any

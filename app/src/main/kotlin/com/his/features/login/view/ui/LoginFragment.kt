@@ -28,6 +28,7 @@ import com.his.core.extension.viewModel
 import com.his.core.navigation.Navigator
 import com.his.core.platform.BaseFragment
 import com.his.features.login.data.entity.mapper.UserLogin
+import com.his.features.login.view.extensions.getText
 import com.his.features.login.viewmodel.LoginViewModel
 import javax.inject.Inject
 

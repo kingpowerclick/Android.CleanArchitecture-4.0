@@ -1,10 +1,10 @@
 package com.his.features.login
 
 import com.his.UnitTest
+import com.his.features.login.data.entity.mapper.UserLogin
 import com.his.features.login.data.repository.LoginCloudDataStore
 import com.his.features.login.data.repository.LoginDataRepository
 import com.his.features.login.data.repository.LoginRepository
-import com.his.features.login.view.model.UserLogin
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Observable
