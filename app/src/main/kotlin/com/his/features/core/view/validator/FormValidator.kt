@@ -1,4 +1,4 @@
-package com.his.features.login.view.validator
+package com.his.features.core.view.validator
 
 class FormValidator {
 
