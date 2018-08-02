@@ -119,6 +119,7 @@ dependencies {
     implementation applicationDependencies.firebaseCore
     implementation applicationDependencies.firebaseConfig
     implementation applicationDependencies.firebaseMessaging
+    implementation applicationDependencies.apacheCommons
     implementation(applicationDependencies.crashlytics) {
         transitive = true
     }
