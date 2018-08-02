@@ -24,6 +24,7 @@ ext {
     epoxy_version = '2.14.0'
     timber_version = '4.7.1'
     apollo_version = '1.0.0-alpha'
+    apache_commons_version = '3.7'
 
     //Analytics
     crashlytics_version = '2.9.4'
@@ -79,6 +80,7 @@ ext {
             roomRxjava              : "android.arch.persistence.room:rxjava2:$room_version",
             apolloRuntime           : "com.apollographql.apollo:apollo-runtime:$apollo_version",
             apolloRxSupport         : "com.apollographql.apollo:apollo-rx2-support:$apollo_version",
+            apacheCommons           : "org.apache.commons:commons-lang3:$apache_commons_version",
     ]
 
     unitTesting = [
