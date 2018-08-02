@@ -29,7 +29,6 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 	fun signIn(textInputUserName: String, textInputPassword: String, context: Context) {
 		val validateResults = mutableListOf<Boolean>()
 
-		Timber.e("textInputUserName : $textInputUserName")
 		when (textInputUserName.validateEmail()) {
 			INVALIDATE_EMPTY        -> {
 				errorTextEmail.value = context.getString(R.string.form_error_required_email)
@@ -44,7 +43,6 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 			}
 		}
 
-		Timber.e("textInputPassword : $textInputPassword")
 		when (textInputPassword.validatePassword()) {
 			INVALIDATE_EMPTY           -> {
 				errorTextPassword.value = context.getString(R.string.form_error_required_password)
