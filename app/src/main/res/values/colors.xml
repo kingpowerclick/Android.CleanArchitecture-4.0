@@ -8,4 +8,18 @@
     <color name="colorTextSecondary">#7f1a18</color>
 
     <color name="translucentBackground">#ED000000</color>
+    
+    <!--Base Colors-->
+    <color name="official_black">#000000</color>
+    <color name="seem_like_black">#4d4d4d</color>
+    <color name="pale_black">#a4a4a4</color>
+    <color name="not_black">#ffffff</color>
+    <color name="really_blue">#063b87</color>
+
+    <color name="disable">#e1e1e1</color>
+    <color name="surface">#f7f7f7</color>
+
+    <color name="success">#4a7449</color>
+    <color name="warning">#a85a13</color>
+    <color name="error">#ad0009</color>
 </resources>
