@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Headline -->
+    <style name="TextAppearance.Headline" parent="Base.TextAppearance.AppCompat.Headline"/>
+    
+    <style name="TextAppearance.Headline.Kanit">
+        <item name="android:fontFamily">@font/kanit_medium</item>
+    </style>
+
+    <style name="TextAppearance.Headline.Kanit.OfficialBlack">
+        <item name="android:color">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.Kanit.NotBlack">
+        <item name="android:textColor">@color/not_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.Kanit.OfficialBlack.XL">
+        <item name="android:textSize">@dimen/text_size_xl</item>
+    </style>
+
+    <style name="TextAppearance.Headline.Kanit.NotBlack.XL">
+        <item name="android:textSize">@dimen/text_size_xl</item>
+    </style>
+
+    <style name="TextAppearance.Headline.Kanit.OfficialBlack.XXL">
+        <item name="android:textSize">@dimen/text_size_xxl</item>
+    </style>
+
+    <style name="TextAppearance.Headline.RobotoSlabBold">
+        <item name="android:fontFamily">@font/robotoslab_bold</item>
+    </style>
+
+    <style name="TextAppearance.Headline.RobotoSlabBold.OfficialBlack">
+        <item  name="android:textColor">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.RobotoSlabBold.NotBlack">
+        <item  name="android:textColor">@color/not_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.RobotoSlabBold.OfficialBlack.3XL">
+        <item  name="android:textSize">@dimen/text_size_3xl</item>
+    </style>
+
+    <style name="TextAppearance.Headline.RobotoSlabBold.OfficialBlack.XL">
+        <item  name="android:textSize">@dimen/text_size_xl</item>
+    </style>
+
+    <style name="TextAppearance.Headline.RobotoSlabBold.NotBlack.XL">
+        <item  name="android:textSize">@dimen/text_size_xl</item>
+    </style>
+
+</resources>
