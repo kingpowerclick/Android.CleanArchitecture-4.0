@@ -5,8 +5,8 @@ import android.support.annotation.IntDef
 import java.util.regex.Pattern
 
 //common validate = 1
-const val VALIDATE = 0x000000000000101
-const val INVALIDATE = 0x000000000000102
+const val VALIDATE = 0x000000000000001
+const val INVALIDATE = 0x000000000000002
 
 //common string = 2
 const val INVALIDATE_EMPTY = 0x000000000000201 or INVALIDATE
