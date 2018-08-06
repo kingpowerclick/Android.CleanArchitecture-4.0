@@ -1,54 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Headline -->
-    <style name="TextAppearance.Headline" parent="Base.TextAppearance.AppCompat.Headline"/>
-    
-    <style name="TextAppearance.Headline.Kanit">
-        <item name="android:fontFamily">@font/kanit_medium</item>
+    <!-- Base -->
+    <style name="TextAppearance" parent="Base.TextAppearance.AppCompat"/>
+
+    <!-- Body -->
+    <style name="TextAppearance.Body">
+        <item name="android:fontFamily">@font/kanit_light</item>
     </style>
 
-    <style name="TextAppearance.Headline.Kanit.OfficialBlack">
-        <item name="android:color">@color/official_black</item>
+    <style name="TextAppearance.Body.B1">
+        <item name="android:textSize">@dimen/text_size_l</item>
     </style>
 
-    <style name="TextAppearance.Headline.Kanit.NotBlack">
+    <style name="TextAppearance.Body.B1.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Body.B2">
+        <item name="android:textSize">@dimen/text_size_m</item>
+    </style>
+
+    <style name="TextAppearance.Body.B2.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Body.B2.NotBlack">
         <item name="android:textColor">@color/not_black</item>
     </style>
 
-    <style name="TextAppearance.Headline.Kanit.OfficialBlack.XL">
+    <!-- Headline -->
+    <style name="TextAppearance.Headline" parent="Base.TextAppearance.AppCompat.Headline"/>
+
+    <style name="TextAppearance.Headline.H2">
+        <item name="android:fontFamily">@font/robotoslab_bold</item>
+        <item name="android:textSize">@dimen/text_size_3xl</item>
+    </style>
+    
+    <style name="TextAppearance.Headline.H2.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.H2.NotBlack">
+        <item name="android:color">@color/not_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.H5">
+        <item name="android:fontFamily">@font/robotoslab_bold</item>
         <item name="android:textSize">@dimen/text_size_xl</item>
     </style>
 
-    <style name="TextAppearance.Headline.Kanit.NotBlack.XL">
+    <style name="TextAppearance.Headline.H5.OfficialBlack">
+        <item name="android:color">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.H5.NotBlack">
+        <item name="android:color">@color/not_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.H6">
+        <item name="android:fontFamily">@font/kanit_medium</item>
         <item name="android:textSize">@dimen/text_size_xl</item>
     </style>
 
-    <style name="TextAppearance.Headline.Kanit.OfficialBlack.XXL">
+    <style name="TextAppearance.Headline.H6.OfficialBlack">
+        <item name="android:color">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.H6.NotBlack">
+        <item name="android:color">@color/not_black</item>
+    </style>
+
+    <style name="TextAppearance.Headline.H4">
+        <item name="android:fontFamily">@font/kanit_medium</item>
         <item name="android:textSize">@dimen/text_size_xxl</item>
     </style>
 
-    <style name="TextAppearance.Headline.RobotoSlabBold">
-        <item name="android:fontFamily">@font/robotoslab_bold</item>
+    <style name="TextAppearance.Headline.H4.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
     </style>
 
-    <style name="TextAppearance.Headline.RobotoSlabBold.OfficialBlack">
-        <item  name="android:textColor">@color/official_black</item>
+    <!-- Title -->
+    <style name="TextAppearance.Title" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/kanit_medium</item>
     </style>
 
-    <style name="TextAppearance.Headline.RobotoSlabBold.NotBlack">
-        <item  name="android:textColor">@color/not_black</item>
+    <style name="TextAppearance.Title.T1">
+        <item name="android:textSize">@dimen/text_size_l</item>
     </style>
 
-    <style name="TextAppearance.Headline.RobotoSlabBold.OfficialBlack.3XL">
-        <item  name="android:textSize">@dimen/text_size_3xl</item>
+    <style name="TextAppearance.Title.T1.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
     </style>
 
-    <style name="TextAppearance.Headline.RobotoSlabBold.OfficialBlack.XL">
-        <item  name="android:textSize">@dimen/text_size_xl</item>
+    <style name="TextAppearance.Title.T2">
+        <item name="android:textSize">@dimen/text_size_m</item>
     </style>
 
-    <style name="TextAppearance.Headline.RobotoSlabBold.NotBlack.XL">
-        <item  name="android:textSize">@dimen/text_size_xl</item>
+    <style name="TextAppearance.Title.T2.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
     </style>
 
+
+    <!-- Caption -->
+    <style name="TextAppearance.Caption.C" parent="Base.TextAppearance.AppCompat.Caption">
+        <item name="android:fontFamily">@font/kanit_light</item>
+        <item name="android:textSize">@dimen/text_size_s</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.SeemLikeBlack">
+        <item name="android:textColor">@color/seem_like_black</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.PaleBlack">
+        <item name="android:textColor">@color/pale_black</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.NotBlack">
+        <item name="android:textColor">@color/not_black</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.Green">
+        <item name="android:textColor">@color/success</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.Warning">
+        <item name="android:textColor">@color/warning</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.Red">
+        <item name="android:textColor">@color/error</item>
+    </style>
+
+    <style name="TextAppearance.Caption.C.ReallyBlue">
+        <item name="android:textColor">@color/really_blue</item>
+    </style>
+
+    <!-- Price -->
+    <style name="TextAppearance.Price">
+        <item name="android:fontFamily">@font/kanit_light</item>
+        <item name="android:textColor">@color/really_blue</item>
+        <item name="android:textSize">@dimen/text_size_m</item>
+    </style>
+
+    <style name="TextAppearance.Price.XL">
+        <item name="android:textSize">@dimen/text_size_xl</item>
+    </style>
+
+    <style name="TextAppearance.Price.XL.Cut">
+        <item name="android:textColor">@color/disable</item>
+    </style>
+
+    <style name="TextAppearance.Price.Cut">
+        <item name="android:textColor">@color/pale_black</item>
+    </style>
+    
+    <!-- Button -->
+    <style name="TextAppearance.Button" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="android:fontFamily">@font/kanit_medium</item>
+    </style>
+
+    <style name="TextAppearance.Button.OfficialBlack">
+        <item name="android:color">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.Button.NotBlack">
+        <item name="android:color">@color/not_black</item>
+    </style>
+
+    <style name="TextAppearance.Button.Diable">
+        <item name="android:color">@color/disable</item>
+    </style>
+
+    <!-- OverLine -->
+    <style name="TextAppearance.OverLine">
+        <item name="android:fontFamily">@font/kanit_medium</item>
+        <item name="android:textSize">@dimen/text_size_s</item>
+    </style>
+
+    <style name="TextAppearance.OverLine.OfficialBlack">
+        <item name="android:textColor">@color/official_black</item>
+    </style>
+
+    <style name="TextAppearance.OverLine.NotBlack">
+        <item name="android:textColor">@color/not_black</item>
+    </style>
 </resources>
