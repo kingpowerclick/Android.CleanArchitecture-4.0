@@ -34,7 +34,7 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 				errorTextEmail.value = context.getString(R.string.form_error_required_email)
 				validateResults.add(false)
 			}
-			INVALIDATE_EMAIL_FORMAT -> {
+			INVALIDATE_FORMAT -> {
 				errorTextEmail.value = context.getString(R.string.form_error_email_invalid)
 				validateResults.add(false)
 			}
@@ -48,7 +48,7 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 				errorTextPassword.value = context.getString(R.string.form_error_required_password)
 				validateResults.add(false)
 			}
-			INVALIDATE_PASSWORD_LENGTH -> {
+			INVALIDATE_LENGTH -> {
 				errorTextPassword.value = context.getString(R.string.form_error_password_invalid)
 				validateResults.add(false)
 			}
