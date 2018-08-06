@@ -13,18 +13,12 @@ const val INVALIDATE_EMPTY = 0x0000010 or INVALIDATE
 const val INVALIDATE_LENGTH = 0x0000020 or INVALIDATE
 const val INVALIDATE_FORMAT = 0x0000030 or INVALIDATE
 
-//mobile number validate = 3
-const val INVALIDATE_MOBILE_NUMBER = 0x0000100 or INVALIDATE
-const val INVALIDATE_MOBILE_NUMBER_FORMAT = 0x0000200 or INVALIDATE_MOBILE_NUMBER
-
 @SuppressLint("UniqueConstants")
 @IntDef(VALIDATE,
 	INVALIDATE,
 	INVALIDATE_EMPTY,
 	INVALIDATE_LENGTH,
-	INVALIDATE_FORMAT,
-	INVALIDATE_MOBILE_NUMBER,
-	INVALIDATE_MOBILE_NUMBER_FORMAT)
+	INVALIDATE_FORMAT)
 @Retention(AnnotationRetention.SOURCE)
 annotation class ValidateString
 
@@ -50,11 +44,10 @@ fun String?.validatePassword(): Int {
 	return VALIDATE
 }
 
-fun @receiver:ValidateString Int.isInvalidateMobileNumber(): Boolean = this and INVALIDATE_MOBILE_NUMBER == INVALIDATE_MOBILE_NUMBER
+fun @receiver:ValidateString Int.isInvalidateMobileNumber(): Boolean = this and INVALIDATE == INVALIDATE
 fun String?.validateMobileNumber(): Int {
 	if (this.validateCommon().isInvalidate()) return this.validateCommon()
-	if (!Pattern.matches("\\+?\\d[-+\\d -#*]{8,12}\\d", this)) return INVALIDATE_MOBILE_NUMBER_FORMAT
-	if (!Pattern.matches("\\d{9}", this)) return INVALIDATE_MOBILE_NUMBER_FORMAT
+	if (!Pattern.matches("\\+?\\d[-+\\d -#*]{8,12}\\d", this)) return INVALIDATE_FORMAT
 	if (this!!.length !in 7..29) return INVALIDATE_LENGTH
 	return VALIDATE
 }

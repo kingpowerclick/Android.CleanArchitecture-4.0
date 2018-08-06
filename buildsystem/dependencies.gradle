@@ -24,7 +24,6 @@ ext {
     epoxy_version = '2.14.0'
     timber_version = '4.7.1'
     apollo_version = '1.0.0-alpha'
-    apache_commons_version = '3.7'
 
     //Analytics
     crashlytics_version = '2.9.4'
@@ -39,6 +38,7 @@ ext {
     mockito_version = '1.6.0'
     kluent_version = '1.38'
     core_version = '1.1.1'
+    apache_commons_version = '3.7'
 
     //Acceptance Testing
     runner_version = '1.0.2-beta1'
@@ -80,17 +80,17 @@ ext {
             roomRxjava              : "android.arch.persistence.room:rxjava2:$room_version",
             apolloRuntime           : "com.apollographql.apollo:apollo-runtime:$apollo_version",
             apolloRxSupport         : "com.apollographql.apollo:apollo-rx2-support:$apollo_version",
-            apacheCommons           : "org.apache.commons:commons-lang3:$apache_commons_version",
     ]
 
     unitTesting = [
-            kotlin     : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            kotlinTest : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
-            robolectric: "org.robolectric:robolectric:$robolectric_version",
-            junit      : "junit:junit:$junit_version",
-            mockito    : "com.nhaarman:mockito-kotlin:$mockito_version",
-            kluent     : "org.amshove.kluent:kluent:$kluent_version",
-            core       : "android.arch.core:core-testing:$core_version",
+            kotlin       : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            kotlinTest   : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
+            robolectric  : "org.robolectric:robolectric:$robolectric_version",
+            junit        : "junit:junit:$junit_version",
+            mockito      : "com.nhaarman:mockito-kotlin:$mockito_version",
+            kluent       : "org.amshove.kluent:kluent:$kluent_version",
+            core         : "android.arch.core:core-testing:$core_version",
+            apacheCommons: "org.apache.commons:commons-lang3:$apache_commons_version",
     ]
 
     acceptanceTesting = [
