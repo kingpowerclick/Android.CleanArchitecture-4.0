@@ -53,8 +53,7 @@ class FormValidatorTest : UnitTest() {
 		"0835462939".validateMobileNumber().isValidate() shouldEqualTo true
 		"0835462939#1".validateMobileNumber().isValidate() shouldEqualTo true
 		"+66835462939".validateMobileNumber().isValidate() shouldEqualTo true
-		generatingRandomString(7, false, true).validateMobileNumber().isValidate() shouldEqualTo true
-		generatingRandomString(29, false, true).validateMobileNumber().isValidate() shouldEqualTo true
+		generatingRandomString(10, false, true).validateMobileNumber().isValidate() shouldEqualTo true
 	}
 
 	@Test
@@ -62,7 +61,7 @@ class FormValidatorTest : UnitTest() {
 		"".validateMobileNumber().isInvalidate() shouldEqualTo true
 		"abc".validateMobileNumber().isInvalidate() shouldEqualTo true
 		"+-==090".validateMobileNumber().isInvalidate() shouldEqualTo true
-		generatingRandomString(6, false, true).validateMobileNumber().isInvalidate() shouldEqualTo true
+		generatingRandomString(8, false, true).validateMobileNumber().isInvalidate() shouldEqualTo true
 		generatingRandomString(30, false, true).validateMobileNumber().isInvalidate() shouldEqualTo true
 	}
 
