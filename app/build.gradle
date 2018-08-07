@@ -134,6 +134,7 @@ dependencies {
     testImplementation unitTestDependencies.mockito
     testImplementation unitTestDependencies.kluent
     testImplementation unitTestDependencies.core
+    testImplementation unitTestDependencies.apacheCommons
 
     //Acceptance tests dependencies
     androidTestImplementation acceptanceTestDependencies.testRunner

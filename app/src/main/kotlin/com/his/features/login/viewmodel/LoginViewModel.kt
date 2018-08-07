@@ -5,9 +5,9 @@ import android.content.Context
 import com.his.R
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
+import com.his.features.core.view.validator.*
 import com.his.features.login.data.entity.mapper.UserLogin
 import com.his.features.login.data.usecase.LoginByUserId
-import com.his.features.login.view.validator.FormValidator
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -28,30 +28,33 @@ class LoginViewModel @Inject constructor(private val mLogin: LoginByUserId) : Ba
 
 	fun signIn(textInputUserName: String, textInputPassword: String, context: Context) {
 		val validateResults = mutableListOf<Boolean>()
-		val validator = FormValidator()
 
-		if (validator.isInputNotEmpty(textInputUserName).not()) {
-			errorTextEmail.value = context.getString(R.string.form_error_required_email)
-			validateResults.add(false)
-		}
-		else if (validator.isEmailFormatValid(textInputUserName).not()) {
-			errorTextEmail.value = context.getString(R.string.form_error_email_invalid)
-			validateResults.add(false)
-		}
-		else {
-			errorTextEmail.value = null
+		when (textInputUserName.validateEmail()) {
+			INVALIDATE_EMPTY        -> {
+				errorTextEmail.value = context.getString(R.string.form_error_required_email)
+				validateResults.add(false)
+			}
+			INVALIDATE_FORMAT -> {
+				errorTextEmail.value = context.getString(R.string.form_error_email_invalid)
+				validateResults.add(false)
+			}
+			else                    -> {
+				errorTextEmail.value = null
+			}
 		}
 
-		if (validator.isInputNotEmpty(textInputPassword).not()) {
-			errorTextPassword.value = context.getString(R.string.form_error_required_password)
-			validateResults.add(false)
-		}
-		else if (validator.isPasswordFormatValid(textInputPassword).not()) {
-			errorTextPassword.value = context.getString(R.string.form_error_password_invalid)
-			validateResults.add(false)
-		}
-		else {
-			errorTextPassword.value = null
+		when (textInputPassword.validatePassword()) {
+			INVALIDATE_EMPTY           -> {
+				errorTextPassword.value = context.getString(R.string.form_error_required_password)
+				validateResults.add(false)
+			}
+			INVALIDATE_LENGTH -> {
+				errorTextPassword.value = context.getString(R.string.form_error_password_invalid)
+				validateResults.add(false)
+			}
+			else                       -> {
+				errorTextPassword.value = null
+			}
 		}
 
 		if (validateResults.all { it }) {
