@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base -->
-    <style name="TextAppearance" parent="Base.TextAppearance.AppCompat"/>
-
-    <!-- Body -->
-    <style name="TextAppearance.Body">
+    <style name="TextAppearance" parent="Base.TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/kanit_light</item>
     </style>
+
+    <!-- Body -->
+    <style name="TextAppearance.Body"/>
 
     <style name="TextAppearance.Body.B1">
         <item name="android:textSize">@dimen/text_size_l</item>
@@ -29,10 +29,11 @@
     </style>
 
     <!-- Headline -->
-    <style name="TextAppearance.Headline" parent="Base.TextAppearance.AppCompat.Headline"/>
+    <style name="TextAppearance.Headline" parent="Base.TextAppearance.AppCompat.Headline">
+        <item name="android:fontFamily">@font/robotoslab_bold</item>
+    </style>
 
     <style name="TextAppearance.Headline.H2">
-        <item name="android:fontFamily">@font/robotoslab_bold</item>
         <item name="android:textSize">@dimen/text_size_3xl</item>
     </style>
     
