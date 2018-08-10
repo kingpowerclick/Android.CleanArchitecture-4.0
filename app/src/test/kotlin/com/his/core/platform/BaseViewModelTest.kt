@@ -16,7 +16,7 @@
 package com.his.core.platform
 
 import android.accounts.NetworkErrorException
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.his.AndroidTest
 import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Test

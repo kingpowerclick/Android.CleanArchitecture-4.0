@@ -15,7 +15,7 @@
  */
 package com.his.features.movies.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.his.core.interactor.UseCase.Parameter
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable

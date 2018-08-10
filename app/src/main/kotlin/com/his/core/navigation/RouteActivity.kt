@@ -16,7 +16,7 @@
 package com.his.core.navigation
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.his.AndroidApplication
 import com.his.core.di.ApplicationComponent
 import javax.inject.Inject

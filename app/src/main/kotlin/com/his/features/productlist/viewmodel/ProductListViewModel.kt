@@ -1,6 +1,6 @@
 package com.his.features.productlist.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.his.core.platform.BaseViewModel
 import com.his.core.platform.DefaultDisposable
 import com.his.features.core.data.model.LocaleType

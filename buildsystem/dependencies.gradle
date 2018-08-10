@@ -7,11 +7,11 @@ allprojects {
 
 ext {
     //Android libraries
-    appCompat_version = '27.1.1'
-    constraintLayout_version = '1.0.2'
-    archComponents_version = '1.1.1'
+    appCompat_version = '1.0.0-alpha1'
+    constraintLayout_version = '1.1.0'
+    archComponents_version = '2.0.0-alpha1'
     glide_version = '4.7.1'
-    room_version = '1.1.1'
+    room_version = '2.0.0-alpha1'
 
     //Third party libraries
     dagger_version = '2.16'
@@ -37,26 +37,26 @@ ext {
     junit_version = '4.12'
     mockito_version = '1.6.0'
     kluent_version = '1.38'
-    core_version = '1.1.1'
+    core_version = '2.0.0-alpha1'
     apache_commons_version = '3.7'
 
     //Acceptance Testing
-    runner_version = '1.0.2-beta1'
-    espresso_version = '3.0.2-beta1'
+    runner_version = '1.1.0-alpha1'
+    espresso_version = '3.1.0-alpha1'
 
     //Development
     leak_canary_version = '1.5.4'
 
     mainApplication = [
             kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            appCompat               : "com.android.support:appcompat-v7:$appCompat_version",
-            cardView                : "com.android.support:cardview-v7:$appCompat_version",
-            recyclerView            : "com.android.support:recyclerview-v7:$appCompat_version",
-            design                  : "com.android.support:design:$appCompat_version",
-            constraintLayout        : "com.android.support.constraint:constraint-layout:$constraintLayout_version",
-            androidAnnotations      : "com.android.support:support-annotations:$appCompat_version",
-            archComponents          : "android.arch.lifecycle:extensions:$archComponents_version",
-            archComponentsCompiler  : "android.arch.lifecycle:compiler:$archComponents_version",
+            appCompat               : "androidx.appcompat:appcompat:$appCompat_version",
+            cardView                : "androidx.cardview:cardview:$appCompat_version",
+            recyclerView            : "androidx.recyclerview:recyclerview:$appCompat_version",
+            design                  : "com.google.android.material:material:$appCompat_version",
+            constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
+            androidAnnotations      : "androidx.annotation:annotation:$appCompat_version",
+            archComponents          : "androidx.lifecycle:lifecycle-extensions:$archComponents_version",
+            archComponentsCompiler  : "androidx.lifecycle:lifecycle-compiler:$archComponents_version",
             glide                   : "com.github.bumptech.glide:glide:$glide_version",
             daggerCompiler          : "com.google.dagger:dagger-compiler:$dagger_version",
             dagger                  : "com.google.dagger:dagger:$dagger_version",
@@ -75,9 +75,9 @@ ext {
             firebaseCore            : "com.google.firebase:firebase-core:$firebase_core_version",
             firebaseConfig          : "com.google.firebase:firebase-config:$firebase_config_version",
             firebaseMessaging       : "com.google.firebase:firebase-messaging:$firebase_messaging_version",
-            room                    : "android.arch.persistence.room:runtime:$room_version",
-            roomCompiler            : "android.arch.persistence.room:compiler:$room_version",
-            roomRxjava              : "android.arch.persistence.room:rxjava2:$room_version",
+            room                    : "androidx.room:room-runtime:$room_version",
+            roomCompiler            : "androidx.room:room-compiler:$room_version",
+            roomRxjava              : "androidx.room:room-rxjava2:$room_version",
             apolloRuntime           : "com.apollographql.apollo:apollo-runtime:$apollo_version",
             apolloRxSupport         : "com.apollographql.apollo:apollo-rx2-support:$apollo_version",
     ]
@@ -89,16 +89,16 @@ ext {
             junit        : "junit:junit:$junit_version",
             mockito      : "com.nhaarman:mockito-kotlin:$mockito_version",
             kluent       : "org.amshove.kluent:kluent:$kluent_version",
-            core         : "android.arch.core:core-testing:$core_version",
+            core         : "androidx.arch.core:core-testing:$core_version",
             apacheCommons: "org.apache.commons:commons-lang3:$apache_commons_version",
     ]
 
     acceptanceTesting = [
-            testRunner        : "com.android.support.test:runner:$runner_version",
-            testRules         : "com.android.support.test:rules:$runner_version",
-            espressoCore      : "com.android.support.test.espresso:espresso-core:$espresso_version",
-            espressoIntents   : "com.android.support.test.espresso:espresso-intents:$espresso_version",
-            androidAnnotations: "com.android.support:support-annotations:$appCompat_version",
+            testRunner        : "androidx.test:runner:$runner_version",
+            testRules         : "androidx.test:rules:$runner_version",
+            espressoCore      : "androidx.test.espresso:espresso-core:$espresso_version",
+            espressoIntents   : "androidx.test.espresso:espresso-intents:$espresso_version",
+            androidAnnotations: "androidx.annotation:annotation:$appCompat_version",
     ]
 
     development = [

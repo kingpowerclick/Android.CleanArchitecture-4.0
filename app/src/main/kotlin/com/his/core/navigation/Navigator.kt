@@ -19,11 +19,11 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.app.FragmentActivity
-import android.support.v4.view.ViewCompat
 import android.view.View
 import android.widget.ImageView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
+import androidx.fragment.app.FragmentActivity
 import com.his.core.extension.empty
 import com.his.features.login.data.Authenticator
 import com.his.features.login.view.ui.LoginActivity
@@ -50,7 +50,7 @@ class Navigator
 		val intent = MovieDetailsActivity.callingIntent(activity, movie)
 		val sharedView = navigationExtras.transitionSharedElement as ImageView
 		val activityOptions = ActivityOptionsCompat
-			.makeSceneTransitionAnimation(activity, sharedView, ViewCompat.getTransitionName(sharedView))
+			.makeSceneTransitionAnimation(activity, sharedView, ViewCompat.getTransitionName(sharedView)!!)
 		activity.startActivity(intent, activityOptions.toBundle())
 	}
 

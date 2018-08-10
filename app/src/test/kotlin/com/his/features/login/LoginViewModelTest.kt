@@ -1,6 +1,6 @@
 package com.his.features.login
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import android.content.Context
 import android.test.mock.MockContext
 import com.his.UnitTest

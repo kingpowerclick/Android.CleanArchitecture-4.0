@@ -1,7 +1,7 @@
 package com.his.features.productlist.view.ui
 
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import android.view.View
 import com.his.R
 import com.his.R.id.recyclerViewProductList

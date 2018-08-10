@@ -1,6 +1,6 @@
 package com.his.features.login.view.extensions
 
-import android.support.design.widget.TextInputLayout
+import com.google.android.material.textfield.TextInputLayout
 
 fun TextInputLayout.setText(text: String?) {
 	this.editText?.setText(text)

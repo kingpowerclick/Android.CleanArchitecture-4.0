@@ -3,14 +3,14 @@ apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
     ext.kotlin_version = '1.2.51'
-    ext.gradle_tools = '3.1.4'
+    ext.gradle_tools = '3.2.0-beta05'
     ext.build_tools = '27.0.3'
     ext.jacoco_version = '0.8.2-SNAPSHOT'
-    ext.fabric_version = '1.25.1'
+    ext.fabric_version = '1.25.4'
     ext.apollo_version = '1.0.0-alpha'
 
-    ext.compile_sdk = 27
-    ext.target_sdk = 27
+    ext.compile_sdk = 28
+    ext.target_sdk = 28
     ext.min_sdk = 21
 
     ext.application_id = 'com.his'

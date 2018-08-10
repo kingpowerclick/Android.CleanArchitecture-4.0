@@ -15,10 +15,10 @@
  */
 package com.his.features.login.view.ui
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
 import kotlinx.android.synthetic.main.fragment_login.*
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import android.view.View
 import com.his.R
 import com.his.R.id.*

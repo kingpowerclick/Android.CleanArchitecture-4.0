@@ -15,8 +15,8 @@
  */
 package com.his.core.di.viewmodel
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.his.features.login.viewmodel.LoginViewModel
 import com.his.features.movies.viewmodel.MovieDetailsViewModel
 import com.his.features.movies.viewmodel.MoviesViewModel

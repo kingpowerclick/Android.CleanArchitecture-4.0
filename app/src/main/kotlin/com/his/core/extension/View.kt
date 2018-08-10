@@ -16,9 +16,9 @@
 package com.his.core.extension
 
 import android.graphics.drawable.Drawable
-import android.support.annotation.LayoutRes
-import android.support.v4.app.FragmentActivity
-import android.support.v4.view.ViewCompat
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.FragmentActivity
+import androidx.core.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

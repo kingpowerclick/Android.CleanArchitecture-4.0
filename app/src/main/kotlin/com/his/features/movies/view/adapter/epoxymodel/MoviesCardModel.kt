@@ -1,6 +1,6 @@
 package com.his.features.movies.view.adapter.epoxymodel
 
-import android.support.v7.widget.CardView
+import androidx.cardview.widget.CardView
 import android.view.View
 import android.widget.ImageView
 import com.airbnb.epoxy.EpoxyAttribute

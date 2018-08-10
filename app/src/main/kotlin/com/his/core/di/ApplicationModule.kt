@@ -15,7 +15,7 @@
  */
 package com.his.core.di
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 import com.his.AndroidApplication
 import com.his.BuildConfig

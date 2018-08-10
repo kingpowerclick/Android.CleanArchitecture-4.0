@@ -1,6 +1,6 @@
 package com.his.features.login.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import com.his.R
 import com.his.core.platform.BaseViewModel
